@@ -1,0 +1,90 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.8.0)
+  - FLAnimatedImage (1.0.12)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - HandyJSON (4.2.1)
+  - Hyphenate (3.5.2)
+  - Kingfisher (4.10.1)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - MJRefresh (3.1.15.7)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SnapKit (4.2.0)
+  - SVProgressHUD (2.2.5)
+  - TTTAttributedLabel (2.0.0)
+  - XXNibBridge (2.3.1)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Alamofire
+  - FLAnimatedImage
+  - FMDB
+  - HandyJSON
+  - Hyphenate
+  - Kingfisher
+  - Masonry
+  - MBProgressHUD
+  - MJRefresh
+  - SDWebImage
+  - SnapKit
+  - SVProgressHUD
+  - TTTAttributedLabel
+  - XXNibBridge
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Alamofire
+    - FLAnimatedImage
+    - FMDB
+    - HandyJSON
+    - Hyphenate
+    - Kingfisher
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - SDWebImage
+    - SnapKit
+    - SVProgressHUD
+    - TTTAttributedLabel
+    - XXNibBridge
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
+  Hyphenate: 55a0b19d2df1d79ed376e15f3a9ab1b0b2a901ee
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  XXNibBridge: addb780e6db076eb2c61716aa60b176a6799b80f
+
+PODFILE CHECKSUM: cadbe1daa2c46a7ec3705f43ee1e0f94b0587c07
+
+COCOAPODS: 1.5.3

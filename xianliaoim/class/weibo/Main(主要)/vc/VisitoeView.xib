@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VisitoeView" customModule="wk微博" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="visitordiscover_feed_image_smallicon" translatesAutoresizingMaskIntoConstraints="NO" id="M5b-U6-OQY">
+                    <rect key="frame" x="100" y="120" width="175" height="175"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="175" id="Bpk-Un-vhz"/>
+                        <constraint firstAttribute="width" constant="175" id="SYi-Sg-RPG"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="visitordiscover_feed_mask_smallicon" translatesAutoresizingMaskIntoConstraints="NO" id="DEF-Tc-yoE">
+                    <rect key="frame" x="100" y="120" width="175" height="175"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="175" id="Izx-tW-aTn"/>
+                        <constraint firstAttribute="height" constant="175" id="VaL-zf-IhV"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="visitordiscover_feed_image_house" translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-sk-c03">
+                    <rect key="frame" x="140" y="205" width="94" height="90"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="检测到没有登录.尝试登录下吧!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKb-Ep-xKc">
+                    <rect key="frame" x="62" y="363" width="250" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="nEm-LR-Gdc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SF4-eY-LPp">
+                    <rect key="frame" x="142.5" y="404" width="90" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="07a-I8-Fke"/>
+                        <constraint firstAttribute="width" constant="90" id="xrO-5b-8UY"/>
+                    </constraints>
+                    <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="登录"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VgJ-sk-c03" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2AB-ga-M9h"/>
+                <constraint firstItem="M5b-U6-OQY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2WP-IR-ZcW"/>
+                <constraint firstItem="SKb-Ep-xKc" firstAttribute="centerX" secondItem="VgJ-sk-c03" secondAttribute="centerX" id="MsL-K6-tjL"/>
+                <constraint firstItem="M5b-U6-OQY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="QcS-M0-B2u"/>
+                <constraint firstItem="DEF-Tc-yoE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="UMD-M1-CAL"/>
+                <constraint firstItem="SKb-Ep-xKc" firstAttribute="top" secondItem="M5b-U6-OQY" secondAttribute="bottom" constant="68" id="Ycp-1B-h6S"/>
+                <constraint firstItem="DEF-Tc-yoE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c50-ul-vKa"/>
+                <constraint firstItem="SF4-eY-LPp" firstAttribute="top" secondItem="SKb-Ep-xKc" secondAttribute="bottom" constant="20" id="eDq-xr-GNN"/>
+                <constraint firstItem="SF4-eY-LPp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jHC-jH-4Tl"/>
+                <constraint firstItem="VgJ-sk-c03" firstAttribute="bottom" secondItem="M5b-U6-OQY" secondAttribute="bottom" id="kw4-7B-7un"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bgView" destination="M5b-U6-OQY" id="prL-SN-edY"/>
+                <outlet property="loginBtn" destination="SF4-eY-LPp" id="1E9-mZ-8BT"/>
+                <outlet property="markImageView" destination="VgJ-sk-c03" id="UCB-kZ-85F"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="visitordiscover_feed_image_house" width="94" height="90"/>
+        <image name="visitordiscover_feed_image_smallicon" width="175" height="175"/>
+        <image name="visitordiscover_feed_mask_smallicon" width="175" height="175"/>
+    </resources>
+</document>
