@@ -11,16 +11,18 @@ import UIKit
 class VisitoeView: UIView {
     @IBOutlet weak var bgView: UIImageView!
     
+    @IBOutlet weak var messageTitle: UILabel!
     @IBOutlet weak var markImageView: UIImageView!
     
     @IBOutlet weak var loginBtn: UIButton!
-    class func visitoeView() ->VisitoeView{
+    
+    @objc class func visitoeView() ->VisitoeView{
         return  Bundle.main.loadNibNamed("VisitoeView", owner: nil, options: nil)?.first as! VisitoeView
     }
 
-    func  setupVisitoeView(title:String,imageName:String) {
+    @objc func  setupVisitoeView(title:String,imageName:String) {
         if title.count>0 {
-            
+            self.messageTitle.text=title;
         }
         if imageName.count>0 {
             markImageView.image = UIImage(named: imageName);
@@ -28,7 +30,7 @@ class VisitoeView: UIView {
         }
     }
     
-    func  addRotationAnim()  {
+   @objc func  addRotationAnim()  {
         let  rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z");
         
         rotationAnim.fromValue = 0

@@ -35,7 +35,7 @@ class HomeViewController: BaseVC {
         if !isLogin{
             return;
         }
-        setupNavigationBar();
+//        setupNavigationBar();
         
         setupView()
         
@@ -49,13 +49,17 @@ class HomeViewController: BaseVC {
         setupNatifications();
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        self.tableView.reloadData();
+    }
 }
 
 extension HomeViewController{
     
     private func setupNavigationBar(){
         //1.设置左侧
-        let  leftBtn =  UIButton(imageName: "navigationbar_friendattention" );();
+        let  leftBtn =  UIButton(imageName: "navigationbar_friendattention" );
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBtn);
         //2.设置右侧
         let  right =  UIButton(imageName: "navigationbar_pop" );
@@ -113,7 +117,7 @@ extension HomeViewController{
         
         NetTools.shareInstance.loadStatuses (since_id, max_id) { (result, error) in
             if error != nil {
-                print(error);
+                print(error as Any);
                 weakSelf.tableView.mj_footer.endRefreshing()
                 weakSelf.tableView.mj_header.endRefreshing();
                 return
@@ -159,7 +163,7 @@ extension HomeViewController{
 //                    group.leave()
 //                }
                 //            }
-                let downloadTask = downloader.downloadImage(with: picURL, retrieveImageTask: nil, options: [], progressBlock: nil) { (_, error, _, _) in
+                 downloader.downloadImage(with: picURL, retrieveImageTask: nil, options: [], progressBlock: nil) { (_, error, _, _) in
                     if error != nil {
                         NSLog("首页图片缓存出现错误\(String(describing: error))")
                     }

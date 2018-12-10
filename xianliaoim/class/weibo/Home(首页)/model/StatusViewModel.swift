@@ -63,7 +63,7 @@ class StatusViewModel: NSObject {
         //非转发 bmiddle_pic中图片 thumbnail_pic微缩图
         if let picURLDicts = picURLDicts{
             for picURLDict in picURLDicts{
-                guard var picURLString = picURLDict["thumbnail_pic"] else {
+                guard let picURLString = picURLDict["thumbnail_pic"] else {
                     continue;
                 }
 //                let range = picURLString.range(of: "thumbnail");

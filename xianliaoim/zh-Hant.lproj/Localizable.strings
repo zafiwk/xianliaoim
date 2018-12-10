@@ -1,0 +1,22 @@
+/* 
+  InfoPlist.strings
+  xianliaoim
+
+  Created by wangkang on 2018/11/26.
+  Copyright © 2018 wangkang. All rights reserved.
+*/
+//AppDelegate
+"message"= "message";
+"contact"= "contact";
+"see"    =  "see";
+"mime"   =  "mime";
+
+//WKPLogin
+"Please enter the registered mobile number"="Please enter the registered mobile number";//请输入注册的手机号码
+"Please enter your password"="Please enter your password";//请输入密码
+"Please enter your phone verification code"="Please enter your phone verification code";//请输入手机验证码
+"SMS verification" ="SMS verification";//短信校验
+"registered"= "registered";            //注册
+"confirm"   = "confirm";               //确认
+"Wrong format of phone number"  = "Wrong format of phone number" ;//手机号码格式错误
+"determine" = "determine" ;//确定

@@ -3,7 +3,7 @@ platform :ios, '12.0'
 
 target 'xianliaoim' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  
+  use_frameworks!
   
   post_install do |installer|
          # 需要指定编译版本的第三方的名称
@@ -17,7 +17,7 @@ target 'xianliaoim' do
          end
       end
   end
-  use_frameworks!
+
 
   # Pods for xianliaoim
 	pod 'Hyphenate'
@@ -35,4 +35,7 @@ target 'xianliaoim' do
 	pod 'FMDB'
 	pod 'HandyJSON'
 	pod 'MJRefresh'
+    #短信
+    pod 'mob_smssdk'
+    pod 'FWPopupView'
 end

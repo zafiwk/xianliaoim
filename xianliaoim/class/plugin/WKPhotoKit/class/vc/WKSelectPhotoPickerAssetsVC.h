@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)WKSelectPhotoPickerGroup* group;
 @property(nonatomic,strong)selectImagesBlock block;
 @property(nonatomic,strong)NSMutableArray* selectPhotoDataArray;
+@property(nonatomic,assign)NSInteger maxValue;
 @end
 
 NS_ASSUME_NONNULL_END

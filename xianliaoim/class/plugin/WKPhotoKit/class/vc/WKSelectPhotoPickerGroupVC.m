@@ -96,6 +96,7 @@
     vc.selectPhotoDataArray=self.selectPhotoDataArray;
     vc.title=[self  transformAblumTitle:group.groupName];
     vc.block = self.block;
+    vc.maxValue = self.maxValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)back{

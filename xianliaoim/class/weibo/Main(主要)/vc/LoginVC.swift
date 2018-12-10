@@ -34,7 +34,10 @@ class LoginVC: UIViewController {
         webView.load(request);
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .done, target: self, action: #selector(exitst));
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "填充", style: .done, target: self, action: #selector(autoInput));
+    navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "一键填写", style: .done, target: self, action: #selector(autoInput));
+    navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +52,10 @@ extension LoginVC {
     }
     
     @objc private func autoInput(){
-        let jsCode = "document.getElementById('userId').value='wkdlose@163.com';document.getElementById('passwd').value='nKXtw8sZg8LZez';"
+        let userDefaults = UserDefaults.standard;
+        let username = userDefaults.object(forKey: "WEIBON") as! String;
+        let password = userDefaults.object(forKey: "WEIBOP") as! String;
+        let jsCode = "document.getElementById('userId').value='\(username)';document.getElementById('passwd').value='\(String(describing: password))';"
         webView.evaluateJavaScript(jsCode, completionHandler: nil);
     }
 }
@@ -106,7 +112,7 @@ extension LoginVC{
     private func loadAccessToken(code:String){
         SVProgressHUD.showInfo(withStatus: "获取授权令牌中...")
         NetTools.shareInstance.loadAccessToken(code: code) { [unowned self](result, error) in
-            NSLog("令牌信息\(result)")
+            NSLog("令牌信息\(String(describing: result))")
             SVProgressHUD.dismiss();
             if error != nil {
                 NSLog("\(String(describing: error))");
@@ -136,7 +142,7 @@ extension LoginVC{
         SVProgressHUD.showInfo(withStatus: "查询个人信息中...")
         NetTools.shareInstance.loadUserInfo(access_token: accessToken, uid: uid) {[unowned self] (result, error) in
             SVProgressHUD.dismiss();
-            NSLog("个人信息:\(result)");
+            NSLog("个人信息:\(String(describing: result))");
             if error != nil {
                 NSLog("\(String(describing: error))")
             }
@@ -161,8 +167,10 @@ extension LoginVC{
             //6切换主控制器
 //            UIApplication.shared..rootViewController = MainViewController();
             self.dismiss(animated: true, completion: {
-                UIApplication.shared.keyWindow?.rootViewController=WelcomeVC();
                 
+//                UIApplication.shared.keyWindow?.rootViewController=WelcomeVC();
+//                let vc = WelcomeVC();
+//                navigationController?.pushViewController(vc, animated: true);
             });
         }
         

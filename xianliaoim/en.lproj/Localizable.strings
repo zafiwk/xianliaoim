@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  xianliaoim
+
+  Created by wangkang on 2018/11/26.
+  Copyright © 2018 wangkang. All rights reserved.
+*/
+//AppDelegate
+"message"= "message";
+"contact"= "contact";
+"see"    =  "see";
+"mime"   =  "mime";
+

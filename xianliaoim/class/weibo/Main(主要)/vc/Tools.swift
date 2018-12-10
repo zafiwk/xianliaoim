@@ -8,9 +8,9 @@
 
 import UIKit
 
-let  app_key = "1094101296"
-let  app_secret       = "b9e2503df51c2a26668374aea28a6ab5"
-let  redirect_uri = "http://www.baidu.com"
+let  app_key = "2784625749"
+let  app_secret       = "e413b238151d98a23b551159bf133884"
+let  redirect_uri = "https://www.baidu.com"
 
 let UIFrame  = UIScreen.main.bounds
 let UIWidth  = UIFrame.size.width
@@ -24,33 +24,33 @@ let ShowPhotoBrowserNote     = "ShowPhotoBrowserNote"
 let ShowPhotoBrowserIndexKey = "ShowPhotoBrowserIndexKey"
 let ShowPhotoBrowserUrlsKey  = "ShowPhotoBrowserUrlsKey"
 extension UIView{
-    func getX() -> CGFloat {
+    @objc func getX() -> CGFloat {
         return self.frame.origin.x;
     }
-    func setX(x:CGFloat){
+    @objc func setX(x:CGFloat){
         self.frame = CGRect(x: x, y: getY(), width:getWidth(), height: getHeight());
     }
     
-    func getY() -> CGFloat{
+   @objc func getY() -> CGFloat{
         return self.frame.origin.y;
     }
-    func setY(y:CGFloat) {
+    @objc func setY(y:CGFloat) {
         self.frame = CGRect(x: self.frame.origin.x, y: y, width:getWidth(), height: getHeight())
     }
     
-    func  getWidth()->CGFloat{
+   @objc func  getWidth()->CGFloat{
         return self.bounds.width;
     }
     
-    func setWidth(width:CGFloat) {
+   @objc func setWidth(width:CGFloat) {
         self.frame = CGRect(x: self.getX(), y: self.getY(), width: width, height: self.getHeight())
     }
     
     
-    func getHeight() -> CGFloat {
+    @objc func getHeight() -> CGFloat {
         return self.bounds.size.height;
     }
-    func setHeight(height:CGFloat) {
+    @objc func setHeight(height:CGFloat) {
         self.frame=CGRect(x: getX(), y: getY(), width: getWidth(), height: height);
     }
 }

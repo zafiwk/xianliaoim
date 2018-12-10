@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSArray* dataArray;
 @property(nonatomic,strong)NSMutableArray* selectDataArray;
 @property(nonatomic,strong)NSIndexPath* selectIndexPath;
+@property(nonatomic,assign)NSInteger maxValue;
 @end
 
 NS_ASSUME_NONNULL_END

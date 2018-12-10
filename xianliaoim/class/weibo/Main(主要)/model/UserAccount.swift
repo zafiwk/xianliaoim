@@ -48,7 +48,7 @@ class UserAccount: NSObject ,NSCoding{
     
     //防止没有找到key报错
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        NSLog("没有找到key:|\(key)|  value:\(value)");
+        NSLog("没有找到key:|\(key)|  value:\(String(describing: value))");
     }
     required init?(coder aDecoder: NSCoder) {
         

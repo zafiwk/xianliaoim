@@ -8,7 +8,7 @@
 
 #import "WKBrowserPhotoVC.h"
 #import "WKBrowserPhotoCollectionVCCell.h"
-
+#import <MBProgressHUD/MBProgressHUD.h>
 @interface WKBrowserPhotoVC ()<UICollectionViewDelegate,UICollectionViewDataSource,WKBrowserPhotoImageViewDelegate>
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UIButton* selectBtn;
@@ -159,6 +159,14 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark selectBtnClick
 -(void)selectBtnClick:(UIButton*)btn{
+    if (self.selectDataArray.count==self.maxValue) {
+        MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode= MBProgressHUDModeText;
+        hud.label.text=@"选择的图片个数,已近最大。";
+        [hud hideAnimated:YES afterDelay:1.5];
+        return ;
+    }
+    
     CGPoint point=self.collectionView.contentOffset;
     NSInteger row=(NSInteger)point.x/self.collectionView.bounds.size.width;;
     WKPhotoAsset* asset=self.dataArray[row];

@@ -45,14 +45,15 @@ class WelcomeVC: UIViewController {
         view.addSubview(iconImgaView)
         view.addSubview(nameLabel)
         
-        weak var wealSelf = self;
+    
         //执行动画
         //Damping :阻力系数，阻力系数越大。弹动效果越不明显
         //initialSpringVelocity 初始化系数
         UIView.animate(withDuration: 2, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 5.0, options: [], animations: {
             self.iconImgaView.frame = CGRect(x:self.iconImgaView.getX(), y: UIHeight/2.0-50.0, width: 100.0, height: 100.0);
         }) { (_) in
-            UIApplication.shared.keyWindow?.rootViewController = MainViewController() 
+//            UIApplication.shared.keyWindow?.rootViewController = MainViewController()
+            
         }
     }
 

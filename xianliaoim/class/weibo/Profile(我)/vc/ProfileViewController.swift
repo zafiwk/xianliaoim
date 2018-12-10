@@ -25,7 +25,7 @@ class ProfileViewController: BaseVC {
     
     @objc func loginOut(){
         let  path =  UserAccountViewModel.shareIntance.accountPath;
-        guard let result = try? FileManager.default.removeItem(at: URL(fileURLWithPath: path)) else {
+        guard (try? FileManager.default.removeItem(at: URL(fileURLWithPath: path))) != nil else {
             return
         }  ;
     }

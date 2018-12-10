@@ -14,6 +14,7 @@
 #import "WKSelectPhotoPickerData.h"
 #import "WKSelectPhotoPickerAssetsVCFootView.h"
 #import "WKBrowserPhotoVC.h"
+
 #define CELL_V_SPACE  2
 #define CELL_H_SPACE  2
 @interface WKSelectPhotoPickerAssetsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,WKCollectionViewCellDelegate>
@@ -163,6 +164,15 @@
     cell.selectBtn.tag=indexPath.row*100;
     cell.delegate = self;
     if ([self.selectPhotoDataArray  indexOfObject:asset]==NSNotFound) {
+        if (self.selectPhotoDataArray.count==self.maxValue) {
+            MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode= MBProgressHUDModeText;
+            hud.label.text=@"选择的图片个数,已近最大。";
+            [hud hideAnimated:YES afterDelay:1.5];
+            return cell;
+        }
+        
+        
         NSString* iconImageNo=nil;
         CGFloat scale=[UIScreen mainScreen].scale;
         if (scale==2) {
@@ -203,6 +213,7 @@
     vc.dataArray =self.dataArray;
     vc.selectDataArray =self.selectPhotoDataArray;
     vc.selectIndexPath = indexPath;
+    vc.maxValue = self.maxValue;
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark WKCollectionViewCellDelegate
