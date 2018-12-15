@@ -21,10 +21,10 @@ PODS:
   - FMDB/standard (2.7.5)
   - FWPopupView (3.1.5)
   - HandyJSON (4.2.1)
-  - Hyphenate (3.5.2)
-  - Kingfisher (4.10.1)
+  - Kingfisher (5.0.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
+  - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
   - mob_smssdk (3.2.3):
     - MOBFoundation
@@ -34,8 +34,6 @@ PODS:
   - SDWebImage/Core (4.4.3)
   - SnapKit (4.2.0)
   - SVProgressHUD (2.2.5)
-  - TTTAttributedLabel (2.0.0)
-  - XXNibBridge (2.3.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -44,17 +42,15 @@ DEPENDENCIES:
   - FMDB
   - FWPopupView
   - HandyJSON
-  - Hyphenate
   - Kingfisher
   - Masonry
   - MBProgressHUD
+  - MJExtension
   - MJRefresh
   - mob_smssdk
   - SDWebImage
   - SnapKit
   - SVProgressHUD
-  - TTTAttributedLabel
-  - XXNibBridge
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -64,18 +60,16 @@ SPEC REPOS:
     - FMDB
     - FWPopupView
     - HandyJSON
-    - Hyphenate
     - Kingfisher
     - Masonry
     - MBProgressHUD
+    - MJExtension
     - MJRefresh
     - mob_smssdk
     - MOBFoundation
     - SDWebImage
     - SnapKit
     - SVProgressHUD
-    - TTTAttributedLabel
-    - XXNibBridge
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -84,19 +78,17 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   FWPopupView: fa2942c0e54abb659cdd686cac6155b5cad8eb70
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
-  Hyphenate: 55a0b19d2df1d79ed376e15f3a9ab1b0b2a901ee
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  Kingfisher: 2b0dd651e4fe5a07305b8242fde56f8e2d410f58
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   mob_smssdk: cdb6a31d4fd4667ed928e2eca03f21ad89ebc05c
   MOBFoundation: ca11e6640e995875ff755faa56ea324eed260e70
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  XXNibBridge: addb780e6db076eb2c61716aa60b176a6799b80f
 
-PODFILE CHECKSUM: 7ced59afe3becdf85ad90fa8a886f0df03eb7191
+PODFILE CHECKSUM: 12fe00cc661d74545a87239c60b648cbdad3c09d
 
 COCOAPODS: 1.5.3

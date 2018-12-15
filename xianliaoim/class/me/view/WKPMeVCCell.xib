@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5P-c3-itL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="Y5P-c3-itL">
                         <rect key="frame" x="236.5" y="2" width="39.5" height="39.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Y5P-c3-itL" secondAttribute="height" multiplier="1:1" id="8BK-Ws-wdl"/>
@@ -38,4 +38,7 @@
             <point key="canvasLocation" x="129.59999999999999" y="146.62668665667167"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="person" width="256" height="256"/>
+    </resources>
 </document>

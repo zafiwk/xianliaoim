@@ -8,7 +8,7 @@
 
 #import "WKPAddFriendVC.h"
 #import "PublicHead.h"
-#import "IMTools.h"
+
 @interface WKPAddFriendVC ()
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *message;
@@ -38,13 +38,6 @@
 }
 -(void)commitBtnClick{
     NSString* userName=[NSString stringWithFormat:@"WKP%@",self.userName.text];
-    IMTools* tools = [IMTools defaultInstance];
-    EMError* error=[tools addContaceRequest:userName withMessage:self.message.text];
-    if (error) {
-        [MBProgressHUD showError:error.description toView:self.view];
-    }else{
-        [MBProgressHUD showSuccess:@"申请发送成功" toView:nil];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    
 }
 @end

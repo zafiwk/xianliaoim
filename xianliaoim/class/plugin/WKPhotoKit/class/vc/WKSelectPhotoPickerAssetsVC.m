@@ -14,7 +14,7 @@
 #import "WKSelectPhotoPickerData.h"
 #import "WKSelectPhotoPickerAssetsVCFootView.h"
 #import "WKBrowserPhotoVC.h"
-
+#import "WKPIPhoneTools.h"
 #define CELL_V_SPACE  2
 #define CELL_H_SPACE  2
 @interface WKSelectPhotoPickerAssetsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,WKCollectionViewCellDelegate>
@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [self setupToorbar];
     
     [self setupPhotoView];
@@ -44,11 +45,23 @@
 -(void)setupToorbar{
     UIToolbar* toorBar=[[UIToolbar alloc]init];
     [self.view addSubview:toorBar];
-    [toorBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(44);
-    }];
+    
+    
+    NSString* deviceModelName=[WKPIPhoneTools deviceModelName];
+    if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+        [toorBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(-34);
+            make.height.mas_equalTo(44);
+        }];
+    }else{
+        [toorBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.height.mas_equalTo(44);
+        }];
+    }
+   
     
     
     UIBarButtonItem* fiexItem=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -62,12 +75,13 @@
 -(void)setupPhotoView{
     [self.view addSubview:self.collectionView];
     __weak  typeof(self) weakSelf= self;
-    CGRect navigationBarFrame=self.navigationController.navigationBar.frame;
-    CGFloat safeValue= CGRectGetMaxY(navigationBarFrame);
+//    CGRect navigationBarFrame=self.navigationController.navigationBar.frame;
+//    CGFloat safeValue= CGRectGetMaxY(navigationBarFrame);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.left.mas_equalTo(0);
         make.bottom.mas_equalTo(weakSelf.toolbar.mas_top).offset(0);
-        make.top.mas_equalTo(weakSelf.view).offset(safeValue);
+//        make.top.mas_equalTo(weakSelf.view).offset(safeValue);
+        make.top.mas_equalTo(0);
     }];
   
     WKSelectPhotoPickerData* picker=[WKSelectPhotoPickerData defaultPicker];
@@ -164,15 +178,7 @@
     cell.selectBtn.tag=indexPath.row*100;
     cell.delegate = self;
     if ([self.selectPhotoDataArray  indexOfObject:asset]==NSNotFound) {
-        if (self.selectPhotoDataArray.count==self.maxValue) {
-            MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.mode= MBProgressHUDModeText;
-            hud.label.text=@"选择的图片个数,已近最大。";
-            [hud hideAnimated:YES afterDelay:1.5];
-            return cell;
-        }
-        
-        
+       
         NSString* iconImageNo=nil;
         CGFloat scale=[UIScreen mainScreen].scale;
         if (scale==2) {
@@ -224,10 +230,18 @@
     WKSelectPhotoPickerData* picker=[WKSelectPhotoPickerData defaultPicker];
     WKCollectionViewCell* cell=(WKCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     if ([self.selectPhotoDataArray  indexOfObject:asset]==NSNotFound) {
-        [self.selectPhotoDataArray addObject:asset];
-        cell.activityView.hidden=NO;
-        [cell.activityView startAnimating];
-        [picker cachingImage:asset];
+        if (self.selectPhotoDataArray.count==self.maxValue) {
+            MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode= MBProgressHUDModeText;
+            hud.label.text=@"选择的图片个数,已近最大。";
+            [hud hideAnimated:YES afterDelay:1.5];
+            
+        }else{
+            [self.selectPhotoDataArray addObject:asset];
+            cell.activityView.hidden=NO;
+            [cell.activityView startAnimating];
+            [picker cachingImage:asset];
+        }
     }else{
         [self.selectPhotoDataArray removeObject:asset];
         [picker stopCaching:asset];

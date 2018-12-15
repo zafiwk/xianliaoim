@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WKBrowserPhotoCollectionVCCell : UICollectionViewCell
 @property(nonatomic,strong)WKBrowserPhotoScrollView* scrollView;
--(void)setMinZoom:(CGSize)imageSize;
+-(void)setMinZoom:(CGSize)imageSize withFrame:(CGRect)frame;
 -(void)setMaxZoom:(CGSize)imageSize;
 @end
 

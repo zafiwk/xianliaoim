@@ -12,11 +12,14 @@
 #import "WKPSignInVC.h"
 #import <Hyphenate/Hyphenate.h>
 #import "WKPShowMessageCell.h"
-#import "IMTools.h"
 #import <Masonry/Masonry.h>
 #import <FWPopupView/FWPopupView-Swift.h>
 #import "WKPAddFriendVC.h"
 #import "WKPAddFriendRequestVC.h"
+#import "ZFScanViewController.h"
+#import "NSString+WKPCategory.h"
+#import "ContactVCCell.h"
+#import "WSChatTableViewController.h"
 @interface ContactHomeVC ()
 @property(nonatomic,strong)NSMutableArray* contactArray;
 @property(nonatomic,strong)NSMutableArray* groupArray;
@@ -34,17 +37,29 @@
 
 -(void)setupUI{
     [self.tableView registerNib:[UINib nibWithNibName:@"WKPShowMessageCell" bundle:nil] forCellReuseIdentifier:@"messageCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ContactVCCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    self.numLabel=[[UILabel alloc]init];
+    self.numLabel.backgroundColor=[UIColor redColor];
+    self.numLabel.font = [UIFont systemFontOfSize:13];
+    self.numLabel.textAlignment=NSTextAlignmentCenter;
+    self.numLabel.textColor = [UIColor whiteColor];
+    self.numLabel.layer.masksToBounds=YES;
+    self.numLabel.layer.cornerRadius=10;
+    
+    self.tableView.rowHeight= 44;
+    self.tableView.tableFooterView = [[UIView alloc]init];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupDataSource];
     
     if([[EMClient sharedClient] isLoggedIn]){
         UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
         [btn setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
         UIBarButtonItem* rightBtnItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
+        [btn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem=rightBtnItem;
-        self.numLabel=[[UILabel alloc]init];
-        self.numLabel.backgroundColor=[UIColor redColor];
-        self.numLabel.font = [UIFont systemFontOfSize:13];
-        self.numLabel.textAlignment=NSTextAlignmentCenter;
-        self.numLabel.textColor = [UIColor whiteColor];
+        
         [btn addSubview:self.numLabel];
         [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(13);
@@ -52,32 +67,17 @@
             make.width.mas_equalTo(20);
             make.height.mas_equalTo(20);
         }];
-        self.numLabel.layer.masksToBounds=YES;
-        self.numLabel.layer.cornerRadius=10;
-        [btn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.tableView reloadData];
+    }else{
+        [self.numLabel removeFromSuperview];
+        self.navigationItem.rightBarButtonItem = nil ;
     }
     
     
-    
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self setupDataSource];
 }
 
 -(void)setupDataSource{
-    if([[EMClient sharedClient] isLoggedIn]){
-        IMTools* tools=[IMTools defaultInstance];
-        self.tableView.backgroundView=nil;
-        self.contactArray=[NSMutableArray arrayWithArray:[tools getAllContacts]];
-        NSArray* friendsRequestList=[tools getAllRequest];
-        if (friendsRequestList.count==0) {
-            self.numLabel.hidden=YES;
-        }else{
-            self.numLabel.hidden=NO;
-            self.numLabel.text =[NSString stringWithFormat:@"%ld",friendsRequestList.count];
-        }
-    }else{
+    
         VisitoeView*  view=[VisitoeView visitoeView];
         view.frame=self.view.bounds;
         [view setupVisitoeViewWithTitle:@"登入可以查看消息" imageName:@"visitordiscover_image_message"];
@@ -85,7 +85,7 @@
         self.tableView.tableFooterView=[[UIView  alloc]init];
         [view.loginBtn addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
         self.notData=YES;
-    }
+    
     
     [self.tableView reloadData];
 }
@@ -154,21 +154,50 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-//                if (self.contactArray.count==0) {
-        WKPShowMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"messageCell" forIndexPath:indexPath];
-        cell.messageLabel.text=@"你还没有添加任何好友";
-        cell.messageLabel.textColor =[UIColor grayColor];
-        return cell;
-//                }
+        if (self.contactArray.count==0) {
+            WKPShowMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"messageCell" forIndexPath:indexPath];
+            cell.messageLabel.text=@"你还没有添加任何好友";
+            cell.messageLabel.textColor =[UIColor grayColor];
+            return cell;
+        }else{
+            ContactVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            NSString* userName = [self.contactArray[indexPath.row] substringFromIndex:3];
+            cell.nameLabel.text = userName;
+            return cell;
+        }
+        
     }else{
-        WKPShowMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"messageCell" forIndexPath:indexPath];
-        cell.messageLabel.text=@"你还没有加入任何群";
-        cell.messageLabel.textColor =[UIColor grayColor];
-        return cell;
+        if (self.groupArray.count==0) {
+            WKPShowMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"messageCell" forIndexPath:indexPath];
+            cell.messageLabel.text=@"你还没有加入任何群";
+            cell.messageLabel.textColor =[UIColor grayColor];
+            return cell;
+        }else{
+            ContactVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            
+            return cell;
+        }
+        
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0) {
+        
+        
 
+        WSChatTableViewController *chat = [[WSChatTableViewController alloc]init];
+        
+        NSString* userName = [self.contactArray[indexPath.row] substringFromIndex:3];
+        chat.userName = userName;
+        chat.title = userName;
+        chat.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:chat animated:YES];
+
+    }else{
+        
+    }
+}
 #pragma mark btnClick
 -(void)topBtnClick:(UIButton*)btn{
     CGFloat kStatusAndNavBarHeight = CGRectGetMaxY(self.navigationController.navigationBar.frame);
@@ -200,6 +229,23 @@
         WKPAddFriendRequestVC* vc=[[WKPAddFriendRequestVC alloc]init];
         vc.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        
+        __weak  typeof(self) weakSelf=self;
+        ZFScanViewController* vc=[[ZFScanViewController alloc]init];
+        vc.returnScanBarCodeValue = ^(NSString *barCodeString) {
+            NSString* tel=nil;
+            if ([barCodeString hasPrefix:@"WKP"]) {
+                tel=[barCodeString substringToIndex:3];
+            }
+            BOOL d=[tel checkTel];
+            if (d) {
+                
+            }else{
+                [MBProgressHUD showError:@"不支持的二维码" toView:weakSelf.view];
+            }
+        };
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 

@@ -9,7 +9,7 @@
 #import "WKPAddFriendRequestVC.h"
 #import "WKPAddFriendRequestVCCell.h"
 #import "WKPShowMessageCell.h"
-#import "IMTools.h"
+
 
 @interface WKPAddFriendRequestVC ()
 @property(nonatomic,strong)NSArray* dataArray;
@@ -20,8 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    IMTools* tools=[IMTools defaultInstance];
-    self.dataArray=[tools  getAllRequest];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"WKPAddFriendRequestVCCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"WKPShowMessageCell" bundle:nil] forCellReuseIdentifier:@"message"];
     
@@ -52,18 +51,30 @@
         return cell;
     }else{
         WKPAddFriendRequestVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        RequestModel* model=self.dataArray[indexPath.row];
-        cell.username.text =[NSString stringWithFormat:@"用户id:%@",[model.username substringFromIndex:3]];
-        cell.message.text=[NSString stringWithFormat:@"用户消息:%@",model.message];
+       
         cell.agree.tag = indexPath.row;
         cell.Refuse.tag=indexPath.row;
+        
+        cell.agree.tag = indexPath.row;
+        [cell.agree addTarget:self action:@selector(agreeClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.Refuse.tag = indexPath.row;
+        [cell.Refuse addTarget:self action:@selector(refuseClick:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
         
         
 }
-
-
+-(void)agreeClick:(UIButton*)btn{
+    NSInteger row=btn.tag;
+  
+    [self.tableView reloadData];
+}
+-(void)refuseClick:(UIButton*)btn{
+    NSInteger row=btn.tag;
+   
+    [self.tableView reloadData];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -20,8 +20,8 @@
     {
         
         
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = NO;
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;

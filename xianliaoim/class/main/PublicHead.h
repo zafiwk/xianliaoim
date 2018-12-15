@@ -16,6 +16,16 @@ alpha:1.f]
 
 #define BtnBgColor UIColorFromRGB(0xec7e3c)
 
+
+#define  UIWidth  [UIScreen mainScreen].bounds.size.width
+#define  UIHeight [UIScreen mainScreen].bounds.size.height
 #import "xianliaoim-Bridging-Header.h"
 #import "xianliaoim-Swift.h"
 #import "MBProgressHUD+WKPMBProgressHUDCategory.h"
+
+//通过DEBUG宏的定义来解决Debug状态下和Release状态下的输出
+#ifdef DEBUG
+#define WKPLog(...) NSLog(__VA_ARGS__)
+#else
+#define WKPLog(...)
+#endif /* PrefixHeader_pch */

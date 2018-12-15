@@ -20,11 +20,12 @@ target 'xianliaoim' do
 
 
   # Pods for xianliaoim
-	pod 'Hyphenate'
+  #	pod 'Hyphenate'
+  #  pod 'EaseMobSDKFull'
 	pod 'SDWebImage'
-	pod 'TTTAttributedLabel'
+    #   pod 'TTTAttributedLabel'
 	pod 'Masonry'
-	pod 'XXNibBridge'
+    #	pod 'XXNibBridge'
 	pod 'AFNetworking'
 	pod 'FLAnimatedImage'
 	pod 'MBProgressHUD'
@@ -38,4 +39,10 @@ target 'xianliaoim' do
     #短信
     pod 'mob_smssdk'
     pod 'FWPopupView'
+    #char
+    pod 'MJExtension'
+    #pod 'ReactiveCocoa'
+    #pod 'CocoaLumberjack'
+    #pod 'YYText'
+    #pod 'UMengAnalytics'
 end

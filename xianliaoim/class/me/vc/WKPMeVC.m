@@ -10,7 +10,7 @@
 #import "WKPMeVCCell.h"
 #import "WKPWebVC.h"
 #import "PublicHead.h"
-#import "IMTools.h"
+
 #import "WKPQrCode.h"
 #import <SDWebImage/SDImageCache.h>
 #import "WKPChangNickVC.h"
@@ -60,6 +60,7 @@
     if (indexPath.section==0&indexPath.row==2) {
         WKPMeVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"iconCell" forIndexPath:indexPath];
         cell.textLabel.text=@"个人图片";
+        
         return cell;
     }else{
         UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -75,8 +76,8 @@
         
         if (indexPath.row==0&&indexPath.section==0) {
             UserProfileManager* manager=[UserProfileManager sharedInstance];
-            NSString* loginName= [[EMClient sharedClient] currentUsername];
-            cell.detailTextLabel.text = [manager  getNickNameWithUsername:loginName];
+            
+            
         }else{
             cell.detailTextLabel.text = nil;
         }
@@ -108,12 +109,7 @@
                 [hud hideAnimated:YES];
             }];
         }else{
-            IMTools* tools=[IMTools defaultInstance];
-            NSArray *conversations = [tools getAllConversation];
-            for (NSInteger i=0; i<conversations.count;i++ ) {
-                EMConversation* con=conversations[i];
-                [con deleteAllMessages:nil];
-            }
+            
             [MBProgressHUD showSuccess:@"删除h成功" toView:self.view];
         }
         return;

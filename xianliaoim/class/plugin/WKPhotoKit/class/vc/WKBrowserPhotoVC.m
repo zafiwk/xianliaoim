@@ -21,15 +21,23 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    self.collectionView.contentInsetAdjustmentBehavior =  UIScrollViewContentInsetAdjustmentNever;
     [self.view addSubview:self.collectionView];
-   
-    [self.collectionView scrollToItemAtIndexPath:self.selectIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-    
-    
+
     [self addItemBtn];
-    [self  setupTop];
+    [self setupTop];
 }
 
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.collectionView scrollToItemAtIndexPath:self.selectIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+}
 -(void)setupTop{
     WKPhotoAsset* asset=self.dataArray[self.selectIndexPath.row];
     [self setupTopBtn:asset];
@@ -46,7 +54,7 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)loadView{
     [super loadView];
     CGRect frame=self.view.frame;
-    frame.size.width = frame.size.width+20;
+    frame.size.width = [UIScreen mainScreen].bounds.size.width+20;
     self.view.frame= frame;
 }
 -(UICollectionView*)collectionView{
@@ -68,7 +76,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark <UICollectionViewDataSource>
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -101,7 +108,9 @@ static NSString * const reuseIdentifier = @"Cell";
         if (asset.originalSize) {
             [cell setMaxZoom:assetSize];
         }else{
-            [cell setMinZoom:assetSize];
+            CGFloat width= [UIScreen mainScreen].bounds.size.width;
+            CGFloat height= [UIScreen mainScreen].bounds.size.height-CGRectGetMaxY(self.navigationController.navigationBar.frame);
+            [cell setMinZoom:assetSize withFrame:CGRectMake(0, 0, width, height)];
         }
     } withSize:assetSize];
 
@@ -122,7 +131,6 @@ static NSString * const reuseIdentifier = @"Cell";
         }
         UIImage* image=[[UIImage imageNamed:iconImageNo] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [self.selectBtn setImage:image forState:UIControlStateNormal];
-        
     }else{
         NSInteger assetSelectIndex=[self.selectDataArray indexOfObject:asset];
         NSString* str=[NSString stringWithFormat:@"%ld",assetSelectIndex+1];
@@ -141,7 +149,6 @@ static NSString * const reuseIdentifier = @"Cell";
         selectImage=UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         [self.selectBtn setImage:selectImage forState:UIControlStateNormal];
-    
     }
     
 }
@@ -159,19 +166,20 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark selectBtnClick
 -(void)selectBtnClick:(UIButton*)btn{
-    if (self.selectDataArray.count==self.maxValue) {
-        MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode= MBProgressHUDModeText;
-        hud.label.text=@"选择的图片个数,已近最大。";
-        [hud hideAnimated:YES afterDelay:1.5];
-        return ;
-    }
     
     CGPoint point=self.collectionView.contentOffset;
     NSInteger row=(NSInteger)point.x/self.collectionView.bounds.size.width;;
     WKPhotoAsset* asset=self.dataArray[row];
     if ([self.selectDataArray indexOfObject:asset]==NSNotFound) {
-        [self.selectDataArray addObject:asset];
+        if (self.selectDataArray.count==self.maxValue) {
+            MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode= MBProgressHUDModeText;
+            hud.label.text=@"选择的图片个数,已近最大。";
+            [hud hideAnimated:YES afterDelay:1.5];
+            return;
+        }else{
+            [self.selectDataArray addObject:asset];
+        }
     }else{
         [self.selectDataArray removeObject:asset];
     }

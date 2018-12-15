@@ -18,19 +18,16 @@
     if (self) {
         self.scrollView=[[WKBrowserPhotoScrollView alloc]init];
         [self.contentView addSubview:self.scrollView];
-        [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.mas_equalTo(0);
-            make.right.mas_equalTo(-20);
-        }];
+        CGFloat scrollViewWidth=[UIScreen mainScreen].bounds.size.width;
+        self.scrollView.frame=CGRectMake(0, 0,scrollViewWidth , self.contentView.bounds.size.height);
     }
     return self;
 }
--(void)setMinZoom:(CGSize)imageSize{
+-(void)setMinZoom:(CGSize)imageSize withFrame:(CGRect)frame{
     CGRect imageRect=CGRectZero;
     imageRect.size=imageSize;
-    CGRect  screenRect=[UIScreen mainScreen].bounds;
-    CGFloat xValue=(screenRect.size.width -imageSize.width)/2.0;
-    CGFloat yValue=(screenRect.size.height-imageSize.height)/2.0;
+    CGFloat xValue=(frame.size.width -imageSize.width)/2.0;
+    CGFloat yValue=(frame.size.height-imageSize.height)/2.0;
     imageRect.origin=CGPointMake(xValue, yValue);
     self.scrollView.browserImage.frame=imageRect;
     self.scrollView.contentSize=imageSize;
