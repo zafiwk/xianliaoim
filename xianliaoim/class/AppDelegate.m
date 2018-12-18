@@ -31,10 +31,8 @@
 }
 
 -(void)setUpIM:(NSDictionary*)launchOptions{
-    EMOptions* options= [EMOptions optionsWithAppkey:@"wkdlose#com-wangkang-xianliaoim"];
-    options.apnsCertName=@"istore_dev";
-    [[EMClient sharedClient] initializeSDKWithOptions:options];
-    
+    IMTools* tools = [IMTools defaultInstance];
+    [tools setUpIM:launchOptions];
 }
 
 -(void)setUPParse:(NSDictionary*)launchOptions{

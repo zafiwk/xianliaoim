@@ -28,6 +28,8 @@
     self.tableView.tableFooterView=[[UIView alloc]init];
     
     self.navigationItem.title=@"好友审核";
+    IMTools* tools= [IMTools defaultInstance];
+    self.dataArray = [tools getAllRequest];
 }
 
 #pragma mark - Table view data source
@@ -52,6 +54,12 @@
     }else{
         WKPAddFriendRequestVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
        
+        
+        RequestModel* mode=self.dataArray[indexPath.row];
+        cell.username.text = [NSString stringWithFormat:@"用户名:%@",[mode.username substringFromIndex:3]];
+        
+        cell.message.text = [NSString stringWithFormat:@"审核消息:%@",mode.message];
+        
         cell.agree.tag = indexPath.row;
         cell.Refuse.tag=indexPath.row;
         
@@ -70,6 +78,7 @@
     RequestModel* model  = self.dataArray[row];
     IMTools* tools= [IMTools defaultInstance];
     [tools acceptRequest:model];
+    self.dataArray = [tools getAllRequest];
     [self.tableView reloadData];
 }
 -(void)refuseClick:(UIButton*)btn{
@@ -77,6 +86,7 @@
     RequestModel* model  = self.dataArray[row];
     IMTools* tools= [IMTools defaultInstance];
     [tools declineInvitationForUsername:model];
+    self.dataArray = [tools getAllRequest];
     [self.tableView reloadData];
 }
 /*

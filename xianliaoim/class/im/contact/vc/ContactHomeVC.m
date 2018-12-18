@@ -234,18 +234,21 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         
-        __weak  typeof(self) weakSelf=self;
         ZFScanViewController* vc=[[ZFScanViewController alloc]init];
         vc.returnScanBarCodeValue = ^(NSString *barCodeString) {
             NSString* tel=nil;
             if ([barCodeString hasPrefix:@"wkp"]) {
-                tel=[barCodeString substringToIndex:3];
+                tel=[barCodeString substringFromIndex:3];
+            }else{
+               [MBProgressHUD showError:@"不支持的二维码" toView:nil];
+                return ;
             }
             BOOL d=[tel checkTel];
             if (d) {
-                
+                IMTools* tools=[IMTools defaultInstance];
+                [tools addContaceRequest:barCodeString withMessage:@""];
             }else{
-                [MBProgressHUD showError:@"不支持的二维码" toView:weakSelf.view];
+                [MBProgressHUD showError:@"不支持的二维码" toView:nil];
             }
         };
         [self presentViewController:vc animated:YES completion:nil];
