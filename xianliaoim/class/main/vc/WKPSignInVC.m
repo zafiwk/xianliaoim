@@ -10,7 +10,7 @@
 #import "PublicHead.h"
 #import "WKPSignUpVC.h"
 #import <Masonry/Masonry.h>
-
+#import <Hyphenate/EMClient.h>
 #import "UserProfileManager.h"
 @interface WKPSignInVC ()
 @property (weak, nonatomic) IBOutlet UITextField *telName;
@@ -85,10 +85,26 @@
 
 -(void)loginBtnClick{
     MBProgressHUD* hud=[MBProgressHUD showMessage:@"登入中" toView:nil];
-    NSString*  loginName = [NSString stringWithFormat:@"WKP%@",self.telName.text];
+    NSString*  loginName = [NSString stringWithFormat:@"wkp%@",self.telName.text];
     
     __weak  typeof(self) weakSelf = self;
-  
+    [[EMClient sharedClient] loginWithUsername:loginName password:self.password.text completion:^(NSString *aUsername, EMError *aError) {
+        [hud hideAnimated:YES];
+        if (aError) {
+            [MBProgressHUD showError:aError.description toView:weakSelf.view];
+            UserProfileManager* manager=[UserProfileManager  sharedInstance];
+            [manager clearParse];
+        }else{
+            [[EMClient sharedClient].options setIsAutoLogin:YES];
+            UserProfileManager* manager=[UserProfileManager  sharedInstance];
+            [manager initParse];
+            [manager loadUserProfileInBackground:@[loginName] saveToLoacal:YES completion:^(BOOL success, NSError *error) {
+                
+            }];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     
+        }
+    }];
 }
+    
 @end

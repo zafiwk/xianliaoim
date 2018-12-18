@@ -19,16 +19,27 @@
 #import "WSChatMessageMoreView.h"
 #import "WKSelectPhotoPickerGroupVC.h"
 #import "FWNavigationController.h"
-
+#import "IMTools.h"
+#import <CoreLocation/CoreLocation.h>
+#import "PublicHead.h"
+#import "WKPLocationCell.h"
+#import "WKPMapVC.h"
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
-@interface WSChatTableViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface WSChatTableViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate>
 
 @property(nonatomic,strong)WSChatMessageInputBar *inputBar;
 
 @property(nonatomic,strong)NSMutableArray* dataArray;
 
+@property(nonatomic,strong)CLLocationManager* locationManager;
+
+@property(nonatomic,strong)CLGeocoder* geocoder;
+
+@property(nonatomic,strong)MBProgressHUD* hud;
+
+@property(nonatomic,assign)bool stopGetLocal;
 @end
 
 @implementation WSChatTableViewController
@@ -120,7 +131,7 @@
 
 - (void)configureCell:(WSChatBaseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    WSChatModel *model = [[WSChatModel alloc]init];
+    WSChatModel *model = self.dataArray[indexPath.row];
     
     cell.model = model;
 }
@@ -141,11 +152,18 @@
         case EventChatCellRemoveEvent:
             
             //            [self RemoveModel:model];
-            
+          
             break;
-        case EventChatCellImageTapedEvent:
+        case EventChatCellImageTapedEvent:{
             NSLog(@"点击了图片了。。");
-            
+            if ([model.chatCellType  integerValue] == WSChatCellType_local) {
+                WKPMapVC* vc=[[WKPMapVC alloc]init];
+                vc.title = @"地理位置";
+                vc.location =model.location;
+                vc.localStr = model.content;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
             break;
         case EventChatCellHeadTapedEvent:
             NSLog(@"头像被点击了。。。");
@@ -179,29 +197,12 @@
         default:
             break;
     }
-//    IMTools* imTools = [IMTools defaultInstance];
-//    [imTools sendMessageWithText:userInfo[@"text"] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  obj, EMError *  error) {
-//
-//    }];
     
-  
-    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:@"要发送的消息"];
-    NSString *from = [[EMClient sharedClient] currentUsername];
-    
-    NSString*  userName= [@"WKP" stringByAppendingString:self.userName];
-    //生成Message
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.con.conversationId from:from to:userName body:body ext:nil];
-    message.chatType = EMChatTypeChat;// 设置为单聊消息
-    //message.chatType = EMChatTypeGroupChat;// 设置为群聊消息
-    //message.chatType = EMChatTypeChatRoom;// 设置为聊天室消息
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-            [self.dataArray addObject:newModel];
-            [self scrollToBottom:YES];
-            NSLog(@"消息发送了");
-        }];
-    });
-   
+    IMTools* imTools = [IMTools defaultInstance];
+    [imTools sendMessageWithText:userInfo[@"text"] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  obj, EMError *  error) {
+        [self.dataArray addObject:newModel];
+        [self scrollToBottom:YES];
+    }];
 }
 
 
@@ -234,8 +235,8 @@
     [_tableView registerClass:[WSChatVoiceTableViewCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@0, @(WSChatCellType_Audio))];
     [_tableView registerClass:[WSChatVoiceTableViewCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@1, @(WSChatCellType_Audio))];
     
-    [_tableView registerClass:[WSChatImageTableViewCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@0, @(WSChatCellType_local))];
-    [_tableView registerClass:[WSChatImageTableViewCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@1, @(WSChatCellType_local))];
+    [_tableView registerClass:[WKPLocationCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@0, @(WSChatCellType_local))];
+    [_tableView registerClass:[WKPLocationCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@1, @(WSChatCellType_local))];
     
     [_tableView registerClass:[WSChatTimeTableViewCell class] forCellReuseIdentifier:kTimeCellReusedID];
     
@@ -263,11 +264,10 @@
 
 
 -(void)scrollToBottom:(BOOL)animated{    //让其滚动到底部
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
         NSInteger row = self.dataArray.count;
-        if (row >= 1){
+        if (row >= 1&&animated){
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
         }
     });
@@ -291,8 +291,19 @@
                 if (!array) {
                     return ;
                 }
-                for (NSInteger i=0; i++; i<array.count) {
-                  
+                
+                for (NSUInteger i=0;i<array.count;i++ ) {
+                    UIImage * image =array[i];
+                    IMTools* tools=[IMTools defaultInstance];
+                    [tools sendMessageWithUIImage:image withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+                        WSChatModel *newModel = [[WSChatModel alloc]init];;
+                        newModel.chatCellType = @(WSChatCellType_Image);
+                        newModel.isSender     = @(YES);
+                        newModel.timeStamp    = [NSDate date];
+                        newModel.sendingImage =image ;
+                        [self.dataArray addObject:newModel];
+                        [self scrollToBottom:YES];
+                    }];
                 }
             };
             //            [self.navigationController pushViewController:vc animated:YES];
@@ -312,17 +323,93 @@
             NSLog(@"selectIndex:2");
             break;
             
-        case 3:
+        case 3:{
             //文件
-            NSLog(@"selectIndex:3");
+            self.locationManager  = [[CLLocationManager alloc]init];
+            if ([CLLocationManager locationServicesEnabled]) {
+                if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
+                    [self.locationManager requestWhenInUseAuthorization];
+                }else{
+                    //设置定位的精确
+                    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+                    //设置最小跟新的距离
+                    self.locationManager.distanceFilter = 100;
+                    
+                    self.locationManager.delegate= self;
+                    
+                    [self.locationManager startUpdatingLocation];
+                    
+                    self.hud = [MBProgressHUD showMessage:@"定位获取中" toView:self.view];
+                }
+                
+                
+            }else{
+                
+                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                if([[UIApplication sharedApplication] canOpenURL:url]){
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                        
+                    }];
+                }
+                return;
+            }
+            
+        }
             break;
             
         case 4:
             //位置
-            NSLog(@"selectIndex:4");
+            
             break;
         default:
             break;
     }
+}
+
+
+#pragma mark CLLocationManagerDelegate
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    [self.hud hideAnimated:YES];
+    [MBProgressHUD showError:@"定位获取失败" toView:nil];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    WKPLog(@"成功获取位置");
+    if (self.stopGetLocal) {
+        return ;
+    }
+    self.stopGetLocal = YES;
+    [self.locationManager stopUpdatingLocation];
+    CLLocation* location = [locations firstObject];
+    self.geocoder = [[CLGeocoder alloc]init];
+    [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        [self.hud hideAnimated:YES];
+        //获取地标
+        CLPlacemark* placemark = [placemarks firstObject];
+        NSString *address = [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@",
+                             placemark.thoroughfare,
+                             placemark.locality,
+                             placemark.subLocality,
+                             placemark.administrativeArea,
+                             placemark.postalCode,
+                             placemark.country];
+        WKPLog(@"address:%@", address);
+        
+        NSString* localStr=[NSString stringWithFormat:@"%@ %@ %@",placemark.administrativeArea,placemark.locality,placemark.subLocality];
+        IMTools* tools=[IMTools defaultInstance];
+        CLLocationCoordinate2D coordtion=location.coordinate;
+        [tools sendMessageWithLatitude:coordtion.latitude withLongitude:coordtion.longitude withAddress:localStr withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+            WSChatModel *newModel = [[WSChatModel alloc]init];;
+            newModel.chatCellType = @(WSChatCellType_local);
+            newModel.isSender     = @(YES);
+            newModel.timeStamp    = [NSDate date];
+            newModel.content      = localStr;
+            newModel.location =location;
+            [self.dataArray addObject:newModel];
+            [self scrollToBottom:YES];
+            
+            self.stopGetLocal = NO;
+        }];
+    }];
 }
 @end

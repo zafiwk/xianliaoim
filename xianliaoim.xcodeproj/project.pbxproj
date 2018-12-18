@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1097A40771238DA78C4C001F /* Pods_xianliaoim.framework */; };
-		F210E6FD21C4A08300AF0620 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F210E6FC21C4A08300AF0620 /* Hyphenate.framework */; };
-		F210E6FE21C4A1F500AF0620 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F210E6FC21C4A08300AF0620 /* Hyphenate.framework */; };
-		F210E6FF21C4A1F500AF0620 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F210E6FC21C4A08300AF0620 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F21B592B21AD413800E43B5E /* RequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F21B592A21AD413800E43B5E /* RequestModel.m */; };
 		F21C148D21C20AB700883E5E /* WKPIPhoneTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F21C148C21C20AB700883E5E /* WKPIPhoneTools.m */; };
 		F221A4B421ABCB1A00E99B3F /* icon_image_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F221A49521ABCB1A00E99B3F /* icon_image_no@2x.png */; };
@@ -155,6 +152,7 @@
 		F27963FE21AE709F0081D933 /* ContactHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F27963FD21AE709F0081D933 /* ContactHomeVC.m */; };
 		F279640421AE71D80081D933 /* ContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F279640221AE71D80081D933 /* ContactVCCell.m */; };
 		F279640521AE71D80081D933 /* ContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F279640321AE71D80081D933 /* ContactVCCell.xib */; };
+		F27B90F221C7D8AC0024A16B /* WKPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F27B90F121C7D8AC0024A16B /* WKPAnnotation.m */; };
 		F29B064E21BBCFD0009829CE /* WKPQrCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B064D21BBCFD0009829CE /* WKPQrCode.m */; };
 		F29B065421BBF311009829CE /* UIImage+WKPImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B065321BBF311009829CE /* UIImage+WKPImageTool.m */; };
 		F29B065F21BC0471009829CE /* WKPBindWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B065D21BC0471009829CE /* WKPBindWeibo.m */; };
@@ -167,6 +165,8 @@
 		F2AE894521ABBB1F00BDDE44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2AE894421ABBB1F00BDDE44 /* Assets.xcassets */; };
 		F2AE894821ABBB1F00BDDE44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2AE894621ABBB1F00BDDE44 /* LaunchScreen.storyboard */; };
 		F2AE894B21ABBB1F00BDDE44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AE894A21ABBB1F00BDDE44 /* main.m */; };
+		F2AEF87321C7685600FDCE53 /* IMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AEF87221C7685600FDCE53 /* IMTools.m */; };
+		F2AEF87621C77E4F00FDCE53 /* WKPLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */; };
 		F2B7446821BA936A00EF2FFF /* WKPContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7446621BA936A00EF2FFF /* WKPContactVCCell.m */; };
 		F2B7446921BA936A00EF2FFF /* WKPContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7446721BA936A00EF2FFF /* WKPContactVCCell.xib */; };
 		F2B7446F21BA9D7900EF2FFF /* WKPMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7446E21BA9D7900EF2FFF /* WKPMeVC.m */; };
@@ -187,6 +187,7 @@
 		F2D68CB821ACF365006F763B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D68CB621ACF365006F763B /* Parse.framework */; };
 		F2D68CB921ACF365006F763B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D68CB721ACF365006F763B /* Bolts.framework */; };
 		F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D68DCB21AD0A7C006F763B /* SDWebImage.framework */; };
+		F2F2331721C7CD4A0030DFAD /* WKPMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F2331621C7CD4A0030DFAD /* WKPMapVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -196,7 +197,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F210E6FF21C4A1F500AF0620 /* Hyphenate.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,7 +207,6 @@
 		1097A40771238DA78C4C001F /* Pods_xianliaoim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xianliaoim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B33DDD24A406E58D797DF29 /* Pods-xianliaoim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xianliaoim.release.xcconfig"; path = "Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim.release.xcconfig"; sourceTree = "<group>"; };
 		E561D3C76C3EB8FE2FDFBF74 /* Pods-xianliaoim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xianliaoim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim.debug.xcconfig"; sourceTree = "<group>"; };
-		F210E6FC21C4A08300AF0620 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F21B592921AD413800E43B5E /* RequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestModel.h; sourceTree = "<group>"; };
 		F21B592A21AD413800E43B5E /* RequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestModel.m; sourceTree = "<group>"; };
 		F21C148B21C20AB700883E5E /* WKPIPhoneTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPIPhoneTools.h; sourceTree = "<group>"; };
@@ -319,7 +318,6 @@
 		F24288B321C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F24288B521C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F24288B821C13F2600E6EA4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F24288B921C13F2600E6EA4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F242912021C1498900E6EA4C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatTableViewController.m; sourceTree = "<group>"; };
 		F242912921C14D8E00E6EA4C /* WSLeftMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLeftMenuController.m; sourceTree = "<group>"; };
@@ -436,6 +434,8 @@
 		F279640121AE71D80081D933 /* ContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactVCCell.h; sourceTree = "<group>"; };
 		F279640221AE71D80081D933 /* ContactVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactVCCell.m; sourceTree = "<group>"; };
 		F279640321AE71D80081D933 /* ContactVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactVCCell.xib; sourceTree = "<group>"; };
+		F27B90F021C7D8AC0024A16B /* WKPAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPAnnotation.h; sourceTree = "<group>"; };
+		F27B90F121C7D8AC0024A16B /* WKPAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPAnnotation.m; sourceTree = "<group>"; };
 		F29B064C21BBCFD0009829CE /* WKPQrCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPQrCode.h; sourceTree = "<group>"; };
 		F29B064D21BBCFD0009829CE /* WKPQrCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPQrCode.m; sourceTree = "<group>"; };
 		F29B065221BBF311009829CE /* UIImage+WKPImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WKPImageTool.h"; sourceTree = "<group>"; };
@@ -456,6 +456,10 @@
 		F2AE894721ABBB1F00BDDE44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2AE894921ABBB1F00BDDE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2AE894A21ABBB1F00BDDE44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F2AEF87121C7685600FDCE53 /* IMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTools.h; sourceTree = "<group>"; };
+		F2AEF87221C7685600FDCE53 /* IMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTools.m; sourceTree = "<group>"; };
+		F2AEF87421C77E4F00FDCE53 /* WKPLocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPLocationCell.h; sourceTree = "<group>"; };
+		F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPLocationCell.m; sourceTree = "<group>"; };
 		F2B7446521BA936A00EF2FFF /* WKPContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPContactVCCell.h; sourceTree = "<group>"; };
 		F2B7446621BA936A00EF2FFF /* WKPContactVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPContactVCCell.m; sourceTree = "<group>"; };
 		F2B7446721BA936A00EF2FFF /* WKPContactVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPContactVCCell.xib; sourceTree = "<group>"; };
@@ -477,6 +481,7 @@
 		F2BD656421AE7492005491A0 /* EMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMButton.h; sourceTree = "<group>"; };
 		F2BD656621AE74F8005491A0 /* EMStreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMStreamView.h; sourceTree = "<group>"; };
 		F2BD656721AE74F8005491A0 /* EMStreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMStreamView.m; sourceTree = "<group>"; };
+		F2C894C621C510F1007189F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F2CF035D21B1077800D93C86 /* WKPSignUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPSignUpVC.xib; sourceTree = "<group>"; };
 		F2CF036121B10BFB00D93C86 /* PublicHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicHead.h; sourceTree = "<group>"; };
 		F2CF036421B10CEE00D93C86 /* WKPSignUpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPSignUpVC.h; sourceTree = "<group>"; };
@@ -503,6 +508,8 @@
 		F2D68DC721AD098E006F763B /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TTTAttributedLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D68DC921AD0991006F763B /* XXNibBridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XXNibBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D68DCB21AD0A7C006F763B /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2F2331521C7CD4A0030DFAD /* WKPMapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPMapVC.h; sourceTree = "<group>"; };
+		F2F2331621C7CD4A0030DFAD /* WKPMapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPMapVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,10 +519,8 @@
 			files = (
 				F2398BA021AD0C12000A9B9C /* StoreKit.framework in Frameworks */,
 				F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */,
-				F210E6FD21C4A08300AF0620 /* Hyphenate.framework in Frameworks */,
 				F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */,
 				F2D68CB921ACF365006F763B /* Bolts.framework in Frameworks */,
-				F210E6FE21C4A1F500AF0620 /* Hyphenate.framework in Frameworks */,
 				F2D68CB821ACF365006F763B /* Parse.framework in Frameworks */,
 				23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */,
 			);
@@ -558,14 +563,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F210E6FB21C4A08300AF0620 /* HyphenateFullSDK */ = {
-			isa = PBXGroup;
-			children = (
-				F210E6FC21C4A08300AF0620 /* Hyphenate.framework */,
-			);
-			path = HyphenateFullSDK;
-			sourceTree = "<group>";
-		};
 		F21C148A21C20A3C00883E5E /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,7 +590,6 @@
 		F221A49021ABC39F00E99B3F /* im */ = {
 			isa = PBXGroup;
 			children = (
-				F2D68CB121ACF0AF006F763B /* message */,
 				F2D68CB021ACF093006F763B /* contact */,
 				F2D68CAF21ACF081006F763B /* model */,
 			);
@@ -603,7 +599,6 @@
 		F221A49121ABCA4400E99B3F /* plugin */ = {
 			isa = PBXGroup;
 			children = (
-				F210E6FB21C4A08300AF0620 /* HyphenateFullSDK */,
 				F242901621C1472400E6EA4C /* qq */,
 				F221E9B721B94EB1002C4E94 /* FWNavigationController.h */,
 				F221E9B821B94EB1002C4E94 /* FWNavigationController.m */,
@@ -1029,15 +1024,17 @@
 			isa = PBXGroup;
 			children = (
 				F242913921C14D8E00E6EA4C /* WSChatTextTableViewCell.h */,
+				F242913E21C14D8E00E6EA4C /* WSChatTextTableViewCell.m */,
 				F242913A21C14D8E00E6EA4C /* WSChatImageTableViewCell.h */,
+				F242913F21C14D8E00E6EA4C /* WSChatImageTableViewCell.m */,
 				F242913B21C14D8E00E6EA4C /* WSChatTimeTableViewCell.h */,
+				F242914221C14D8E00E6EA4C /* WSChatTimeTableViewCell.m */,
+				F242914121C14D8E00E6EA4C /* WSChatBaseTableViewCell.h */,
 				F242913C21C14D8E00E6EA4C /* WSChatBaseTableViewCell.m */,
 				F242913D21C14D8E00E6EA4C /* WSChatVoiceTableViewCell.h */,
-				F242913E21C14D8E00E6EA4C /* WSChatTextTableViewCell.m */,
-				F242913F21C14D8E00E6EA4C /* WSChatImageTableViewCell.m */,
 				F242914021C14D8E00E6EA4C /* WSChatVoiceTableViewCell.m */,
-				F242914121C14D8E00E6EA4C /* WSChatBaseTableViewCell.h */,
-				F242914221C14D8E00E6EA4C /* WSChatTimeTableViewCell.m */,
+				F2AEF87421C77E4F00FDCE53 /* WKPLocationCell.h */,
+				F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */,
 			);
 			path = WSChatCell;
 			sourceTree = "<group>";
@@ -1251,6 +1248,8 @@
 				F2D645AD21BD28F9003B0A29 /* WKPAddFriendVC.xib */,
 				F257C7DB21BD506A00D9957A /* WKPAddFriendRequestVC.h */,
 				F257C7DC21BD506B00D9957A /* WKPAddFriendRequestVC.m */,
+				F2F2331521C7CD4A0030DFAD /* WKPMapVC.h */,
+				F2F2331621C7CD4A0030DFAD /* WKPMapVC.m */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -1393,8 +1392,12 @@
 		F2D68CAF21ACF081006F763B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F2AEF87121C7685600FDCE53 /* IMTools.h */,
+				F2AEF87221C7685600FDCE53 /* IMTools.m */,
 				F21B592921AD413800E43B5E /* RequestModel.h */,
 				F21B592A21AD413800E43B5E /* RequestModel.m */,
+				F27B90F021C7D8AC0024A16B /* WKPAnnotation.h */,
+				F27B90F121C7D8AC0024A16B /* WKPAnnotation.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1406,13 +1409,6 @@
 				F27963FF21AE717B0081D933 /* vc */,
 			);
 			path = contact;
-			sourceTree = "<group>";
-		};
-		F2D68CB121ACF0AF006F763B /* message */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = message;
 			sourceTree = "<group>";
 		};
 		F2D68CB521ACF365006F763B /* Parse */ = {
@@ -1563,6 +1559,7 @@
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/FWPopupView/FWPopupView.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.5.2/Hyphenate.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
@@ -1580,6 +1577,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FWPopupView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
@@ -1674,6 +1672,7 @@
 				F262B7D021B2C4D20059DA23 /* UserProfileManager.m in Sources */,
 				F2B7446821BA936A00EF2FFF /* WKPContactVCCell.m in Sources */,
 				F27963FA21AE6F950081D933 /* Call1v1AudioViewController.m in Sources */,
+				F27B90F221C7D8AC0024A16B /* WKPAnnotation.m in Sources */,
 				F221A51621ABCF6300E99B3F /* Status.swift in Sources */,
 				F221A52221ABCF6300E99B3F /* EmioticonViewCell.swift in Sources */,
 				F221A54021ABCF6300E99B3F /* HYLabel.swift in Sources */,
@@ -1686,6 +1685,7 @@
 				F27963F721AE6F950081D933 /* DemoCallManager.m in Sources */,
 				F221E99D21B9406F002C4E94 /* ZFMaskView.m in Sources */,
 				F24291E721C14D9000E6EA4C /* WSChatImageTableViewCell.m in Sources */,
+				F2AEF87321C7685600FDCE53 /* IMTools.m in Sources */,
 				F221A4BA21ABCB1A00E99B3F /* WKSelectPhotoPickerGroup.m in Sources */,
 				F24291EA21C14D9000E6EA4C /* WSChatMessageEmojiView.m in Sources */,
 				F24291EC21C14D9000E6EA4C /* WSChatMessageInputBar.m in Sources */,
@@ -1699,6 +1699,7 @@
 				F2A85C9621B7E8BC006B89BB /* WKPShowMessageCell.m in Sources */,
 				F242920821C14D9000E6EA4C /* UIView+MLExtension.m in Sources */,
 				F221E99B21B9406F002C4E94 /* ZFSConst.m in Sources */,
+				F2F2331721C7CD4A0030DFAD /* WKPMapVC.m in Sources */,
 				F2D645AE21BD28F9003B0A29 /* WKPAddFriendVC.m in Sources */,
 				F24291EF21C14D9000E6EA4C /* WSChatMessageMoreView.m in Sources */,
 				F257C7E121BD519000D9957A /* WKPAddFriendRequestVCCell.m in Sources */,
@@ -1719,6 +1720,7 @@
 				F242921721C14D9000E6EA4C /* MLSelectPhotoPickerGroupTableViewCell.m in Sources */,
 				F221A53721ABCF6300E99B3F /* MainViewController.swift in Sources */,
 				F24291F621C14D9000E6EA4C /* ODRefreshControl.m in Sources */,
+				F2AEF87621C77E4F00FDCE53 /* WKPLocationCell.m in Sources */,
 				F242921521C14D9000E6EA4C /* MLSelectPhotoPickerBrowserPhotoScrollView.m in Sources */,
 				F24291E121C14D9000E6EA4C /* WSChatModel.m in Sources */,
 				F221A53E21ABCF6300E99B3F /* NetTools.swift in Sources */,
@@ -1754,7 +1756,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F24288B521C13F2600E6EA4C /* zh-Hans */,
-				F24288B921C13F2600E6EA4C /* en */,
+				F2C894C621C510F1007189F1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

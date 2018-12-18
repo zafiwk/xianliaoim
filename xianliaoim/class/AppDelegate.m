@@ -15,7 +15,7 @@
 #import <Parse/Parse.h>
 #import "FWNavigationController.h"
 #import "WKPMeVC.h"
-
+#import "IMTools.h"
 @interface AppDelegate ()
 
 @end
@@ -31,9 +31,9 @@
 }
 
 -(void)setUpIM:(NSDictionary*)launchOptions{
-//    EMOptions* options= [EMOptions optionsWithAppkey:@"wkdlose#com-wangkang-xianliaoim"];
-//    options.apnsCertName=@"istore_dev";
-//    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    EMOptions* options= [EMOptions optionsWithAppkey:@"wkdlose#com-wangkang-xianliaoim"];
+    options.apnsCertName=@"istore_dev";
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
     
 }
 

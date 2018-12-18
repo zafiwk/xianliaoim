@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import <CoreLocation/CoreLocation.h>
 #define kCellReuseIDWithSenderAndType(isSender,chatCellType)    ([NSString stringWithFormat:@"%@-%@",isSender,chatCellType])
 
 //根据模型得到可重用Cell的 重用ID
@@ -66,9 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSNumber *height;
 @property (nullable, nonatomic, strong) id sendingImage;
 
-
-
-
+@property(nonatomic,strong)CLLocation* location;
 @end
 
 NS_ASSUME_NONNULL_END

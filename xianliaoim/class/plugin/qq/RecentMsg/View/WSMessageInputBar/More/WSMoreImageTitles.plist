@@ -20,12 +20,12 @@
 		<key>title</key>
 		<string>视频电话</string>
 	</dict>
-	<dict>
-		<key>image</key>
-		<string>aio_icons_folder</string>
-		<key>title</key>
-		<string>文件</string>
-	</dict>
+<!--    <dict>-->
+<!--        <key>image</key>-->
+<!--        <string>aio_icons_folder</string>-->
+<!--        <key>title</key>-->
+<!--        <string>文件</string>-->
+<!--    </dict>-->
 	<dict>
 		<key>image</key>
 		<string>aio_icons_location</string>

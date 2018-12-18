@@ -8,7 +8,7 @@
 
 #import "WKPAddFriendVC.h"
 #import "PublicHead.h"
-
+#import "IMTools.h"
 @interface WKPAddFriendVC ()
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *message;
@@ -37,7 +37,13 @@
     self.title=@"添加好友";
 }
 -(void)commitBtnClick{
-    NSString* userName=[NSString stringWithFormat:@"WKP%@",self.userName.text];
-    
+    NSString* userName=[NSString stringWithFormat:@"wkp%@",self.userName.text];
+    IMTools* tools= [IMTools defaultInstance];
+    EMError* error =[tools addContaceRequest:userName withMessage:self.message.text];
+    if (error) {
+        [MBProgressHUD showSuccess:error.description toView:nil];
+    }else{
+        [MBProgressHUD showSuccess:@"添加好友成功" toView:nil];
+    }
 }
 @end

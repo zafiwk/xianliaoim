@@ -7,6 +7,7 @@
 //
 
 #import "WKSelectPhotoPickerData.h"
+#import "PublicHead.h"
 @interface WKSelectPhotoPickerData()
 @property(nonatomic,strong)PHCachingImageManager* imageManager;
 @end
@@ -131,7 +132,15 @@ static WKSelectPhotoPickerData* pick;
 
 
     [self.imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        WKPLog(@"---------图片获取时候的log--------------");
+        WKPLog(@"PHImageCancelledKey:%@",[[info objectForKey:PHImageCancelledKey] boolValue]?@"yes":@"no");
+        WKPLog(@"PHImageErrorKey:%@",[info objectForKey:PHImageErrorKey]?@"yes":@"no");
+        WKPLog(@"PHImageResultIsDegradedKey:%@",[[info objectForKey:PHImageResultIsDegradedKey] boolValue]?@"yes":@"NO");
+        WKPLog(@"---------------------------------------");
+        BOOL downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue]&& ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];
+        if(downloadFinined){
             callBack(result);
+        }
     }];
     
   

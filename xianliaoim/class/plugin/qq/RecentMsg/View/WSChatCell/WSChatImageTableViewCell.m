@@ -93,7 +93,9 @@
     
     return self;
 }
-
+-(UIImageView*)getMImageView{
+    return mImageView;
+}
 
 -(void)setModel:(WSChatModel *)model
 {

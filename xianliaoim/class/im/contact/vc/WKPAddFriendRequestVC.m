@@ -9,8 +9,8 @@
 #import "WKPAddFriendRequestVC.h"
 #import "WKPAddFriendRequestVCCell.h"
 #import "WKPShowMessageCell.h"
-
-
+#import "RequestModel.h"
+#import "IMTools.h"
 @interface WKPAddFriendRequestVC ()
 @property(nonatomic,strong)NSArray* dataArray;
 @end
@@ -67,12 +67,16 @@
 }
 -(void)agreeClick:(UIButton*)btn{
     NSInteger row=btn.tag;
-  
+    RequestModel* model  = self.dataArray[row];
+    IMTools* tools= [IMTools defaultInstance];
+    [tools acceptRequest:model];
     [self.tableView reloadData];
 }
 -(void)refuseClick:(UIButton*)btn{
     NSInteger row=btn.tag;
-   
+    RequestModel* model  = self.dataArray[row];
+    IMTools* tools= [IMTools defaultInstance];
+    [tools declineInvitationForUsername:model];
     [self.tableView reloadData];
 }
 /*

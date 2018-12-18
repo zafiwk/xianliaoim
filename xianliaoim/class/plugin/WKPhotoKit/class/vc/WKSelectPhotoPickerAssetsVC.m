@@ -15,6 +15,7 @@
 #import "WKSelectPhotoPickerAssetsVCFootView.h"
 #import "WKBrowserPhotoVC.h"
 #import "WKPIPhoneTools.h"
+#import "PublicHead.h"
 #define CELL_V_SPACE  2
 #define CELL_H_SPACE  2
 @interface WKSelectPhotoPickerAssetsVC ()<UICollectionViewDelegate,UICollectionViewDataSource,WKCollectionViewCellDelegate>
@@ -40,7 +41,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.collectionView reloadData];
-    self.makeLabel.text=[NSString stringWithFormat:@"%ld",self.selectPhotoDataArray.count];
+    WKPLog(@"self.selectPhotoDataArray.count:%ld",self.selectPhotoDataArray.count);
+    if(self.selectPhotoDataArray.count==0){
+        self.makeLabel.hidden=YES;
+    }else{
+        self.makeLabel.hidden=NO;
+        self.makeLabel.text=[NSString stringWithFormat:@"%ld",self.selectPhotoDataArray.count];
+    }
 }
 -(void)setupToorbar{
     UIToolbar* toorBar=[[UIToolbar alloc]init];
@@ -145,15 +152,18 @@
 -(void)doneBtnClick{
     [self.hud showAnimated:YES];
     if(self.selectPhotoDataArray.count==0){
+        WKPLog(@"图片获取成功回调block");
         [self.hud hideAnimated:YES];
-        self.block(self.imageArray);
+        self.block([NSArray arrayWithArray:self.imageArray]);
         [self dismissViewControllerAnimated:YES completion:nil];
         return;
     }
     WKPhotoAsset* asset=[self.selectPhotoDataArray  firstObject];
     WKSelectPhotoPickerData* pick=[WKSelectPhotoPickerData defaultPicker];
     [pick getAssetsPhotoWithPHAsset:asset callBack:^(id  _Nonnull obj) {
-        [self.imageArray addObject:obj];
+        if (obj) {
+            [self.imageArray addObject:obj];
+        }
         [self.selectPhotoDataArray removeObject:asset];
         [self doneBtnClick];
     } withSize:CGSizeMake(asset.asset.pixelWidth, asset.asset.pixelHeight)];
@@ -266,5 +276,9 @@
         
     }
     return _hud;
+}
+
+-(void)dealloc{
+    NSLog(@"WKSelectPhotoPickerAssetsVC销毁");
 }
 @end

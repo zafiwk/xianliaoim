@@ -20,6 +20,7 @@
 #import "NSString+WKPCategory.h"
 #import "ContactVCCell.h"
 #import "WSChatTableViewController.h"
+#import "IMTools.h"
 @interface ContactHomeVC ()
 @property(nonatomic,strong)NSMutableArray* contactArray;
 @property(nonatomic,strong)NSMutableArray* groupArray;
@@ -52,32 +53,32 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupDataSource];
-    
-    if([[EMClient sharedClient] isLoggedIn]){
-        UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-        [btn setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
-        UIBarButtonItem* rightBtnItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
-        [btn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem=rightBtnItem;
-        
-        [btn addSubview:self.numLabel];
-        [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(13);
-            make.top.mas_equalTo(-13);
-            make.width.mas_equalTo(20);
-            make.height.mas_equalTo(20);
-        }];
-        [self.tableView reloadData];
-    }else{
-        [self.numLabel removeFromSuperview];
-        self.navigationItem.rightBarButtonItem = nil ;
-    }
-    
-    
 }
 
 -(void)setupDataSource{
     
+     if([[EMClient sharedClient] isLoggedIn]){
+         IMTools* tools=[IMTools defaultInstance];
+         self.tableView.backgroundView=nil;
+         self.contactArray=[NSMutableArray arrayWithArray:[tools getAllContacts]];
+         self.notData=NO;
+         
+         
+         UIButton* btn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+         [btn setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+         UIBarButtonItem* rightBtnItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
+         [btn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+         self.navigationItem.rightBarButtonItem=rightBtnItem;
+         
+         [btn addSubview:self.numLabel];
+         [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.right.mas_equalTo(13);
+             make.top.mas_equalTo(-13);
+             make.width.mas_equalTo(20);
+             make.height.mas_equalTo(20);
+         }];
+         [self.tableView reloadData];
+     }else{
         VisitoeView*  view=[VisitoeView visitoeView];
         view.frame=self.view.bounds;
         [view setupVisitoeViewWithTitle:@"登入可以查看消息" imageName:@"visitordiscover_image_message"];
@@ -85,8 +86,10 @@
         self.tableView.tableFooterView=[[UIView  alloc]init];
         [view.loginBtn addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
         self.notData=YES;
-    
-    
+         
+         [self.numLabel removeFromSuperview];
+         self.navigationItem.rightBarButtonItem = nil ;
+     }
     [self.tableView reloadData];
 }
 #pragma mark get方法
@@ -235,7 +238,7 @@
         ZFScanViewController* vc=[[ZFScanViewController alloc]init];
         vc.returnScanBarCodeValue = ^(NSString *barCodeString) {
             NSString* tel=nil;
-            if ([barCodeString hasPrefix:@"WKP"]) {
+            if ([barCodeString hasPrefix:@"wkp"]) {
                 tel=[barCodeString substringToIndex:3];
             }
             BOOL d=[tel checkTel];

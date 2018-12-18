@@ -114,7 +114,7 @@
                 [MBProgressHUD showError:error.localizedDescription toView: weakSelf.view];
                 return ;
             }else{
-                NSString* loginName = [NSString stringWithFormat:@"WKP%@",weakSelf.telTextField.text];
+                NSString* loginName = [NSString stringWithFormat:@"wkp%@",weakSelf.telTextField.text];
                 MBProgressHUD* hud=[MBProgressHUD showMessage:@"注册中...." toView:nil];
                 [[EMClient sharedClient] registerWithUsername:loginName password:weakSelf.passWordTextField.text completion:^(NSString *aUsername, EMError *aError) {
                     [hud hideAnimated:YES];

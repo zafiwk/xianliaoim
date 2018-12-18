@@ -9,5 +9,5 @@
 #import "WSChatBaseTableViewCell.h"
 
 @interface WSChatImageTableViewCell : WSChatBaseTableViewCell
-
+-(UIImageView*)getMImageView;
 @end

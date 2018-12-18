@@ -71,7 +71,7 @@
     
     mTitle = [UILabel newAutoLayoutView];
     mTitle.font = [UIFont systemFontOfSize:14];
-    mTitle.text = @"张金磊";
+    
     [self.contentView addSubview:mTitle];
     
     
@@ -81,7 +81,7 @@
     
     mSubTitle = [UILabel newAutoLayoutView];
     mSubTitle.font = [UIFont systemFontOfSize:12];
-    mSubTitle.text = @"国庆不回家？";
+    
     mSubTitle.textColor = kTextColorSubTitle;
     [self.contentView addSubview:mSubTitle];
     
@@ -100,7 +100,7 @@
     
     mTime = [UILabel newAutoLayoutView];
     mTime.textAlignment = NSTextAlignmentRight;
-    mTime.text = @"下午9:20";
+    
     mTime.textColor = kTextColorTime;
     mTime.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:mTime];
