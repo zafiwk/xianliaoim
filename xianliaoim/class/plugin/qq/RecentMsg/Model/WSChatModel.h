@@ -67,6 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) id sendingImage;
 
 @property(nonatomic,strong)CLLocation* location;
+//图片的url地址
+@property(nonatomic,strong)NSString* remotePath;
+////纬度
+//@property(nonatomic,assign)CGFloat latitude;
+////经度
+//@property(nonatomic,assign)CGFloat longitude;
+////地址
+//@property(nonatomic,strong)NSString* address;
 @end
 
 NS_ASSUME_NONNULL_END

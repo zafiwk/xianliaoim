@@ -92,17 +92,16 @@
         [hud hideAnimated:YES];
         if (aError) {
             [MBProgressHUD showError:aError.description toView:weakSelf.view];
-            UserProfileManager* manager=[UserProfileManager  sharedInstance];
-            [manager clearParse];
+//            UserProfileManager* manager=[UserProfileManager  sharedInstance];
+//            [manager clearParse];
         }else{
             [[EMClient sharedClient].options setIsAutoLogin:YES];
-            UserProfileManager* manager=[UserProfileManager  sharedInstance];
-            [manager initParse];
-            [manager loadUserProfileInBackground:@[loginName] saveToLoacal:YES completion:^(BOOL success, NSError *error) {
-                
-            }];
+//            UserProfileManager* manager=[UserProfileManager  sharedInstance];
+//            [manager initParse];
+//            [manager loadUserProfileInBackground:@[loginName] saveToLoacal:YES completion:^(BOOL success, NSError *error) {
+            
+//            }];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-    
         }
     }];
 }

@@ -10,7 +10,7 @@
 #import "WKPMeVCCell.h"
 #import "WKPWebVC.h"
 #import "PublicHead.h"
-
+#import "IMTools.h"
 #import "WKPQrCode.h"
 #import <SDWebImage/SDImageCache.h>
 #import "WKPChangNickVC.h"
@@ -75,9 +75,8 @@
         
         
         if (indexPath.row==0&&indexPath.section==0) {
-            UserProfileManager* manager=[UserProfileManager sharedInstance];
-            
-            
+           NSString* currentUsername= [[EMClient sharedClient] currentUsername];
+            cell.detailTextLabel.text = [currentUsername substringFromIndex:3];
         }else{
             cell.detailTextLabel.text = nil;
         }

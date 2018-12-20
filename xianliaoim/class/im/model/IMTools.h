@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <Hyphenate/Hyphenate.h>
 #import "RequestModel.h"
+
+
+#define MessageReceive   @"messageReceive"
+#define MessageWSModel   @"messageModel"
+#define Message          @"message"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^IMToolsBlock)(id  obj,EMError* error);
 @interface IMTools : NSObject

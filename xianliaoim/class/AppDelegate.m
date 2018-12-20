@@ -16,6 +16,7 @@
 #import "FWNavigationController.h"
 #import "WKPMeVC.h"
 #import "IMTools.h"
+#import "WKPMessageVC.h"
 @interface AppDelegate ()
 
 @end
@@ -27,6 +28,10 @@
     [self setUpUI];
     [self setUpIM:launchOptions];
 //    [self setUPParse:launchOptions];
+    
+    WKPLog(@"===========用户的个人文件地址=============");
+    WKPLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]);
+    WKPLog(@"========================================");
     return YES;
 }
 
@@ -54,13 +59,12 @@
     
     UITabBarController* tabBarVC=[[UITabBarController alloc]init];
 
-    
-    FWNavigationController* messageNaviC=[[FWNavigationController alloc]initWithRootViewController:[[UIViewController alloc]init]];
-    messageNaviC.title=@"消息";
+    WKPMessageVC* messagevc=[[WKPMessageVC alloc]initWithStyle:UITableViewStylePlain];
+    FWNavigationController* messageNaviC=[[FWNavigationController alloc]initWithRootViewController:messagevc];
+    messagevc.title=@"消息";
+    messagevc.tabBarItem.image = [UIImage imageNamed:@"tab_recent_nor"];
+    messagevc.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_recent_press"];
     [tabBarVC addChildViewController:messageNaviC];
-    messageNaviC.tabBarItem.image = [UIImage imageNamed:@"tab_recent_nor"];
-    messageNaviC.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_recent_press"];
-   
     
     
     ContactHomeVC* contactVC= [[ContactHomeVC alloc]initWithStyle:UITableViewStylePlain];
@@ -95,15 +99,14 @@
 // APP进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
 }
 
 // APP将要从后台返回
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
 }
-
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDWebImageManager sharedManager] cancelAll];

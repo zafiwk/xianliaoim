@@ -69,15 +69,19 @@
          UIBarButtonItem* rightBtnItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
          [btn addTarget:self action:@selector(topBtnClick:) forControlEvents:UIControlEventTouchUpInside];
          self.navigationItem.rightBarButtonItem=rightBtnItem;
-         
-         [btn addSubview:self.numLabel];
-         [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.right.mas_equalTo(13);
-             make.top.mas_equalTo(-13);
-             make.width.mas_equalTo(20);
-             make.height.mas_equalTo(20);
-         }];
-         [self.tableView reloadData];
+         NSArray* allRequests=[tools  getAllRequest];
+         if (allRequests.count==0) {
+             [self.numLabel removeFromSuperview];
+         }else{
+             [btn addSubview:self.numLabel];
+             [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                 make.right.mas_equalTo(13);
+                 make.top.mas_equalTo(-13);
+                 make.width.mas_equalTo(20);
+                 make.height.mas_equalTo(20);
+             }];
+             self.numLabel.text = [NSString stringWithFormat:@"%ld",allRequests.count];
+         }
      }else{
         VisitoeView*  view=[VisitoeView visitoeView];
         view.frame=self.view.bounds;
@@ -186,14 +190,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        
-        
-
         WSChatTableViewController *chat = [[WSChatTableViewController alloc]init];
-        
-        NSString* userName = [self.contactArray[indexPath.row] substringFromIndex:3];
+        NSString* userName = self.contactArray[indexPath.row];
         chat.userName = userName;
-        chat.title = userName;
+        chat.title = [userName substringFromIndex:3];
+        IMTools* imools = [IMTools defaultInstance];
+        chat.con = [imools createConversationWithUser:userName];
         chat.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chat animated:YES];
 

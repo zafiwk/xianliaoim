@@ -9,7 +9,7 @@
 #import "WSRecentMsgTableViewController.h"
 #import "WSRecentMsgTableViewCell.h"
 #import "WSChatTableViewController.h"
-#import "ODRefreshControl.h"
+#import <MJRefresh/MJRefresh.h>
 
 
 #define kReusedID        (@"reused")
@@ -31,7 +31,7 @@
     /**
      *  @brief  下拉刷新控件
      */
-    ODRefreshControl *mRefreshControl;
+
 }
 
 @property(nonatomic,strong)NSMutableArray *DataSource;
@@ -51,10 +51,13 @@
     
     self.title = @"消息";
     
-    mRefreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    
-    [mRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-    
+//    mRefreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+//
+//    [mRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+
+    self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+        [self dropViewDidBeginRefreshing];
+    }];
     UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
     searchBar.placeholder = @"搜索";
 
@@ -77,14 +80,14 @@
     
 }
 
--(void)dropViewDidBeginRefreshing:(ODRefreshControl*)refresh
+-(void)dropViewDidBeginRefreshing
 {
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
     {
     
-        [mRefreshControl endRefreshing];
-
+//        [mRefreshControl endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     });
 }
 

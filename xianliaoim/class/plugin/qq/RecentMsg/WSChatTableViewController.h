@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Hyphenate/Hyphenate.h>
-@class ODRefreshControl,NSFetchedResultsController;
+@class NSFetchedResultsController;
 
 /**
  *  @brief  聊天窗口
  */
 @interface WSChatTableViewController : UIViewController
 {
-    NSFetchedResultsController *_fetchedResultsController;
-    ODRefreshControl           *_refreshControl;
     UITableView                *_tableView;
 }
 
