@@ -8,13 +8,14 @@
 
 #import "WSChatTextTableViewCell.h"
 #import "PureLayout.h"
-
+#import <Masonry/Masonry.h>
+#import "PublicHead.h"
 //文本
 #define kH_OffsetTextWithHead        (20)//水平方向文本和头像的距离
 #define kMaxOffsetText               (45)//文本最长时，为了不让文本分行显示，需要和屏幕对面保持一定距离
 #define kTop_OffsetTextWithHead      (15) //文本和头像顶部对其间距
 #define kBottom_OffsetTextWithSupView   (40)//文本与父视图底部间距
-
+#import "NSString+WKPPNGString.h"
 @interface WSChatTextTableViewCell ()
 {
     /**
@@ -31,22 +32,32 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        mTextLable = [UILabel newAutoLayoutView];
+        mTextLable = [[UILabel alloc]init];
         mTextLable.numberOfLines = 0;
         mTextLable.backgroundColor = [UIColor clearColor];
-        mTextLable.font = [UIFont systemFontOfSize:14];
+        mTextLable.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:mTextLable];
         
+       
         if (isSender)//是我自己发送的
         {
-           [mBubbleImageView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:mTextLable withOffset:-20];
+//           [mBubbleImageView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:mTextLable withOffset:-20];
+            [mBubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.mas_equalTo(mTextLable.mas_leading).offset(-20);
+            }];
         }else//别人发送的消息
         {
-            [mBubbleImageView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:mTextLable withOffset:20];
+//            [mBubbleImageView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:mTextLable withOffset:20];
+            [mBubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.trailing.mas_equalTo(mTextLable.mas_trailing).offset(20);
+            }];
         }
         
-        [mBubbleImageView autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:mTextLable withOffset:20];
-        
+//        [mBubbleImageView autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:mTextLable withOffset:20];
+
+        [mBubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(mTextLable.mas_bottom).offset(20);
+        }];
         CGFloat top     = kTop_OffsetTextWithHead + kTopHead;
         CGFloat bottom  = kBottom_OffsetTextWithSupView;
         
@@ -56,19 +67,33 @@
         UIEdgeInsets inset;
         if (isSender)//是自己发送的消息
         {
-            inset = UIEdgeInsetsMake(top, traing, bottom, leading);
-            
-            [mTextLable autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeLeading];
-            
-            [mTextLable autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
-            
+//            inset = UIEdgeInsetsMake(top, traing, bottom, leading);
+//
+//            [mTextLable autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeLeading];
+//
+//            [mTextLable autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
+            [mTextLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(top);
+                make.trailing.mas_equalTo(self.contentView).offset(-leading).priorityHigh();
+                make.bottom.mas_equalTo(-bottom).priorityHigh();
+                make.leading.mas_greaterThanOrEqualTo(leading);
+            }];
         }else//是对方发送的消息
         {
-            inset = UIEdgeInsetsMake(top, leading, bottom, traing);
+//            inset = UIEdgeInsetsMake(top, leading, bottom, traing);
             
-            [mTextLable autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeTrailing];
-            
-            [mTextLable autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
+            //相对父视图 除了某一个
+//            [mTextLable autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeTrailing];
+//
+//            [mTextLable autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
+            [mTextLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(top);
+                make.leading.mas_equalTo(leading);
+                make.bottom.mas_equalTo(-bottom).priorityHigh();
+//                make.trailing.mas_equalTo(-traing);
+                make.trailing.mas_lessThanOrEqualTo(-traing).priorityHigh();
+            }];
+            //负数
         }
 
     }
@@ -79,8 +104,11 @@
 
 -(void)setModel:(WSChatModel *)model
 {
-    mTextLable.text = model.content;
+//    mTextLable.text =model.content;
     
+    mTextLable.backgroundColor = [UIColor  yellowColor];
+    
+    mTextLable.attributedText = [model.content  pngStr] ;
     [super setModel:model];
     
 }

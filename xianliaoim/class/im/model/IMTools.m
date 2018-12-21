@@ -147,6 +147,11 @@ static IMTools* tools;
     for (EMMessage *message in aMessages) {
         WSChatModel* model =[message model];
         [[NSNotificationCenter defaultCenter] postNotificationName:MessageReceive object:nil userInfo:@{MessageWSModel:model,Message:message}];
+        
+        //添加消息已读
+        [[EMClient sharedClient].chatManager sendMessageReadAck:message completion:^(EMMessage *aMessage, EMError *aError) {
+            
+        }];
       
     }
     

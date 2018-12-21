@@ -32,6 +32,7 @@
     WKPLog(@"===========用户的个人文件地址=============");
     WKPLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]);
     WKPLog(@"========================================");
+    
     return YES;
 }
 

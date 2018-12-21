@@ -69,6 +69,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReceive:) name:MessageReceive object:nil];
     
     EMMessage* lastMessage = [self.con latestMessage];
+    WKPLog(@"lastMessag:%lld",lastMessage.timestamp);
     if(lastMessage){
         [self.dataArray addObject:[lastMessage model]];
         [self loadMoreMsgWithMessage:lastMessage];
@@ -78,6 +79,7 @@
 }
 
 -(void)dealloc{
+    WKPLog(@"WSChatTableViewController dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -164,7 +166,7 @@
         case EventChatCellRemoveEvent:
             
             //            [self RemoveModel:model];
-          
+            
             break;
         case EventChatCellImageTapedEvent:{
             NSLog(@"点击了图片了。。");
@@ -235,6 +237,7 @@
     _tableView.dataSource           =   self;
     _tableView.keyboardDismissMode  =   UIScrollViewKeyboardDismissModeOnDrag;
     
+    __weak  typeof(self) weakSelf = self;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self  loadMoreMsg];
     }];
@@ -276,6 +279,7 @@
 
 
 -(void)scrollToBottom:(BOOL)animated{    //让其滚动到底部
+   
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
         NSInteger row = self.dataArray.count;
@@ -288,23 +292,42 @@
 
 
 -(void)loadMoreMsg{
-    EMMessage* fristMessage=self.firstMessage;;
-    [self loadMoreMsgWithMessage:fristMessage];
+    EMMessage* fristMessage=self.firstMessage;
+    if (fristMessage) {
+        [self loadMoreMsgWithMessage:fristMessage];
+    }else{
+        [self.tableView.mj_header endRefreshing];
+    }
+    
 }
 -(void)loadMoreMsgWithMessage:(EMMessage*)msg{
+    __weak  typeof(self) weakSelf = self;
     [self.con  loadMessagesStartFromId:msg.messageId count:10 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
-        for (NSInteger i=0; i<aMessages.count; i++) {
-            EMMessage* message = aMessages[i];
-            [[EMClient sharedClient].chatManager sendMessageReadAck:message completion:^(EMMessage *aMessage, EMError *aError) {
-                
-            }];
-            [self.dataArray insertObject:[message model] atIndex:0];
+        if (aMessages.count==0||aError) {
+            [weakSelf.tableView.mj_header endRefreshing];
+            return ;
         }
-        //            dispatch_sync(dispatch_get_main_queue(), ^{
-        self.firstMessage = [aMessages lastObject];
-        [self.tableView reloadData];
-        //            });
-        [self.tableView.mj_header endRefreshing];
+        NSArray* sortArray = [aMessages sortedArrayUsingComparator:^NSComparisonResult(EMMessage*   obj1, EMMessage* obj2) {
+            if (obj1.timestamp>obj2.timestamp) {
+                return NSOrderedAscending;
+            }else{
+                return NSOrderedDescending;
+            }
+        }];
+        
+        
+        for (NSInteger i=0; i<sortArray.count; i++) {
+            EMMessage* message = sortArray[i];
+            WKPLog(@"aMessages:%lld",message.timestamp);
+            message.isRead =YES;
+            [[EMClient sharedClient].chatManager updateMessage:message completion:^(EMMessage *aMessage, EMError *aError) {
+            }];
+            [weakSelf.dataArray insertObject:[message model] atIndex:0];
+        }
+       
+        weakSelf.firstMessage = [aMessages firstObject];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
         //            EXC_BAD_INSTRUCTION
         //            dispatch_group_enter(self.group);
         //            dispatch_group_leave(self.group);
@@ -317,6 +340,7 @@
     
     switch ([selectIndex integerValue]) {
         case 0:{
+            __weak typeof(self) weakSelf= self;
             WKSelectPhotoPickerGroupVC* vc=[[WKSelectPhotoPickerGroupVC alloc]init];
             vc.maxValue = 9;
             vc.block = ^(NSArray *  array) {
@@ -327,14 +351,14 @@
                 for (NSUInteger i=0;i<array.count;i++ ) {
                     UIImage * image =array[i];
                     IMTools* tools=[IMTools defaultInstance];
-                    [tools sendMessageWithUIImage:image withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+                    [tools sendMessageWithUIImage:image withUser:weakSelf.userName withConversationID:weakSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
                         WSChatModel *newModel = [[WSChatModel alloc]init];;
                         newModel.chatCellType = @(WSChatCellType_Image);
                         newModel.isSender     = @(YES);
                         newModel.timeStamp    = [NSDate date];
                         newModel.sendingImage =image ;
-                        [self.dataArray addObject:newModel];
-                        [self scrollToBottom:YES];
+                        [weakSelf.dataArray addObject:newModel];
+                        [weakSelf scrollToBottom:YES];
                     }];
                 }
             };
@@ -414,8 +438,9 @@
     [self.locationManager stopUpdatingLocation];
     CLLocation* location = [locations firstObject];
     self.geocoder = [[CLGeocoder alloc]init];
+    __weak  typeof(self) waekSelf = self;
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        [self.hud hideAnimated:YES];
+        [waekSelf.hud hideAnimated:YES];
         //获取地标
         CLPlacemark* placemark = [placemarks firstObject];
         NSString *address = [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@",
@@ -430,17 +455,17 @@
         NSString* localStr=[NSString stringWithFormat:@"%@ %@ %@",placemark.administrativeArea,placemark.locality,placemark.subLocality];
         IMTools* tools=[IMTools defaultInstance];
         CLLocationCoordinate2D coordtion=location.coordinate;
-        [tools sendMessageWithLatitude:coordtion.latitude withLongitude:coordtion.longitude withAddress:localStr withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+        [tools sendMessageWithLatitude:coordtion.latitude withLongitude:coordtion.longitude withAddress:localStr withUser:waekSelf.userName withConversationID:waekSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
             WSChatModel *newModel = [[WSChatModel alloc]init];;
             newModel.chatCellType = @(WSChatCellType_local);
             newModel.isSender     = @(YES);
             newModel.timeStamp    = [NSDate date];
             newModel.content      = localStr;
             newModel.location =location;
-            [self.dataArray addObject:newModel];
-            [self scrollToBottom:YES];
+            [waekSelf.dataArray addObject:newModel];
+            [waekSelf scrollToBottom:YES];
             
-            self.stopGetLocal = NO;
+            waekSelf.stopGetLocal = NO;
         }];
     }];
 }
@@ -450,11 +475,7 @@
     WSChatModel* model = info[MessageWSModel];
     [self.dataArray addObject:model];
     [self scrollToBottom:YES];
-    EMMessage* message= info[Message];
-    //添加消息已读
-    [[EMClient sharedClient].chatManager sendMessageReadAck:message completion:^(EMMessage *aMessage, EMError *aError) {
-        
-    }];
+    
     
     
 }

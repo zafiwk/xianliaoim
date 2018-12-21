@@ -29,6 +29,16 @@
     [super viewWillAppear:animated];
     IMTools* tools =[IMTools defaultInstance];
     self.dataArray= [NSMutableArray arrayWithArray:[tools  getAllConversation]];
+    [self.dataArray sortUsingComparator:^NSComparisonResult(EMConversation*  _Nonnull obj1, EMConversation*  _Nonnull obj2) {
+        EMMessage *message1 = [obj1 latestMessage];
+        EMMessage *message2 = [obj2 latestMessage];
+        if(message1.timestamp > message2.timestamp) {
+            return(NSComparisonResult)NSOrderedAscending;
+        }else {
+            return(NSComparisonResult)NSOrderedDescending;
+        }
+
+    }];
     [self.tableView reloadData];
 }
 

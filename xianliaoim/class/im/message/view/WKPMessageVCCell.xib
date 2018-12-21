@@ -35,14 +35,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpw-15-1nm">
-                        <rect key="frame" x="54.5" y="5" width="37.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="54.5" y="5" width="175.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRw-lA-ZMW">
-                        <rect key="frame" x="54.5" y="31.5" width="37.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="54.5" y="30" width="175.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -53,6 +53,8 @@
                     <constraint firstItem="9mt-86-qma" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Ifb-Eq-sIx"/>
                     <constraint firstAttribute="trailing" secondItem="OGd-lD-ZCR" secondAttribute="trailing" constant="5" id="SMs-jt-ueu"/>
                     <constraint firstAttribute="bottom" secondItem="aRw-lA-ZMW" secondAttribute="bottom" constant="5" id="TqU-fP-ABA"/>
+                    <constraint firstItem="aRw-lA-ZMW" firstAttribute="width" secondItem="dpw-15-1nm" secondAttribute="width" id="YG2-7k-QFV"/>
+                    <constraint firstItem="OGd-lD-ZCR" firstAttribute="leading" secondItem="dpw-15-1nm" secondAttribute="trailing" constant="5" id="jAH-ci-rSB"/>
                     <constraint firstAttribute="bottom" secondItem="9mt-86-qma" secondAttribute="bottom" constant="5" id="npE-L9-pbN"/>
                     <constraint firstItem="dpw-15-1nm" firstAttribute="leading" secondItem="9mt-86-qma" secondAttribute="trailing" constant="5" id="uI2-kk-1wL"/>
                     <constraint firstItem="OGd-lD-ZCR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uT7-sd-Bwv"/>

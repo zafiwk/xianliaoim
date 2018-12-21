@@ -10,6 +10,7 @@
 #import "PublicHead.h"
 #import "WSChatModel.h"
 #import "EMMessage+WKPChatModel.h"
+#import "NSString+WKPPNGString.h"
 @implementation WKPMessageVCCell
 
 - (void)awakeFromNib {
@@ -42,7 +43,8 @@
     self.username.text =[lastMessage.from substringFromIndex:3];
     WSChatModel* model = [lastMessage model];
     if ([model.chatCellType integerValue] == WSChatCellType_Text) {
-        self.message.text = model.content;
+//        self.message.text = model.content;
+        self.message.attributedText = [model.content pngStr];
     }else if ([model.chatCellType integerValue]==WSChatCellType_Image){
         self.message.text = @"[图片]";
     }else if ([model.chatCellType integerValue]==WSChatCellType_local){

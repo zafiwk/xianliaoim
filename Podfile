@@ -45,4 +45,5 @@ target 'xianliaoim' do
     #pod 'CocoaLumberjack'
     #pod 'YYText'
     #pod 'UMengAnalytics'
+    #pod 'EaseUI', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
 end

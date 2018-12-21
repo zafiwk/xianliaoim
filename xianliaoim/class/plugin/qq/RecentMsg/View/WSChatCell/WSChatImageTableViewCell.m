@@ -104,7 +104,8 @@
         mImageView.image = model.sendingImage;
     }else
     {
-        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:[UIImage imageNamed:@"leftMenuBk"]];
+//        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:[UIImage imageNamed:@"leftMenuBk"]];
+        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.remotePath] placeholderImage:model.sendingImage];
     }
     [super setModel:model];
 }
