@@ -16,6 +16,7 @@
 #import "WKPChangNickVC.h"
 #import "UserProfileManager.h"
 #import "WKPBindWeibo.h"
+#import "WKPSignInVC.h"
 @interface WKPMeVC ()
 @property(nonatomic,strong)NSMutableArray* dataSource;
 @end
@@ -100,21 +101,41 @@
     }
     
     if (indexPath.section==2) {
+        if (![EMClient sharedClient].isLoggedIn) {
+            WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
+            loginVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:loginVC animated:YES];
+            return;
+        }
         if (indexPath.row==0) {
-            MBProgressHUD* hud=[MBProgressHUD showMessage:@"删除中" toView:nil];
+//            MBProgressHUD* hud=[MBProgressHUD showMessage:@"删除中...." toView:self.view];
             SDImageCache* cache=[SDImageCache sharedImageCache];
             [cache clearMemory];
             [cache clearDiskOnCompletion:^{
-                [hud hideAnimated:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+//                      [hud hideAnimated:YES];
+                    [MBProgressHUD showSuccess:@"删除成功" toView:self.view];
+                });
             }];
         }else{
-            
-            [MBProgressHUD showSuccess:@"删除h成功" toView:self.view];
+            IMTools* tools= [IMTools defaultInstance];
+            NSArray* allConversation=[tools  getAllConversation];
+            for (NSInteger i=0; i<allConversation.count; i++) {
+                EMConversation* con=allConversation[i];
+                [con deleteAllMessages:nil];
+            }
+            [MBProgressHUD showSuccess:@"删除成功" toView:self.view];
         }
         return;
     }
     
     if(indexPath.section == 1){
+        if (![EMClient sharedClient].isLoggedIn) {
+            WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
+            loginVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:loginVC animated:YES];
+            return;
+        }
         WKPQrCode* vc=[[WKPQrCode alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -122,6 +143,12 @@
     
     if (indexPath.section==0) {
         if (indexPath.row==0) {
+            if (![EMClient sharedClient].isLoggedIn) {
+                WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
+                loginVC.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:loginVC animated:YES];
+                return;
+            }
             WKPChangNickVC* vc=[[WKPChangNickVC alloc]init];
             vc.title=@"设置昵称";
             [self.navigationController pushViewController:vc animated:YES];

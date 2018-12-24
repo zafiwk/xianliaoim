@@ -12,7 +12,7 @@
 		<key>image</key>
 		<string>aio_icons_freeaudio</string>
 		<key>title</key>
-		<string>QQ电话</string>
+		<string>语音电话</string>
 	</dict>
 	<dict>
 		<key>image</key>
@@ -20,12 +20,6 @@
 		<key>title</key>
 		<string>视频电话</string>
 	</dict>
-<!--    <dict>-->
-<!--        <key>image</key>-->
-<!--        <string>aio_icons_folder</string>-->
-<!--        <key>title</key>-->
-<!--        <string>文件</string>-->
-<!--    </dict>-->
 	<dict>
 		<key>image</key>
 		<string>aio_icons_location</string>

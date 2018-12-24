@@ -25,6 +25,7 @@
 #import "WKPMapVC.h"
 #import "EMMessage+WKPChatModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "WKPImageVC.h"
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
@@ -71,6 +72,7 @@
     EMMessage* lastMessage = [self.con latestMessage];
     WKPLog(@"lastMessag:%lld",lastMessage.timestamp);
     if(lastMessage){
+        [self.con markMessageAsReadWithId:lastMessage.messageId error:nil];
         [self.dataArray addObject:[lastMessage model]];
         [self loadMoreMsgWithMessage:lastMessage];
     }
@@ -79,7 +81,6 @@
 }
 
 -(void)dealloc{
-    WKPLog(@"WSChatTableViewController dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -177,6 +178,12 @@
                 vc.localStr = model.content;
                 [self.navigationController pushViewController:vc animated:YES];
             }
+            if ([model.chatCellType integerValue]==WSChatCellType_Image) {
+                WKPImageVC* vc=[[WKPImageVC alloc]init];
+                vc.model = model;
+                vc.title = @"图片预览";
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
             break;
         case EventChatCellHeadTapedEvent:
@@ -237,7 +244,6 @@
     _tableView.dataSource           =   self;
     _tableView.keyboardDismissMode  =   UIScrollViewKeyboardDismissModeOnDrag;
     
-    __weak  typeof(self) weakSelf = self;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self  loadMoreMsg];
     }];
@@ -279,7 +285,6 @@
 
 
 -(void)scrollToBottom:(BOOL)animated{    //让其滚动到底部
-   
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
         NSInteger row = self.dataArray.count;
@@ -318,16 +323,15 @@
         
         for (NSInteger i=0; i<sortArray.count; i++) {
             EMMessage* message = sortArray[i];
-            WKPLog(@"aMessages:%lld",message.timestamp);
-            message.isRead =YES;
-            [[EMClient sharedClient].chatManager updateMessage:message completion:^(EMMessage *aMessage, EMError *aError) {
-            }];
+//            WKPLog(@"aMessages:%lld",message.timestamp);
+            [weakSelf.con   markMessageAsReadWithId:message.messageId error:nil];
             [weakSelf.dataArray insertObject:[message model] atIndex:0];
         }
-       
+        
         weakSelf.firstMessage = [aMessages firstObject];
-        [weakSelf.tableView reloadData];
+        //        [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf scrollToBottom:YES];
         //            EXC_BAD_INSTRUCTION
         //            dispatch_group_enter(self.group);
         //            dispatch_group_leave(self.group);
@@ -369,14 +373,32 @@
             NSLog(@"selectIndex:0");
         }
             break;
-        case 1:
+        case 1:{
             //电话
+            IMTools* tools = [IMTools defaultInstance];
+            NSString* message = [NSString stringWithFormat:@"%@发起了语音聊天",[[EMClient sharedClient] currentUsername]];
+            [tools sendMessageWithText:[message substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
+                WSChatModel* model = [obj model];
+                [self.dataArray addObject:model];
+                [self scrollToBottom:YES];
+                [tools sendAudioCall:self.userName];
+            }];
             NSLog(@"selectIndex:1");
+        }
             break;
             
-        case 2:
+        case 2:{
+            IMTools* tools = [IMTools defaultInstance];
+            NSString* message = [NSString stringWithFormat:@"%@发起了视频聊天",[[EMClient sharedClient] currentUsername]];
+            [tools sendMessageWithText:[message  substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage*   obj, EMError * _Nonnull error) {
+                WSChatModel* model = [obj model];
+                [self.dataArray addObject:model];
+                [self scrollToBottom:YES];
+                [tools sendVideoCall:self.userName];
+            }];
             //视频电话
             NSLog(@"selectIndex:2");
+        }
             break;
             
         case 3:{

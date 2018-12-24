@@ -67,10 +67,12 @@
     self.protocolBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.agreeBtn.selected = YES;
     [self.agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
+    [self.agreeBtn setImage:[UIImage imageNamed:@"success"] forState:UIControlStateNormal];
     [self.agreeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.agreeBtn addTarget:self action:@selector(agreeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImage* image=[UIImage imageNamed:@"success-1"];
     
-    [self.agreeBtn setImage:image forState:UIControlStateNormal];
+    [self.agreeBtn setImage:image forState:UIControlStateSelected];
 
     __weak  typeof(self) weakSelf = self;
     CGFloat x=[self.view getWidth]/2.0-90;
@@ -195,5 +197,9 @@
     webView.url=@"https://www.jianshu.com/p/6d9d6d7128d1";
     webView.title = @"用户协议";
     [self.navigationController pushViewController:webView animated:YES];
+}
+
+-(void)agreeBtnClick:(UIButton*)btn{
+    btn.selected = !btn.selected;
 }
 @end

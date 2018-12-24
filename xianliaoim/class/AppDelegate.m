@@ -17,8 +17,10 @@
 #import "WKPMeVC.h"
 #import "IMTools.h"
 #import "WKPMessageVC.h"
-@interface AppDelegate ()
-
+#import "Call1v1AudioViewController.h"
+#import "Call1v1VideoViewController.h"
+@interface AppDelegate ()<UITabBarControllerDelegate>
+@property(nonatomic,strong) FWNavigationController* navigationVC;
 @end
 
 @implementation AppDelegate
@@ -32,7 +34,7 @@
     WKPLog(@"===========用户的个人文件地址=============");
     WKPLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]);
     WKPLog(@"========================================");
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callNotification:) name:MessageCallVC object:nil];
     return YES;
 }
 
@@ -59,14 +61,14 @@
     
     
     UITabBarController* tabBarVC=[[UITabBarController alloc]init];
-
+    tabBarVC.delegate = self;
     WKPMessageVC* messagevc=[[WKPMessageVC alloc]initWithStyle:UITableViewStylePlain];
     FWNavigationController* messageNaviC=[[FWNavigationController alloc]initWithRootViewController:messagevc];
     messagevc.title=@"消息";
     messagevc.tabBarItem.image = [UIImage imageNamed:@"tab_recent_nor"];
     messagevc.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_recent_press"];
     [tabBarVC addChildViewController:messageNaviC];
-    
+    self.navigationVC = messageNaviC;
     
     ContactHomeVC* contactVC= [[ContactHomeVC alloc]initWithStyle:UITableViewStylePlain];
     contactVC.title =@"好友";
@@ -112,5 +114,36 @@
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDWebImageManager sharedManager] cancelAll];
 }
+#pragma mark UITabBarControllerDelegate
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    if ([viewController isKindOfClass:[FWNavigationController class]]) {
+        self.navigationVC=(FWNavigationController*)viewController;
+    }
+}
+
+-(void)callNotification:(NSNotification*)noti{
+    if (self.callVC) {
+        return;
+    }
+    
+    NSDictionary* userInfo =noti.userInfo;
+    EMCallSession* aSession=userInfo[MessageCallSession];
+    if (aSession.type== EMCallTypeVoice) {
+        Call1v1AudioViewController* callvc=[[Call1v1AudioViewController alloc]initWithCallSession:aSession];
+        UIViewController* vc= self.navigationVC.topViewController;
+        self.callVC =callvc;
+        [vc presentViewController:callvc animated:YES completion:^{
+        
+        }];
+    }else{
+        Call1v1VideoViewController* callvc=[[Call1v1VideoViewController alloc]initWithCallSession:aSession];
+        UIViewController* vc= self.navigationVC.topViewController;
+        self.callVC =callvc;
+        [vc presentViewController:callvc animated:YES completion:^{
+            
+        }];
+    }
+
+}
 @end

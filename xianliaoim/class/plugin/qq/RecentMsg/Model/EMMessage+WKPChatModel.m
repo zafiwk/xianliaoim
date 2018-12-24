@@ -35,9 +35,9 @@
         {
             // 得到一个图片消息body
             EMImageMessageBody *body = ((EMImageMessageBody *)msgBody);
-//            WKPLog(@"大图remote路径 -- %@"   ,body.remotePath);
+            WKPLog(@"大图remote路径 -- %@"   ,body.remotePath);
             //                NSLog(@"大图local路径 -- %@"    ,body.localPath); // // 需要使用sdk提供的下载方法后才会存在
-            //                NSLog(@"大图的secret -- %@"    ,body.secretKey);
+            //            NSLog(@"大图的secret -- %@"    ,body.secretKey);
             //                NSLog(@"大图的W -- %f ,大图的H -- %f",body.size.width,body.size.height);
             //                NSLog(@"大图的下载状态 -- %lu",body.downloadStatus);
             
@@ -112,5 +112,13 @@
             break;
     }
     return model;
+}
+
+-(NSString*)dateStr{
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:self.timestamp/1000];
+    NSDateFormatter* df=[[NSDateFormatter alloc]init];
+//    df.dateFormat =@"yyyy-MM-dd HH:mm:ss ";
+    df.dateFormat = @"MM-dd HH:mm";
+    return [df stringFromDate:date];
 }
 @end

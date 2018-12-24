@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EMMessage (WKPChatModel)
 -(WSChatModel*)model;
+-(NSString*)dateStr;
 @end
 
 NS_ASSUME_NONNULL_END

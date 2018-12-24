@@ -9,7 +9,7 @@
 #import "WSChatImageTableViewCell.h"
 #import "PureLayout.h"
 #import "UIImageView+WebCache.h"
-
+#import "PublicHead.h"
 
 //文本
 #define kH_OffsetTextWithHead        (20)//水平方向文本和头像的距离
@@ -47,6 +47,7 @@
         }
         
         mImageView = [UIImageView newAutoLayoutView];
+        mImageView.contentMode = UIViewContentModeScaleAspectFit;
         mImageView.backgroundColor = [UIColor clearColor];
         mImageView.userInteractionEnabled = NO;
         
@@ -105,7 +106,12 @@
     }else
     {
 //        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:[UIImage imageNamed:@"leftMenuBk"]];
-        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.remotePath] placeholderImage:model.sendingImage];
+//        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.remotePath] placeholderImage:model.sendingImage];
+        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.remotePath] placeholderImage:[UIImage imageNamed:@"picture"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (error) {
+                WKPLog(@"图片cell中高清图片下载失败");
+            }
+        }];
     }
     [super setModel:model];
 }

@@ -31,7 +31,7 @@ class HomeViewController: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.visitoeView?.addRotationAnim();
-        
+        self.visitoeView?.messageTitle.text =  "登录微博后就能查看微博了,尝试登录下吧"
         if !isLogin{
             return;
         }

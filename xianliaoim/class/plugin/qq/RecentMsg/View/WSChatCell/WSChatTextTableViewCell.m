@@ -105,9 +105,6 @@
 -(void)setModel:(WSChatModel *)model
 {
 //    mTextLable.text =model.content;
-    
-    mTextLable.backgroundColor = [UIColor  yellowColor];
-    
     mTextLable.attributedText = [model.content  pngStr] ;
     [super setModel:model];
     

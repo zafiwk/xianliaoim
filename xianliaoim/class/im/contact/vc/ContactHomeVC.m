@@ -85,7 +85,7 @@
      }else{
         VisitoeView*  view=[VisitoeView visitoeView];
         view.frame=self.view.bounds;
-        [view setupVisitoeViewWithTitle:@"登入可以查看消息" imageName:@"visitordiscover_image_message"];
+        [view setupVisitoeViewWithTitle:@"登录后可以查看好友,尝试登录下吧" imageName:@"visitordiscover_image_message"];
         self.tableView.backgroundView=view;
         self.tableView.tableFooterView=[[UIView  alloc]init];
         [view.loginBtn addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
@@ -257,5 +257,15 @@
     }
 }
 
-
+-(UISwipeActionsConfiguration*)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIContextualAction* deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        NSString* userName = self.contactArray[indexPath.row];
+        IMTools* tools = [IMTools defaultInstance];
+        [tools deleteContact:userName];
+        [self setupDataSource];
+    }];
+    
+    UISwipeActionsConfiguration* config=[UISwipeActionsConfiguration configurationWithActions:@[deleteAction]];
+    return config;
+}
 @end

@@ -53,8 +53,19 @@ extension LoginVC {
     
     @objc private func autoInput(){
         let userDefaults = UserDefaults.standard;
-        let username = userDefaults.object(forKey: "WEIBON") as! String;
-        let password = userDefaults.object(forKey: "WEIBOP") as! String;
+ 
+        
+        guard let username = userDefaults.object(forKey: "WEIBON") as? String else {
+            SVProgressHUD.showError(withStatus: "没有绑定新浪微博账号")
+            SVProgressHUD.dismiss(withDelay: 2.0)
+            return
+        }
+        
+        guard let password = userDefaults.object(forKey: "WEIBOP") as? String else{
+            SVProgressHUD.showError(withStatus: "没有绑定新浪微博账号")
+            SVProgressHUD.dismiss(withDelay: 2.0)
+            return
+        }
         let jsCode = "document.getElementById('userId').value='\(username)';document.getElementById('passwd').value='\(String(describing: password))';"
         webView.evaluateJavaScript(jsCode, completionHandler: nil);
     }

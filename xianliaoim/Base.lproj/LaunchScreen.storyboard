@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,13 +16,64 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanchScreet" translatesAutoresizingMaskIntoConstraints="NO" id="c9U-oy-oRK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <containerView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chZ-Mv-wWH">
+                                <rect key="frame" x="0.0" y="527" width="375" height="140"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="biF-wS-4nF"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="LGc-OU-7GN" kind="embed" id="GMg-gN-mBM"/>
+                                </connections>
+                            </containerView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanchicon" translatesAutoresizingMaskIntoConstraints="NO" id="Mxc-K5-5CW">
+                                <rect key="frame" x="157.5" y="547" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Agg-YX-aLM"/>
+                                    <constraint firstAttribute="width" secondItem="Mxc-K5-5CW" secondAttribute="height" multiplier="1:1" id="Hhn-MT-fqW"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mxc-K5-5CW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1fs-bv-doi"/>
+                            <constraint firstAttribute="trailing" secondItem="chZ-Mv-wWH" secondAttribute="trailing" id="4XL-AT-fTS"/>
+                            <constraint firstAttribute="bottom" secondItem="Mxc-K5-5CW" secondAttribute="bottom" constant="60" id="6T4-RX-Rea"/>
+                            <constraint firstAttribute="bottom" secondItem="c9U-oy-oRK" secondAttribute="bottom" id="GPY-Qv-XZ7"/>
+                            <constraint firstAttribute="bottom" secondItem="chZ-Mv-wWH" secondAttribute="bottom" id="JpM-oW-Cgm"/>
+                            <constraint firstItem="c9U-oy-oRK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ZT1-Xf-Brr"/>
+                            <constraint firstItem="chZ-Mv-wWH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="k90-4s-UPv"/>
+                            <constraint firstItem="c9U-oy-oRK" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="mZk-Sc-L2D"/>
+                            <constraint firstAttribute="trailing" secondItem="c9U-oy-oRK" secondAttribute="trailing" id="uHZ-iQ-jkI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fAw-Er-KZl">
+            <objects>
+                <viewController id="LGc-OU-7GN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dwZ-Bn-9Br">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Odh-gy-5kr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IRL-u3-buh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="lanchScreet" width="1242" height="2208"/>
+        <image name="lanchicon" width="256" height="256"/>
+    </resources>
 </document>

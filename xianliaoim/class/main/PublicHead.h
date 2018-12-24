@@ -29,3 +29,6 @@ alpha:1.f]
 #else
 #define WKPLog(...)
 #endif /* PrefixHeader_pch */
+
+
+#define DEMO_CALL  1

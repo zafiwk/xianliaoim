@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (WKPCategory)
 -(BOOL)checkTel;
+
+
++(NSString *)uuidString;
 @end
 
 NS_ASSUME_NONNULL_END

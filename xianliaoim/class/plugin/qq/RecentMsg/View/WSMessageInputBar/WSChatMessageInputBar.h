@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WSChatMessageInputBarDelegate <NSObject>
+-(void)voiceSavePath:(NSString*)path;
+@end
 
 /**
  *  @brief  聊天界面底部输入界面
  */
 @interface WSChatMessageInputBar : UIView
-
+@property(nonatomic,weak) id<WSChatMessageInputBarDelegate> delegate;
 @end

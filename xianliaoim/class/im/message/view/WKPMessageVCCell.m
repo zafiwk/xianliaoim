@@ -39,19 +39,7 @@
 }
 -(void)setCon:(EMConversation *)con{
     _con = con;
-    EMMessage* lastMessage = [con  lastReceivedMessage];
-    self.username.text =[lastMessage.from substringFromIndex:3];
-    WSChatModel* model = [lastMessage model];
-    if ([model.chatCellType integerValue] == WSChatCellType_Text) {
-//        self.message.text = model.content;
-        self.message.attributedText = [model.content pngStr];
-    }else if ([model.chatCellType integerValue]==WSChatCellType_Image){
-        self.message.text = @"[图片]";
-    }else if ([model.chatCellType integerValue]==WSChatCellType_local){
-        self.message.text = [NSString stringWithFormat:@"地理位置:%@",model.content];
-    }
     [self messageReceive:nil];
-    
 }
 
 -(void)messageReceive:(NSNotification*)notification{
@@ -75,6 +63,30 @@
         CGFloat  x  = UIWidth- numW-5;
         self.num.frame = CGRectMake(x, y, numW,numH);
     }
+    EMMessage* lastMessage = [con  latestMessage];
+    
+    
+    WKPLog(@"--->消息的发送:%@   接受:%@",lastMessage.from,lastMessage.to);
+    NSString* currentName = [EMClient sharedClient].currentUsername;
+    NSString* name = nil;
+    if ([lastMessage.to isEqualToString:currentName]) {
+        name = lastMessage.from;
+    }else{
+        name= lastMessage.to;
+    }
+    
+    self.username.text =name;
+    WSChatModel* model = [lastMessage model];
+    if ([model.chatCellType integerValue] == WSChatCellType_Text) {
+        //        self.message.text = model.content;
+        self.message.attributedText = [model.content pngStr];
+    }else if ([model.chatCellType integerValue]==WSChatCellType_Image){
+        self.message.text = @"[图片]";
+    }else if ([model.chatCellType integerValue]==WSChatCellType_local){
+        self.message.text = [NSString stringWithFormat:@"地理位置:%@",model.content];
+    }
+    NSString* dateStr= [lastMessage dateStr];
+    self.timeLabel.text =dateStr;
     
 }
 

@@ -13,6 +13,10 @@
 #import "WSChatMessageMoreView.h"
 #import "WSChatMessageEmojiView.h"
 #import "WKPIPhoneTools.h"
+#import "PublicHead.h"
+#import <Masonry/Masonry.h>
+#import "EMAudioRecorderUtil.h"
+#import "NSString+WKPCategory.h"
 //背景颜色
 #define kBkColor               ([UIColor colorWithRed:0.922 green:0.925 blue:0.929 alpha:1])
 
@@ -81,6 +85,12 @@
  */
 @property(nonatomic,strong)UIButton   *mMoreBtn;
 
+/**
+ *
+ */
+@property(nonatomic,strong)UIButton* voiceBtn;
+
+@property(nonatomic)BOOL showVoiceBtn;
 @end
 
 @implementation WSChatMessageInputBar
@@ -92,6 +102,7 @@
     self = [super init];
     if (self)
     {
+        
         self.backgroundColor = kBkColor;
         mHeightTextView = kMinHeightTextView; //默认设置输入框最小高度
         
@@ -99,10 +110,21 @@
          *  @brief  增加录音按钮
          */
         [self addSubview:self.mVoiceBtn];
+        [self.mVoiceBtn addTarget:self action:@selector(mVoiceBtnBlick) forControlEvents:UIControlEventTouchUpInside];
         [self.mVoiceBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
         [self.mVoiceBtn autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:4];
         
-
+        
+        
+        self.voiceBtn = [[UIButton alloc]init];
+        [self addSubview:self.voiceBtn];
+        self.voiceBtn.backgroundColor  = BtnBgColor;
+        [self.voiceBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.voiceBtn setTitle:@"按住 说话" forState:UIControlStateNormal];
+        [self.voiceBtn addTarget:self action:@selector(startVoiceBtnClick:) forControlEvents:UIControlEventTouchDown];
+        [self.voiceBtn addTarget:self action:@selector(endVoiceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        self.voiceBtn.layer.masksToBounds=YES;
+        self.voiceBtn.layer.cornerRadius= 5;
         /**
          *  @brief  增加输入框
          */
@@ -110,6 +132,15 @@
         [self.mInputTextView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kDefaultTopTextView_SupView];
         [self.mInputTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.mVoiceBtn withOffset:0];
         mBottomConstraintTextView = [self.mInputTextView  autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kDefaultBottomTextView_SupView];
+        
+        
+        [self.voiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.mas_equalTo(self.mInputTextView.mas_leading);
+            make.trailing.mas_equalTo(self.mInputTextView.mas_trailing);
+            make.bottom.mas_equalTo(self.mInputTextView.mas_bottom);
+            make.top.mas_equalTo(self.mInputTextView.mas_top);
+        }];
+        
         
         /**
          *  @brief  增加表情按钮
@@ -486,4 +517,27 @@
     [self textView:self.mInputTextView shouldChangeTextInRange:NSMakeRange(0, 0) replacementText:@"\n"];
 }
 
+
+-(void)startVoiceBtnClick:(UIButton*)btn{
+//    NSLog(@"startVoiceBtnClick:(UIButton*)btn");
+    NSString* docPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString* filePath = [NSString stringWithFormat:@"%@.mav",[docPath stringByAppendingPathComponent:[NSString uuidString]]];
+    WKPLog(@"filePath:%@",filePath);
+}
+
+-(void)endVoiceBtnClick:(UIButton*)btn{
+    NSLog(@"endVoiceBtnClick:(UIButton*)btn");
+}
+
+-(void)mVoiceBtnBlick{
+    self.showVoiceBtn = !self.showVoiceBtn;
+    if (self.showVoiceBtn) {
+        self.mInputTextView.hidden =YES;
+        self.voiceBtn.hidden=NO;
+    }else{
+        self.mInputTextView.hidden = NO;
+        self.voiceBtn.hidden =YES;
+    }
+   
+}
 @end

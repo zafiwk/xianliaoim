@@ -33,10 +33,7 @@
                     <rect key="frame" x="140.5" y="205" width="94" height="90"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="检测到没有登录.尝试登录下吧!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKb-Ep-xKc">
-                    <rect key="frame" x="62.5" y="363" width="250" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="250" id="nEm-LR-Gdc"/>
-                    </constraints>
+                    <rect key="frame" x="10" y="363" width="355" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -57,6 +54,7 @@
                 <constraint firstItem="VgJ-sk-c03" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2AB-ga-M9h"/>
                 <constraint firstItem="M5b-U6-OQY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2WP-IR-ZcW"/>
                 <constraint firstItem="SKb-Ep-xKc" firstAttribute="centerX" secondItem="VgJ-sk-c03" secondAttribute="centerX" id="MsL-K6-tjL"/>
+                <constraint firstItem="SKb-Ep-xKc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="NQ1-WN-Ywa"/>
                 <constraint firstItem="M5b-U6-OQY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="QcS-M0-B2u"/>
                 <constraint firstItem="DEF-Tc-yoE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="UMD-M1-CAL"/>
                 <constraint firstItem="SKb-Ep-xKc" firstAttribute="top" secondItem="M5b-U6-OQY" secondAttribute="bottom" constant="68" id="Ycp-1B-h6S"/>
@@ -64,6 +62,7 @@
                 <constraint firstItem="SF4-eY-LPp" firstAttribute="top" secondItem="SKb-Ep-xKc" secondAttribute="bottom" constant="20" id="eDq-xr-GNN"/>
                 <constraint firstItem="SF4-eY-LPp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jHC-jH-4Tl"/>
                 <constraint firstItem="VgJ-sk-c03" firstAttribute="bottom" secondItem="M5b-U6-OQY" secondAttribute="bottom" id="kw4-7B-7un"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SKb-Ep-xKc" secondAttribute="trailing" constant="10" id="sqU-2W-rQ0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
