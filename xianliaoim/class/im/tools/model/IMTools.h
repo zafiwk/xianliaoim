@@ -39,7 +39,7 @@ typedef void(^IMToolsBlock)(id  obj,EMError* error);
 -(void)sendMessageWithLatitude:(CGFloat)latitude withLongitude:(CGFloat)longitude withAddress:(NSString*)address withUser:(NSString*)userName withConversationID:(NSString*)conversationId
     withBlock:(IMToolsBlock)block;
 //发送语音消息
--(void)seedMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block;
+-(void)seedMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block;
 //发送视频消息
 -(void)seedMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block;
 //新建一个会话 1v1

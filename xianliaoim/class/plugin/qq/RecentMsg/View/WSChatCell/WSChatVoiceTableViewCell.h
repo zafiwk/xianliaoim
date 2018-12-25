@@ -8,7 +8,11 @@
 
 #import "WSChatBaseTableViewCell.h"
 
+
+@protocol WSChatVoiceTableViewCellDelegate <NSObject>
+-(void)reloadVoiceModel:(WSChatModel*)model;
+@end
 @interface WSChatVoiceTableViewCell : WSChatBaseTableViewCell
 
-
+@property(nonatomic,weak)id<WSChatVoiceTableViewCellDelegate> delegate;
 @end

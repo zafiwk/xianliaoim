@@ -84,6 +84,8 @@
         self.message.text = @"[图片]";
     }else if ([model.chatCellType integerValue]==WSChatCellType_local){
         self.message.text = [NSString stringWithFormat:@"地理位置:%@",model.content];
+    }else if ([model.chatCellType integerValue]==WSChatCellType_Audio){
+        self.message.text =  @"[语音]";
     }
     NSString* dateStr= [lastMessage dateStr];
     self.timeLabel.text =dateStr;

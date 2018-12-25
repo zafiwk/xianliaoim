@@ -11,7 +11,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <AVFoundation/AVFoundation.h>
 @interface EMAudioPlayerUtil : NSObject
 
 + (BOOL)isPlaying;
@@ -24,5 +24,8 @@
                   completion:(void(^)(NSError *error))completon;
 
 + (void)stopCurrentPlaying;
+
++ (void)asyncPlayNetUrl:(NSURL*)url
+             completion:(void(^)(AVPlayer *player))completon;
 
 @end

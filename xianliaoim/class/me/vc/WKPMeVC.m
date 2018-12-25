@@ -124,6 +124,10 @@
                 EMConversation* con=allConversation[i];
                 [con deleteAllMessages:nil];
             }
+            NSString* docPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            NSString* recordHome = [docPath stringByAppendingPathComponent:@"record"];
+            NSFileManager* manager = [NSFileManager defaultManager];
+            [manager removeItemAtPath:recordHome error:nil];
             [MBProgressHUD showSuccess:@"删除成功" toView:self.view];
         }
         return;

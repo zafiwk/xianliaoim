@@ -10,6 +10,10 @@
 
 @protocol WSChatMessageInputBarDelegate <NSObject>
 -(void)voiceSavePath:(NSString*)path;
+
+-(void)startRecord;
+
+-(void)canelRecord;
 @end
 
 /**

@@ -7,8 +7,8 @@
 //  https://github.com/weida-studio/QQ
 
 #import "WSChatVoiceTableViewCell.h"
-
-
+#import "EaseUI.h"
+#import "PublicHead.h"
 #define kHMinOffsetSecondLable_supView            (40)  //水平方向上，秒数Lable和父控件之间最小间隙
 #define kHOffsetSecondLable_voiceImageView        (10)  //水平方向上，秒数Lable和喇叭ImageVIew之间的间隙
 #define kHOffsetSecondLable_BubbleView            (20)  //水平方向上，秒数Lable和气泡之间的间隙
@@ -52,7 +52,7 @@
         mVoiceImageView = [UIImageView newAutoLayoutView];
         mVoiceImageView.backgroundColor= [UIColor clearColor];
         [self.contentView addSubview:mVoiceImageView];
-
+        
         CGFloat scale = 0.6;
         [mVoiceImageView autoSetDimensionsToSize:CGSizeMake(29 *scale, 33*scale)];
         mVoiceImageView.animationDuration = 1;
@@ -64,7 +64,7 @@
             mSecondLable.textColor = kTextColorSecondLable_Sender;
             [mSecondLable autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:mVoiceImageView withOffset:-kHOffsetSecondLable_voiceImageView];
             [mSecondLable autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:mBubbleImageView withOffset:kHOffsetSecondLable_BubbleView];
-
+            
             [mSecondLable autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHMinOffsetSecondLable_supView relation:NSLayoutRelationGreaterThanOrEqual];
             
             mVoiceImageView.image = [UIImage imageNamed:@"chat_voice_sender3"];
@@ -104,12 +104,21 @@
 
 -(void)setModel:(WSChatModel *)model
 {
-    if (!model.content)
-    {
-        model.content = [self makeContent:model.secondVoice];
+    //    if (!model.content)
+    //    {
+    //        model.content = [self makeContent:model.secondVoice];
+    //    }
+    //    mSecondLable.text = model.content;
+    WKPLog(@"model.secondVoice:%ld",[model.secondVoice integerValue]);
+    if (model.secondVoice) {
+        mSecondLable.text =[self makeContent:model.secondVoice];
     }
-    mSecondLable.text = model.content;
     
+    if (model.voiceIsPlay) {
+        [mVoiceImageView startAnimating];
+    }else{
+        [mVoiceImageView stopAnimating];
+    }
     [super setModel:model];
 }
 
@@ -178,7 +187,39 @@
 
 -(void)voiceBeenTaped:(UITapGestureRecognizer*)tap
 {
-    mVoiceImageView.isAnimating?[mVoiceImageView stopAnimating]:[mVoiceImageView startAnimating];
+    self.model.voiceIsPlay = !self.model.voiceIsPlay;
+    if (self.model.voiceIsPlay) {
+        if ([self.delegate respondsToSelector:@selector(reloadVoiceModel:)]) {
+            [self.delegate reloadVoiceModel:self.model];
+        }
+        [mVoiceImageView startAnimating];
+        self.model.voiceIsPlay =YES;
+        __weak  typeof(self) weakSelf= self;
+        __weak  typeof(mVoiceImageView) weakObj=mVoiceImageView;
+        [EMAudioPlayerUtil stopCurrentPlaying];
+        if (self.model.content) {
+            [EMAudioPlayerUtil asyncPlayingWithPath:self.model.content completion:^(NSError *error) {
+                if (error) {
+                    [MBProgressHUD showError:error.localizedDescription toView:nil];
+                    WKPLog(@"播放error:%@",error.localizedDescription);
+                    WKPLog(@"文件路劲%@",self.model.content);
+                    [weakObj stopAnimating];
+                }
+            }];
+        }else{
+            
+            [EMAudioPlayerUtil asyncPlayNetUrl:[NSURL URLWithString:self.model.remotePath] completion:^(AVPlayer *player) {
+                CMTime time = player.currentItem.duration;
+                Float64 seconds = CMTimeGetSeconds(time);
+                mSecondLable.text  =[self makeContent:@(ceil(seconds))];
+            }];
+        }
+        
+    }else{
+        [mVoiceImageView stopAnimating];
+        [EMAudioPlayerUtil stopCurrentPlaying];
+        
+    }
 }
 
 @end

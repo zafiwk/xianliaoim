@@ -20,7 +20,7 @@ static EMAudioPlayerUtil *audioPlayerUtil = nil;
     AVAudioPlayer *_player;
     void (^playFinish)(NSError *error);
 }
-
+@property(nonatomic,strong)AVPlayer* netPlayer;
 @end
 
 @implementation EMAudioPlayerUtil
@@ -113,6 +113,11 @@ static EMAudioPlayerUtil *audioPlayerUtil = nil;
         [_player stop];
         _player = nil;
     }
+    if (self.netPlayer) {
+        [self.netPlayer pause];
+        self.netPlayer = nil;
+    }
+    
     if (playFinish) {
         playFinish = nil;
     }
@@ -137,6 +142,7 @@ static EMAudioPlayerUtil *audioPlayerUtil = nil;
         _player.delegate = nil;
         _player = nil;
     }
+    playFinish(nil);
     playFinish = nil;
 }
 
@@ -153,5 +159,22 @@ static EMAudioPlayerUtil *audioPlayerUtil = nil;
         _player = nil;
     }
 }
++(void)asyncPlayNetUrl:(NSURL*)url
+            completion:(void(^)(AVPlayer *player))completon{
+    [[EMAudioPlayerUtil sharedInstance] asyncPlayNetUrl:url completion:completon];
+}
 
+-(void)asyncPlayNetUrl:(NSURL*)url
+            completion:(void(^)(AVPlayer *player))completon{
+    AVPlayerItem* songItem = [[AVPlayerItem alloc]initWithURL:url];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:songItem];
+    self.netPlayer = [[AVPlayer alloc]initWithPlayerItem:songItem];
+    [self.netPlayer play];
+    completon(self.netPlayer);
+}
+-(void)playbackFinished:(NSNotification *)notice {
+    self.netPlayer = nil ;
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 @end

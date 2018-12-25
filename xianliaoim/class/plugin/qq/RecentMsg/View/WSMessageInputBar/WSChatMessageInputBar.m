@@ -17,6 +17,7 @@
 #import <Masonry/Masonry.h>
 #import "EMAudioRecorderUtil.h"
 #import "NSString+WKPCategory.h"
+#import "EaseUI.h"
 //背景颜色
 #define kBkColor               ([UIColor colorWithRed:0.922 green:0.925 blue:0.929 alpha:1])
 
@@ -104,8 +105,12 @@
     {
         
         self.backgroundColor = kBkColor;
-        mHeightTextView = kMinHeightTextView; //默认设置输入框最小高度
-        
+        NSString* deviceModelName=[WKPIPhoneTools deviceModelName];
+        if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+            mHeightTextView = kMinHeightTextView+34; //默认设置输入框最小高度
+        }else{
+            mHeightTextView = kMinHeightTextView; //默认设置输入框最小高度
+        }
         /**
          *  @brief  增加录音按钮
          */
@@ -123,6 +128,7 @@
         [self.voiceBtn setTitle:@"按住 说话" forState:UIControlStateNormal];
         [self.voiceBtn addTarget:self action:@selector(startVoiceBtnClick:) forControlEvents:UIControlEventTouchDown];
         [self.voiceBtn addTarget:self action:@selector(endVoiceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.voiceBtn addTarget:self action:@selector(cancelVoiceBtnClick:) forControlEvents:UIControlEventTouchUpOutside];
         self.voiceBtn.layer.masksToBounds=YES;
         self.voiceBtn.layer.cornerRadius= 5;
         /**
@@ -131,8 +137,14 @@
         [self addSubview:self.mInputTextView];
         [self.mInputTextView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kDefaultTopTextView_SupView];
         [self.mInputTextView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.mVoiceBtn withOffset:0];
-        mBottomConstraintTextView = [self.mInputTextView  autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kDefaultBottomTextView_SupView];
         
+        
+        
+        if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+            mBottomConstraintTextView = [self.mInputTextView  autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kDefaultBottomTextView_SupView+34];
+        }else{
+            mBottomConstraintTextView = [self.mInputTextView  autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kDefaultBottomTextView_SupView];
+        }
         
         [self.voiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.mas_equalTo(self.mInputTextView.mas_leading);
@@ -148,7 +160,7 @@
         [self addSubview:self.mFaceBtn];
         [self.mFaceBtn autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.mInputTextView withOffset:0];
         [self.mFaceBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.mVoiceBtn];
-       
+        
         /**
          *  @brief  增加更多按钮
          */
@@ -157,7 +169,7 @@
         [_mMoreBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];
         [_mMoreBtn  autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.mFaceBtn withOffset:0];
         
-
+        
         /**
          *  @brief  监听键盘显示、隐藏变化，让自己伴随键盘移动
          */
@@ -179,11 +191,11 @@
 -(void)updateConstraints
 {
     [super updateConstraints];
-
+    
     
     if (!mBottomConstraintWithSupView)
     {
-         NSArray *constraints = self.superview.constraints;
+        NSArray *constraints = self.superview.constraints;
         
         for (int index= (int)constraints.count-1; index>0; index--)
         {//从末尾开始查找
@@ -236,12 +248,20 @@
     [UIView setAnimationCurve:animationCurve];
     
     
-    if (notification.name == UIKeyboardWillShowNotification)
-    {
-        mBottomConstraintWithSupView.constant = -(keyboardEndFrame.size.height);
-    }else
-    {
-        mBottomConstraintWithSupView.constant = 0;
+    
+    NSString* deviceModelName=[WKPIPhoneTools deviceModelName];
+    if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+        if (notification.name == UIKeyboardWillShowNotification){
+            mBottomConstraintWithSupView.constant = -(keyboardEndFrame.size.height-34);
+        }else{
+            mBottomConstraintWithSupView.constant = 0;
+        }
+    }else{
+        if (notification.name == UIKeyboardWillShowNotification){
+            mBottomConstraintWithSupView.constant = -(keyboardEndFrame.size.height);
+        }else{
+            mBottomConstraintWithSupView.constant = 0;
+        }
     }
     
     [self.superview layoutIfNeeded];
@@ -272,16 +292,19 @@
         [self moreBtnClick:self.mMoreBtn];
     }
     
-    if (sender.selected)
-    {
+    if (sender.selected){
         [mFaceView removeFromSuperview];
         mFaceView = nil;
         
-        mBottomConstraintTextView.constant = -kDefaultBottomTextView_SupView;
         
+        NSString* deviceModelName=[WKPIPhoneTools deviceModelName];
+        if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+            mBottomConstraintTextView.constant = -(kDefaultBottomTextView_SupView+34);
+        }else{
+            mBottomConstraintTextView.constant = -kDefaultBottomTextView_SupView;
+        }
         [self.mInputTextView becomeFirstResponder];
-    }else
-    {
+    }else{
         mFaceView = [[WSChatMessageEmojiView alloc]init];
         mFaceView.translatesAutoresizingMaskIntoConstraints = NO;
         mFaceView.delegate=self;
@@ -303,7 +326,7 @@
         
         [self.mInputTextView resignFirstResponder];
     }
-
+    
     [self invalidateIntrinsicContentSize];
     
     sender.selected = !sender.selected;
@@ -322,18 +345,18 @@
         
         [mMoreView removeFromSuperview];
         mMoreView = nil;
-    
+        
         mBottomConstraintTextView.constant = -kDefaultBottomTextView_SupView;
-    
+        
         [self.mInputTextView becomeFirstResponder];
     }else
     {//隐藏键盘，显示更多界面
         
         mMoreView = [[WSChatMessageMoreView alloc]init];
         mMoreView.translatesAutoresizingMaskIntoConstraints = NO;
-    
+        
         [self addSubview:mMoreView];
-    
+        
         
         [mMoreView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
         [mMoreView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
@@ -347,7 +370,7 @@
     [self invalidateIntrinsicContentSize];
     
     sender.selected = !sender.selected;
-
+    
 }
 
 
@@ -364,7 +387,7 @@
     [_mMoreBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     _mMoreBtn.backgroundColor = [UIColor clearColor];
     
-   
+    
     
     [_mMoreBtn setImage:[UIImage imageNamed:@"chat_bottom_up_nor"] forState:UIControlStateNormal];
     [_mMoreBtn setImage:[UIImage imageNamed:@"chat_bottom_up_press"] forState:UIControlStateHighlighted];
@@ -420,7 +443,7 @@
     }
     
     _mInputTextView = [[UITextView alloc]initForAutoLayout];
-
+    
     _mInputTextView.delegate = self;
     _mInputTextView.layer.cornerRadius = 4;
     _mInputTextView.layer.masksToBounds = YES;
@@ -463,10 +486,10 @@
 {
     if ([text isEqualToString:@"\n"])
     {//点击了发送按钮
-       
+        
         if (![textView.text isEqualToString:@""])
         {//输入框当前有数据才需要发送
-           
+            
             [self routerEventWithType:EventChatCellTypeSendMsgEvent userInfo:@{@"type":@(WSChatCellType_Text),@"text":textView.text}];
             
             textView.text = @"";//清空输入框
@@ -485,7 +508,7 @@
     CGSize size =  [textView sizeThatFits:CGSizeMake(textView.contentSize.width, 0)];
     
     CGFloat contentHeight;
-
+    
     //输入框的高度不能超过最大高度
     if (size.height > kMaxHeightTextView)
     {
@@ -510,7 +533,7 @@
     NSLog(@"%@",model);
     NSString* imageKey=[NSString stringWithFormat:@"[%@]",model[@"image"]];
     NSLog(@"%@",self.mInputTextView.text);
-   self.mInputTextView.text = [self.mInputTextView.text stringByAppendingString:imageKey];
+    self.mInputTextView.text = [self.mInputTextView.text stringByAppendingString:imageKey];
 }
 
 -(void)sendText{
@@ -519,14 +542,39 @@
 
 
 -(void)startVoiceBtnClick:(UIButton*)btn{
-//    NSLog(@"startVoiceBtnClick:(UIButton*)btn");
+    WKPLog(@"------------开始录音");
+    [MBProgressHUD showSuccess:@"长按录制语音" toView:nil];
     NSString* docPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString* filePath = [NSString stringWithFormat:@"%@.mav",[docPath stringByAppendingPathComponent:[NSString uuidString]]];
+    NSString* recordHome = [docPath stringByAppendingPathComponent:@"record"];
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:recordHome]) {
+        [manager createDirectoryAtPath:recordHome withIntermediateDirectories:YES attributes:@{} error:nil];
+    }
+    NSString* filePath = [NSString stringWithFormat:@"%@.mav",[recordHome stringByAppendingPathComponent:[NSString uuidString]]];
     WKPLog(@"filePath:%@",filePath);
+    __weak  typeof(self) weakSelf = self;
+    [EMAudioRecorderUtil asyncStartRecordingWithPreparePath:filePath completion:^(NSError *error) {
+        if (error) {
+            [MBProgressHUD showError:error.localizedDescription toView:nil];
+            WKPLog(@"error:%@",error.localizedDescription);
+        }else{
+            if ([weakSelf.delegate respondsToSelector:@selector(startRecord)]) {
+                [weakSelf.delegate startRecord];
+            }
+        }
+     }];
+    
+    
 }
 
 -(void)endVoiceBtnClick:(UIButton*)btn{
-    NSLog(@"endVoiceBtnClick:(UIButton*)btn");
+    WKPLog(@"------------结束录音");
+    [EMAudioRecorderUtil asyncStopRecordingWithCompletion:^(NSString *recordPath) {
+        if ([self.delegate respondsToSelector:@selector(voiceSavePath:)]) {
+            [MBProgressHUD showSuccess:@"录音结束" toView:nil];
+            [self.delegate voiceSavePath:recordPath];
+        }
+    }];
 }
 
 -(void)mVoiceBtnBlick{
@@ -538,6 +586,14 @@
         self.mInputTextView.hidden = NO;
         self.voiceBtn.hidden =YES;
     }
-   
+    
+}
+-(void)cancelVoiceBtnClick:(UIButton*)btn{
+    [MBProgressHUD showError:@"取消发送录音消息" toView:nil];
+    [EMAudioRecorderUtil cancelCurrentRecording];
+    
+    if([self.delegate respondsToSelector:@selector(canelRecord)]){
+        [self.delegate canelRecord];
+    }
 }
 @end

@@ -22,7 +22,7 @@
 #import "EaseEmoji.h"
 #import "EaseEmotionEscape.h"
 #import "EaseEmotionManager.h"
-
+#import "EMAudioPlayerUtil.h"
 #import "EMCDDeviceManager.h"
 #import "EaseConvertToCommonEmoticonsHelper.h"
 

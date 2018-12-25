@@ -102,9 +102,15 @@ static IMTools* tools;
 -(void)sendMessageWithEMMessage:(EMMessage*)message withBlock:(IMToolsBlock)block{
     message.chatType=EMChatTypeChat;
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-        
-        WKPLog(@"消息发送回调");
-        WKPLog(@"error:%@",error?error.description:@"");
+         WKPLog(@"消息发送回调");
+        if (error) {
+            [MBProgressHUD showMessage:@"消息发送失败,稍后再试" toView:nil];
+            WKPLog(@"===================");
+            WKPLog(@"error:%@",error?error.description:@"");
+            return;
+        }
+       
+      
         if (block) {
             block(message,error);
         }
@@ -131,9 +137,9 @@ static IMTools* tools;
     [self sendMessageWithEMMessage:message withBlock:block];
 }
 //发送语音消息
--(void)seedMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block{
+-(void)seedMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block{
     EMVoiceMessageBody* body=[[EMVoiceMessageBody alloc]initWithLocalPath:localPath displayName:name];
-    EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self  curentUsername] to:userName body:body ext:nil];
+    EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self  curentUsername] to:userName body:body ext:ext];
     [self sendMessageWithEMMessage:message withBlock:block];
 }
 //发送视频消息

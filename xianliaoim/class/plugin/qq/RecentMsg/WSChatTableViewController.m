@@ -29,7 +29,7 @@
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
-@interface WSChatTableViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate>
+@interface WSChatTableViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,WSChatMessageInputBarDelegate,WSChatVoiceTableViewCellDelegate>
 
 @property(nonatomic,strong)WSChatMessageInputBar *inputBar;
 
@@ -46,6 +46,9 @@
 
 @property(nonatomic,strong)EMMessage* firstMessage;
 
+@property(nonatomic,strong)NSTimer* voiceTimer;
+
+@property(nonatomic,assign)NSInteger voiceS;
 @end
 
 @implementation WSChatTableViewController
@@ -74,10 +77,12 @@
     if(lastMessage){
         [self.con markMessageAsReadWithId:lastMessage.messageId error:nil];
         [self.dataArray addObject:[lastMessage model]];
-        [self loadMoreMsgWithMessage:lastMessage];
+        [self loadMoreMsgWithMessage:lastMessage withScrollToBottom:YES];
     }
     
     
+    UITapGestureRecognizer* tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGrClick)];
+    [self.tableView addGestureRecognizer:tapGR];
 }
 
 -(void)dealloc{
@@ -134,7 +139,10 @@
     WSChatBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseID(model) forIndexPath:indexPath];
     
     [self configureCell:cell atIndexPath:indexPath];
-    
+    if([model.chatCellType integerValue]==WSChatCellType_Audio){
+        WSChatVoiceTableViewCell* voiceCell=(WSChatVoiceTableViewCell*)cell;
+        voiceCell.delegate = self;
+    }
     return cell;
 }
 
@@ -149,6 +157,7 @@
     WSChatModel *model = self.dataArray[indexPath.row];
     
     cell.model = model;
+   
 }
 
 #pragma mark - UIResponder actions
@@ -272,7 +281,7 @@
     
     _inputBar = [[WSChatMessageInputBar alloc]init];
     _inputBar.translatesAutoresizingMaskIntoConstraints = NO;
-    
+    _inputBar.delegate = self;
     return _inputBar;
 }
 
@@ -299,13 +308,13 @@
 -(void)loadMoreMsg{
     EMMessage* fristMessage=self.firstMessage;
     if (fristMessage) {
-        [self loadMoreMsgWithMessage:fristMessage];
+        [self loadMoreMsgWithMessage:fristMessage withScrollToBottom:NO];
     }else{
         [self.tableView.mj_header endRefreshing];
     }
     
 }
--(void)loadMoreMsgWithMessage:(EMMessage*)msg{
+-(void)loadMoreMsgWithMessage:(EMMessage*)msg withScrollToBottom:(BOOL)animated{
     __weak  typeof(self) weakSelf = self;
     [self.con  loadMessagesStartFromId:msg.messageId count:10 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
         if (aMessages.count==0||aError) {
@@ -331,7 +340,7 @@
         weakSelf.firstMessage = [aMessages firstObject];
         //        [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
-        [weakSelf scrollToBottom:YES];
+        [weakSelf scrollToBottom:animated];
         //            EXC_BAD_INSTRUCTION
         //            dispatch_group_enter(self.group);
         //            dispatch_group_leave(self.group);
@@ -497,8 +506,48 @@
     WSChatModel* model = info[MessageWSModel];
     [self.dataArray addObject:model];
     [self scrollToBottom:YES];
-    
-    
-    
+
+}
+
+#pragma mark WSChatMessageInputBarDelegate
+-(void)voiceSavePath:(NSString*)path{
+    [self.voiceTimer invalidate];
+    self.voiceTimer = nil;
+    if (self.voiceS<1.5) {
+        [MBProgressHUD showSuccess:@"录制时间过短" toView:self.view];
+        return;
+    }
+    IMTools* tools=[IMTools defaultInstance];
+    [tools seedMessageWithVoiceLocalPath:path withDisplayName:@"语音消息" withUser:self.userName withConversationID:self.con.conversationId withInfo:@{@"time":@(self.voiceS)} withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
+        WSChatModel* model = [obj model];
+        model.secondVoice = @(self.voiceS);
+        model.content = path;
+        self.voiceS = 0;
+        [self.dataArray addObject:model];
+        [self scrollToBottom:YES];
+    }];
+}
+-(void)startRecord{
+    self.voiceTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+         self.voiceS++;
+    }];
+}
+
+
+
+-(void)compleRecord{
+    [self.voiceTimer invalidate];
+    self.voiceTimer = nil;
+}
+-(void)tapGrClick{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+}
+#pragma mark WSChatVoiceTableViewCellDelegate
+-(void)reloadVoiceModel:(WSChatModel*)model{
+    for (NSInteger i=0; i<self.dataArray.count; i++) {
+        WSChatModel* model = self.dataArray[i];
+        model.voiceIsPlay = NO;
+    }
+    [self.tableView reloadData];
 }
 @end

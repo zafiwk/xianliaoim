@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "IMTools.h"
 #define kCellReuseIDWithSenderAndType(isSender,chatCellType)    ([NSString stringWithFormat:@"%@-%@",isSender,chatCellType])
 
 //根据模型得到可重用Cell的 重用ID
@@ -67,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) id sendingImage;
 
 @property(nonatomic,strong)CLLocation* location;
-//图片的url地址
+//图片/音频的url地址
 @property(nonatomic,strong)NSString* remotePath;
 ////纬度
 //@property(nonatomic,assign)CGFloat latitude;
@@ -75,6 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property(nonatomic,assign)CGFloat longitude;
 ////地址
 //@property(nonatomic,strong)NSString* address;
+@property(nonatomic,assign)BOOL voiceIsPlay;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -70,12 +70,17 @@
         {
             // 音频sdk会自动下载
             EMVoiceMessageBody *body = (EMVoiceMessageBody *)msgBody;
-            NSLog(@"音频remote路径 -- %@"      ,body.remotePath);
-            NSLog(@"音频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在（音频会自动调用）
-            NSLog(@"音频的secret -- %@"        ,body.secretKey);
-            NSLog(@"音频文件大小 -- %lld"       ,body.fileLength);
-            NSLog(@"音频文件的下载状态 -- %lu"   ,body.downloadStatus);
-            NSLog(@"音频的时间长度 -- %lu"      ,body.duration);
+            WKPLog(@"音频remote路径 -- %@"      ,body.remotePath);
+            WKPLog(@"音频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在（音频会自动调用）
+            WKPLog(@"音频的secret -- %@"        ,body.secretKey);
+            WKPLog(@"音频文件大小 -- %lld"       ,body.fileLength);
+            WKPLog(@"音频文件的下载状态 -- %lu"   ,body.downloadStatus);
+            WKPLog(@"音频的时间长度 -- %lu"      ,body.duration);
+            NSDictionary* ext = self.ext;
+            model.chatCellType = @(WSChatCellType_Audio);
+            model.secondVoice = ext[@"time"];
+            model.content =body.localPath;
+            model.remotePath = body.remotePath;
         }
             break;
         case EMMessageBodyTypeVideo:
