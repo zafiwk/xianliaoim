@@ -41,6 +41,7 @@
     
     [alertVC addAction:[UIAlertAction actionWithTitle:@"查看用户使用协议" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         WKPWebVC* webVC=[[WKPWebVC alloc]init];
+        webVC.hidesBottomBarWhenPushed = YES;
         webVC.title =@"用户使用协议";
         webVC.url=@"https://www.jianshu.com/p/6d9d6d7128d1";
         [self.navigationController pushViewController:webVC animated:YES];
@@ -48,6 +49,7 @@
     
     [alertVC addAction:[UIAlertAction actionWithTitle:@"查看隐私条款" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         WKPWebVC* webVC=[[WKPWebVC alloc]init];
+        webVC.hidesBottomBarWhenPushed=YES;
         webVC.title =@"隐私条款";
         webVC.url=@"https://www.jianshu.com/p/98be1a49a90e";
         [self.navigationController pushViewController:webVC animated:YES];

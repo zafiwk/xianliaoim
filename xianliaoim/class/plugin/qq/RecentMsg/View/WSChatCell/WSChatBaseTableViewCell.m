@@ -36,6 +36,8 @@
         [self.contentView addSubview:mHead];
       
         [mHead autoSetDimensionsToSize:CGSizeMake(kWidthHead, kHeightHead)];
+        mHead.layer.masksToBounds= YES;
+        mHead.layer.cornerRadius=kWidthHead/2.0;
         
         [mHead autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kTopHead];
         NSArray *IDs = [reuseIdentifier componentsSeparatedByString:kReuseIDSeparate];
@@ -50,6 +52,11 @@
             [mHead mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.trailing.mas_equalTo(-kTraingHead).priorityHigh();
             }];
+            NSString* dataPath=iconPath;
+            NSData* imageData = [NSData dataWithContentsOfFile:dataPath];
+            if (imageData.length>0) {
+                mHead.image=[UIImage imageWithData:imageData];
+            }
         }else//别人发送的消息
         {
 //            [mHead autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kLeadingHead];
@@ -76,6 +83,8 @@
             mBubbleImageView.image = [[UIImage imageNamed:kImageNameChat_send_nor] stretchableImageWithLeftCapWidth:30 topCapHeight:30];
             
             mBubbleImageView.highlightedImage = [[UIImage imageNamed:kImageNameChat_send_press] stretchableImageWithLeftCapWidth:30 topCapHeight:30];
+            
+        
             
 //            [mBubbleImageView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:mHead withOffset:-kOffsetHHeadToBubble];
             [mBubbleImageView mas_makeConstraints:^(MASConstraintMaker *make) {

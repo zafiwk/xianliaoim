@@ -17,7 +17,7 @@
 #import "UserProfileManager.h"
 #import "WKPBindWeibo.h"
 #import "WKPSignInVC.h"
-@interface WKPMeVC ()
+@interface WKPMeVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong)NSMutableArray* dataSource;
 @end
 
@@ -61,7 +61,12 @@
     if (indexPath.section==0&indexPath.row==2) {
         WKPMeVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"iconCell" forIndexPath:indexPath];
         cell.textLabel.text=@"个人图片";
-        
+        NSString* imagePath = iconPath;
+        NSData* imageData=[NSData dataWithContentsOfFile:imagePath];
+        WKPLog(@"imageData.length%ld",imageData.length);
+        if (imageData.length>0) {
+            cell.userIcon.image = [UIImage imageWithData:imageData];
+        }
         return cell;
     }else{
         UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -160,51 +165,51 @@
             WKPBindWeibo* vc=[[WKPBindWeibo alloc]init];
             vc.title=@"账号绑定";
             [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"选择图片的方式" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alertVC addAction:[UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if (![UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                    return ;
+                }
+                UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
+                imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                imagePicker.delegate = self;
+                [self presentViewController:imagePicker animated:YES completion:^{
+                    
+                }];
+                
+            }]];
+            [alertVC addAction:[UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if (![UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera]) {
+                    return ;
+                }
+                UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
+                imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                imagePicker.delegate = self;
+                [self presentViewController:imagePicker animated:YES completion:^{
+                    
+                }];
+            }]];
+            [alertVC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [self presentViewController:alertVC animated:YES completion:^{
+                
+            }];
+            
         }
     }
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    UIImage* image=info[UIImagePickerControllerOriginalImage];
+    NSData* imageData = UIImageJPEGRepresentation(image, 0.3);
+    NSString* imagePath =iconPath;
+    [imageData writeToFile:imagePath atomically:YES];
+    [self.tableView reloadData];
+//    WKPLog(@"info:%@",info);
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

@@ -340,14 +340,17 @@
         [self faceBtnClick:self.mFaceBtn];
     }
     
+    NSString* deviceModelName=[WKPIPhoneTools deviceModelName];
     if (sender.selected)
     {//隐藏更多界面，显示键盘输入
         
         [mMoreView removeFromSuperview];
         mMoreView = nil;
-        
-        mBottomConstraintTextView.constant = -kDefaultBottomTextView_SupView;
-        
+        if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+            mBottomConstraintTextView.constant = -(kDefaultBottomTextView_SupView+34);
+        }else{
+            mBottomConstraintTextView.constant = -kDefaultBottomTextView_SupView;
+        }
         [self.mInputTextView becomeFirstResponder];
     }else
     {//隐藏键盘，显示更多界面
@@ -361,9 +364,11 @@
         [mMoreView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
         [mMoreView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
         [mMoreView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.mInputTextView withOffset:6];
-        
-        mBottomConstraintTextView.constant = -(kDefaultBottomTextView_SupView+[mMoreView intrinsicContentSize].height);
-        
+        if([@"iPhone_X" isEqualToString:deviceModelName]||[@"iPhone_XS"  isEqualToString:deviceModelName]||[@"iPhone_XS_MAX" isEqualToString:deviceModelName]||[@"iPhone_XR" isEqualToString:deviceModelName]){
+            mBottomConstraintTextView.constant = -(kDefaultBottomTextView_SupView+[mMoreView intrinsicContentSize].height+34);
+        }else{
+            mBottomConstraintTextView.constant = -(kDefaultBottomTextView_SupView+[mMoreView intrinsicContentSize].height);
+        }
         [self.mInputTextView resignFirstResponder];
     }
     
@@ -562,7 +567,7 @@
                 [weakSelf.delegate startRecord];
             }
         }
-     }];
+    }];
     
     
 }

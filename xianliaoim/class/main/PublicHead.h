@@ -31,4 +31,5 @@ alpha:1.f]
 #endif /* PrefixHeader_pch */
 
 
+#define iconPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"icon"]
 #define DEMO_CALL  1
