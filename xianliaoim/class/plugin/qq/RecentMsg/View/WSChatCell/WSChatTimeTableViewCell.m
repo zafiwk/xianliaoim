@@ -54,8 +54,7 @@
 -(void)setModel:(WSChatModel *)model
 {
     _model = model;
-    
-    mTimeLable.text = model.timeStamp.description;
+    mTimeLable.text = model.content;
 }
 
 @end

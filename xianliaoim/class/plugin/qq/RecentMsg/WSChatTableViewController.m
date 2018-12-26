@@ -230,8 +230,7 @@
     
     IMTools* imTools = [IMTools defaultInstance];
     [imTools sendMessageWithText:userInfo[@"text"] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  obj, EMError *  error) {
-        [self.dataArray addObject:newModel];
-        [self scrollToBottom:YES];
+        [self addModel:newModel];
     }];
 }
 
@@ -370,8 +369,7 @@
                         newModel.isSender     = @(YES);
                         newModel.timeStamp    = [NSDate date];
                         newModel.sendingImage =image ;
-                        [weakSelf.dataArray addObject:newModel];
-                        [weakSelf scrollToBottom:YES];
+                        [self addModel:newModel];
                     }];
                 }
             };
@@ -388,8 +386,7 @@
             NSString* message = [NSString stringWithFormat:@"%@发起了语音聊天",[[EMClient sharedClient] currentUsername]];
             [tools sendMessageWithText:[message substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
                 WSChatModel* model = [obj model];
-                [self.dataArray addObject:model];
-                [self scrollToBottom:YES];
+                [self addModel:model];
                 [tools sendAudioCall:self.userName];
             }];
             NSLog(@"selectIndex:1");
@@ -401,8 +398,7 @@
             NSString* message = [NSString stringWithFormat:@"%@发起了视频聊天",[[EMClient sharedClient] currentUsername]];
             [tools sendMessageWithText:[message  substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage*   obj, EMError * _Nonnull error) {
                 WSChatModel* model = [obj model];
-                [self.dataArray addObject:model];
-                [self scrollToBottom:YES];
+                [self addModel:model];
                 [tools sendVideoCall:self.userName];
             }];
             //视频电话
@@ -493,9 +489,7 @@
             newModel.timeStamp    = [NSDate date];
             newModel.content      = localStr;
             newModel.location =location;
-            [waekSelf.dataArray addObject:newModel];
-            [waekSelf scrollToBottom:YES];
-            
+            [self addModel:newModel];
             waekSelf.stopGetLocal = NO;
         }];
     }];
@@ -504,9 +498,7 @@
 -(void)messageReceive:(NSNotification*)notifaication{
     NSDictionary* info =notifaication.userInfo;
     WSChatModel* model = info[MessageWSModel];
-    [self.dataArray addObject:model];
-    [self scrollToBottom:YES];
-
+    [self addModel:model];
 }
 
 #pragma mark WSChatMessageInputBarDelegate
@@ -523,8 +515,7 @@
         model.secondVoice = @(self.voiceS);
         model.content = path;
         self.voiceS = 0;
-        [self.dataArray addObject:model];
-        [self scrollToBottom:YES];
+        [self addModel:model];
     }];
 }
 -(void)startRecord{
@@ -533,6 +524,22 @@
     }];
 }
 
+
+-(void)addModel:(WSChatModel*)model{
+    WSChatModel* lastModel = [self.dataArray lastObject];
+    NSTimeInterval s =model.timeStamp.timeIntervalSince1970 - lastModel.timeStamp.timeIntervalSince1970;
+    WKPLog(@"添加model时候时间的差值:%f",s);
+    if (s>5*60) {
+        WSChatModel* timeModel = [[WSChatModel alloc]init];
+        timeModel.chatCellType = @(WSChatCellType_Time);
+        NSDateFormatter* df=[[NSDateFormatter alloc]init];
+        df.dateFormat=@"yyyy-MM-dd HH:mm";
+        timeModel.content = [df stringFromDate:lastModel.timeStamp];
+        [self.dataArray addObject:timeModel];
+    }
+    [self.dataArray addObject:model];
+    [self scrollToBottom:YES];
+}
 
 
 -(void)compleRecord{

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol WSChatMessageInputBarDelegate <NSObject>
+
+@optional
 -(void)voiceSavePath:(NSString*)path;
 
 -(void)startRecord;

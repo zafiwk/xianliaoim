@@ -12,13 +12,14 @@
 -(WSChatModel*)model{
     WSChatModel*  model = [[WSChatModel alloc]init];
     
+    
     NSString* currentName = [EMClient sharedClient].currentUsername;
     if([self.from isEqualToString:currentName]){
         model.isSender = @(YES);
     }else{
         model.isSender = @(NO);
     }
-    model.timeStamp = [NSDate date];
+    model.timeStamp = [NSDate dateWithTimeIntervalSince1970:self.timestamp/1000.0];
     EMMessageBody *msgBody = self.body;
     switch (msgBody.type) {
         case EMMessageBodyTypeText:
