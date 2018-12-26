@@ -24,10 +24,11 @@
             make.left.mas_equalTo(mImageView.mas_left);
             make.right.mas_equalTo(mImageView.mas_right);
             make.bottom.mas_equalTo(mImageView.mas_bottom);
-            make.height.mas_equalTo(16);
+            make.height.mas_equalTo(36);
         }];
         self.text.font = [UIFont systemFontOfSize:15];
-        self.text.textAlignment=NSTextAlignmentCenter;
+        self.text.numberOfLines = 2;
+        self.text.textAlignment=NSTextAlignmentLeft;
         self.text.textColor = [UIColor whiteColor];
     }
     return self;
@@ -37,6 +38,21 @@
     model.sendingImage =  [UIImage imageNamed:@"chat_location_preview"];
     self.text.text=model.content;
     [super setModel:model];
+    UIImageView* imageView = [self  getMImageView];
+    UIEdgeInsets edgeInset = [self  imageEdge];
+    if ([model.isSender boolValue]) {
+        [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-edgeInset.right);
+            make.top.mas_equalTo(edgeInset.top);
+            make.size.mas_equalTo(CGSizeMake(150, 150));
+        }];
+    }else{
+        [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(edgeInset.left);
+            make.top.mas_equalTo(edgeInset.top);
+            make.size.mas_equalTo(CGSizeMake(150, 150));
+        }];
+    }
 
 }
 

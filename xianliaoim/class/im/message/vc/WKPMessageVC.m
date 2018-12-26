@@ -12,6 +12,7 @@
 #import "WSChatTableViewController.h"
 #import "PublicHead.h"
 #import "WKPSignInVC.h"
+#import "WKPWebVC.h"
 @interface WKPMessageVC ()
 @property(nonatomic,strong)NSMutableArray* dataArray;
 @end
@@ -25,8 +26,62 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"WKPMessageVCCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
+    
+    
+
+}
+//弹出隐私条款
+-(void)alertMessage{
+    UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"用户使用协议和隐式条款提示" message:@"本应用尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本应用会按照本隐私权政策的规定使用和披露您的个人信息。但本应用将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本应用不会将这些信息对外披露或向第三方提供。本应用会不时更新本隐私权政策。 您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本应用服务使用协议不可分割的一部分。" preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction  actionWithTitle:@"同意用户使用协议和用户隐私条款" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"frist" forKey:@"frist"];
+        [defaults synchronize];
+    }]];
+    
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"查看用户使用协议" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        WKPWebVC* webVC=[[WKPWebVC alloc]init];
+        webVC.title =@"用户使用协议";
+        webVC.url=@"https://www.jianshu.com/p/6d9d6d7128d1";
+        [self.navigationController pushViewController:webVC animated:YES];
+    }]];
+    
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"查看隐私条款" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        WKPWebVC* webVC=[[WKPWebVC alloc]init];
+        webVC.title =@"隐私条款";
+        webVC.url=@"https://www.jianshu.com/p/98be1a49a90e";
+        [self.navigationController pushViewController:webVC animated:YES];
+    }]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"不同意用户使用协议和用户隐私条款" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self alertMessage1];
+    }]];
+    [self presentViewController:alertVC animated:YES completion:^{
+        
+    }];
+}
+//第二次
+-(void)alertMessage1{
+    UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"用户使用协议和隐式条款提示" message:@"闲聊将按照用户使用协议和隐私条款提供服务。如果不同意,可以点击\"不同意\"退出应用。" preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"在想想" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self alertMessage];
+    }]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"不同意并退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        abort();
+    }]];
+    [self presentViewController:alertVC animated:YES completion:^{
+        
+    }];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* frist=[defaults stringForKey:@"frist"];
+    if (frist.length == 0) {
+        [self alertMessage];
+    }
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if([[EMClient sharedClient] isLoggedIn]){

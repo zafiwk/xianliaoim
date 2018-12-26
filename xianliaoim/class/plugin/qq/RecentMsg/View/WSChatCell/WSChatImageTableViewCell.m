@@ -97,16 +97,26 @@
 -(UIImageView*)getMImageView{
     return mImageView;
 }
+-(UIEdgeInsets)imageEdge{
+    UIEdgeInsets inset;
+    CGFloat top     = kTopHead - kOffsetTopHeadToBubble;
+    CGFloat bottom  = kBottom_OffsetTextWithSupView;
+    CGFloat leading = kOffsetHHeadToBubble + kWidthHead + kLeadingHead;
+    CGFloat traing  = kMaxOffsetText;
+    if ([self.model.isSender boolValue]) {
+        inset = UIEdgeInsetsMake(top, traing, bottom, leading);
+    }else{
+        inset = UIEdgeInsetsMake(top, leading, bottom, traing);
+    }
+    
+    return inset;
+}
 
 -(void)setModel:(WSChatModel *)model
 {
-    if (model.sendingImage)
-    {
+    if (model.sendingImage){
         mImageView.image = model.sendingImage;
-    }else
-    {
-//        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:[UIImage imageNamed:@"leftMenuBk"]];
-//        [mImageView sd_setImageWithURL:[NSURL URLWithString:model.remotePath] placeholderImage:model.sendingImage];
+    }else{
         [mImageView sd_setImageWithURL:[NSURL URLWithString:model.remotePath] placeholderImage:[UIImage imageNamed:@"picture"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             if (error) {
                 WKPLog(@"图片cell中高清图片下载失败");

@@ -74,8 +74,7 @@
     }else{
         name= lastMessage.to;
     }
-    
-    self.username.text =name;
+    self.username.text =[name substringFromIndex:3];
     WSChatModel* model = [lastMessage model];
     if ([model.chatCellType integerValue] == WSChatCellType_Text) {
         //        self.message.text = model.content;

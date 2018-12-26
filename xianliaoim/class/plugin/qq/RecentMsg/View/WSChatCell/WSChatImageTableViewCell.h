@@ -10,4 +10,6 @@
 
 @interface WSChatImageTableViewCell : WSChatBaseTableViewCell
 -(UIImageView*)getMImageView;
+
+-(UIEdgeInsets)imageEdge;
 @end

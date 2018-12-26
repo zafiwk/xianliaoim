@@ -123,8 +123,8 @@
         
         self.voiceBtn = [[UIButton alloc]init];
         [self addSubview:self.voiceBtn];
-        self.voiceBtn.backgroundColor  = BtnBgColor;
-        [self.voiceBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.voiceBtn.backgroundColor  = [UIColor whiteColor];
+        [self.voiceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.voiceBtn setTitle:@"按住 说话" forState:UIControlStateNormal];
         [self.voiceBtn addTarget:self action:@selector(startVoiceBtnClick:) forControlEvents:UIControlEventTouchDown];
         [self.voiceBtn addTarget:self action:@selector(endVoiceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
