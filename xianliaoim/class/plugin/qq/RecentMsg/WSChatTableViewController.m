@@ -529,7 +529,7 @@
     WSChatModel* lastModel = [self.dataArray lastObject];
     NSTimeInterval s =model.timeStamp.timeIntervalSince1970 - lastModel.timeStamp.timeIntervalSince1970;
     WKPLog(@"添加model时候时间的差值:%f",s);
-    if (s>5*60) {
+    if (s>5*60&&lastModel) {
         WSChatModel* timeModel = [[WSChatModel alloc]init];
         timeModel.chatCellType = @(WSChatCellType_Time);
         NSDateFormatter* df=[[NSDateFormatter alloc]init];
