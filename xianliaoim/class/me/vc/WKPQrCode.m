@@ -38,13 +38,15 @@
 }
 
 -(void)setupQR{
-    NSString* loginName=[[EMClient sharedClient] currentUsername];
+    
+  
+   
     
     CIFilter* filter=[CIFilter filterWithName:@"CIQRCodeGenerator"];;
     
     [filter setDefaults];
     
-    NSData* data=[loginName dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* data=[self.qrStr dataUsingEncoding:NSUTF8StringEncoding];
     
     [filter setValue:data forKey:@"inputMessage"];
     

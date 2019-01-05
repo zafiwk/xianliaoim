@@ -146,6 +146,8 @@
             return;
         }
         WKPQrCode* vc=[[WKPQrCode alloc]init];
+        NSString* loginName=[[EMClient sharedClient] currentUsername];
+        vc.qrStr = loginName;
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }

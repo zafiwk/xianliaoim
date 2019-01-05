@@ -110,7 +110,6 @@
 		F24291ED21C14D9000E6EA4C /* WSChatMessageMoreCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F242914E21C14D8E00E6EA4C /* WSChatMessageMoreCollectionCell.m */; };
 		F24291EE21C14D9000E6EA4C /* WSMoreImageTitles.plist in Resources */ = {isa = PBXBuildFile; fileRef = F242914F21C14D8E00E6EA4C /* WSMoreImageTitles.plist */; };
 		F24291EF21C14D9000E6EA4C /* WSChatMessageMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = F242915021C14D8E00E6EA4C /* WSChatMessageMoreView.m */; };
-		F24291F021C14D9000E6EA4C /* WSChatTableViewController+MoreViewClick.m in Sources */ = {isa = PBXBuildFile; fileRef = F242915221C14D8E00E6EA4C /* WSChatTableViewController+MoreViewClick.m */; };
 		F24291F221C14D9000E6EA4C /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F242915821C14D8F00E6EA4C /* UITableView+FDTemplateLayoutCell.m */; };
 		F24291F321C14D9000E6EA4C /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F242915D21C14D8F00E6EA4C /* NSLayoutConstraint+PureLayout.m */; };
 		F24291F421C14D9000E6EA4C /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F242916021C14D8F00E6EA4C /* ALView+PureLayout.m */; };
@@ -315,6 +314,10 @@
 		F2B7447921BAA83100EF2FFF /* WKPChangNickVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7447721BAA83100EF2FFF /* WKPChangNickVC.xib */; };
 		F2B7447C21BAAD1500EF2FFF /* WKPWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7447B21BAAD1500EF2FFF /* WKPWebVC.m */; };
 		F2B8651921BE912200ACDBEA /* NSString+WKPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B8651821BE912200ACDBEA /* NSString+WKPCategory.m */; };
+		F2CBD51021D7886100FD4569 /* RemarkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CBD50F21D7886100FD4569 /* RemarkModel.m */; };
+		F2CBD51321D7948100FD4569 /* WKPPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CBD51221D7948100FD4569 /* WKPPersonInfoVC.m */; };
+		F2CBD51A21D798CD00FD4569 /* WKPRemark.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CBD51821D798CD00FD4569 /* WKPRemark.m */; };
+		F2CBD51B21D798CD00FD4569 /* WKPRemark.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CBD51921D798CD00FD4569 /* WKPRemark.xib */; };
 		F2CF035F21B1077800D93C86 /* WKPSignUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CF035D21B1077800D93C86 /* WKPSignUpVC.xib */; };
 		F2CF036621B10CEE00D93C86 /* WKPSignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CF036521B10CEE00D93C86 /* WKPSignUpVC.m */; };
 		F2CF036B21B1285A00D93C86 /* MBProgressHUD+WKPMBProgressHUDCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CF036A21B1285A00D93C86 /* MBProgressHUD+WKPMBProgressHUDCategory.m */; };
@@ -456,7 +459,6 @@
 		F24288B821C13F2600E6EA4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F242912021C1498900E6EA4C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatTableViewController.m; sourceTree = "<group>"; };
-		F242912A21C14D8E00E6EA4C /* WSChatTableViewController+MoreViewClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WSChatTableViewController+MoreViewClick.h"; sourceTree = "<group>"; };
 		F242912E21C14D8E00E6EA4C /* WSChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatTableViewController.h; sourceTree = "<group>"; };
 		F242913121C14D8E00E6EA4C /* WSChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatModel.m; sourceTree = "<group>"; };
 		F242913221C14D8E00E6EA4C /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageToDataTransformer.m; sourceTree = "<group>"; };
@@ -485,7 +487,6 @@
 		F242914F21C14D8E00E6EA4C /* WSMoreImageTitles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WSMoreImageTitles.plist; sourceTree = "<group>"; };
 		F242915021C14D8E00E6EA4C /* WSChatMessageMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatMessageMoreView.m; sourceTree = "<group>"; };
 		F242915121C14D8E00E6EA4C /* WSChatMessageInputBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatMessageInputBar.h; sourceTree = "<group>"; };
-		F242915221C14D8E00E6EA4C /* WSChatTableViewController+MoreViewClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WSChatTableViewController+MoreViewClick.m"; sourceTree = "<group>"; };
 		F242915821C14D8F00E6EA4C /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
 		F242915921C14D8F00E6EA4C /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
 		F242915B21C14D8F00E6EA4C /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
@@ -772,6 +773,13 @@
 		F2B8651721BE912200ACDBEA /* NSString+WKPCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WKPCategory.h"; sourceTree = "<group>"; };
 		F2B8651821BE912200ACDBEA /* NSString+WKPCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+WKPCategory.m"; sourceTree = "<group>"; };
 		F2C894C621C510F1007189F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F2CBD50E21D7886100FD4569 /* RemarkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemarkModel.h; sourceTree = "<group>"; };
+		F2CBD50F21D7886100FD4569 /* RemarkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemarkModel.m; sourceTree = "<group>"; };
+		F2CBD51121D7948100FD4569 /* WKPPersonInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPPersonInfoVC.h; sourceTree = "<group>"; };
+		F2CBD51221D7948100FD4569 /* WKPPersonInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPPersonInfoVC.m; sourceTree = "<group>"; };
+		F2CBD51721D798CD00FD4569 /* WKPRemark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPRemark.h; sourceTree = "<group>"; };
+		F2CBD51821D798CD00FD4569 /* WKPRemark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPRemark.m; sourceTree = "<group>"; };
+		F2CBD51921D798CD00FD4569 /* WKPRemark.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPRemark.xib; sourceTree = "<group>"; };
 		F2CF035D21B1077800D93C86 /* WKPSignUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPSignUpVC.xib; sourceTree = "<group>"; };
 		F2CF036121B10BFB00D93C86 /* PublicHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublicHead.h; sourceTree = "<group>"; };
 		F2CF036421B10CEE00D93C86 /* WKPSignUpVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPSignUpVC.h; sourceTree = "<group>"; };
@@ -1278,8 +1286,6 @@
 				F26F463D21C28EE9007398E2 /* UIImage+Utils.m */,
 				F26F463921C28E93007398E2 /* UIResponder+Router.h */,
 				F26F463A21C28E94007398E2 /* UIResponder+Router.m */,
-				F242912A21C14D8E00E6EA4C /* WSChatTableViewController+MoreViewClick.h */,
-				F242915221C14D8E00E6EA4C /* WSChatTableViewController+MoreViewClick.m */,
 				F242912E21C14D8E00E6EA4C /* WSChatTableViewController.h */,
 				F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */,
 				F242912F21C14D8E00E6EA4C /* Model */,
@@ -1424,6 +1430,11 @@
 			children = (
 				F26EAF4521CBA0D800A968DB /* WKPMessageVC.h */,
 				F26EAF4621CBA0D800A968DB /* WKPMessageVC.m */,
+				F2CBD51121D7948100FD4569 /* WKPPersonInfoVC.h */,
+				F2CBD51221D7948100FD4569 /* WKPPersonInfoVC.m */,
+				F2CBD51721D798CD00FD4569 /* WKPRemark.h */,
+				F2CBD51821D798CD00FD4569 /* WKPRemark.m */,
+				F2CBD51921D798CD00FD4569 /* WKPRemark.xib */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -1988,6 +1999,8 @@
 				F21B592A21AD413800E43B5E /* RequestModel.m */,
 				F27B90F021C7D8AC0024A16B /* WKPAnnotation.h */,
 				F27B90F121C7D8AC0024A16B /* WKPAnnotation.m */,
+				F2CBD50E21D7886100FD4569 /* RemarkModel.h */,
+				F2CBD50F21D7886100FD4569 /* RemarkModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2077,6 +2090,7 @@
 			files = (
 				F28176BD21CE488500A66ABB /* WKPMapVC.h in Resources */,
 				F28176A821CE29C000A66ABB /* video_white@2x.png in Resources */,
+				F2CBD51B21D798CD00FD4569 /* WKPRemark.xib in Resources */,
 				F281766F21CE29BF00A66ABB /* animate_00061.png in Resources */,
 				F281768A21CE29BF00A66ABB /* micphone_white@2x.png in Resources */,
 				F281765D21CE29BF00A66ABB /* animate_00071.png in Resources */,
@@ -2271,7 +2285,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/FWPopupView/FWPopupView.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
@@ -2289,7 +2302,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FWPopupView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
@@ -2359,7 +2371,6 @@
 				F27E94CA21CCF9DA00301648 /* UIViewController+DismissKeyboard.m in Sources */,
 				F221A51221ABCF6300E99B3F /* PhotoBrowserVCCell.swift in Sources */,
 				F2CF036B21B1285A00D93C86 /* MBProgressHUD+WKPMBProgressHUDCategory.m in Sources */,
-				F24291F021C14D9000E6EA4C /* WSChatTableViewController+MoreViewClick.m in Sources */,
 				F27E94CF21CCF9DA00301648 /* EaseChineseToPinyin.m in Sources */,
 				F26F463B21C28E94007398E2 /* UIResponder+Router.m in Sources */,
 				F2B7447321BA9F8300EF2FFF /* WKPMeVCCell.m in Sources */,
@@ -2438,6 +2449,8 @@
 				F24291EF21C14D9000E6EA4C /* WSChatMessageMoreView.m in Sources */,
 				F257C7E121BD519000D9957A /* WKPAddFriendRequestVCCell.m in Sources */,
 				F221A53321ABCF6300E99B3F /* DateTools.swift in Sources */,
+				F2CBD51A21D798CD00FD4569 /* WKPRemark.m in Sources */,
+				F2CBD51321D7948100FD4569 /* WKPPersonInfoVC.m in Sources */,
 				F221A52F21ABCF6300E99B3F /* MessageViewController.swift in Sources */,
 				F29B065421BBF311009829CE /* UIImage+WKPImageTool.m in Sources */,
 				F221A52D21ABCF6300E99B3F /* PicPickerCollectionView.swift in Sources */,
@@ -2447,6 +2460,7 @@
 				F221A51821ABCF6300E99B3F /* StatusViewModel.swift in Sources */,
 				F221A53721ABCF6300E99B3F /* MainViewController.swift in Sources */,
 				F27E94D021CCF9DA00301648 /* EaseEmoji.m in Sources */,
+				F2CBD51021D7886100FD4569 /* RemarkModel.m in Sources */,
 				F2AEF87621C77E4F00FDCE53 /* WKPLocationCell.m in Sources */,
 				F24291E121C14D9000E6EA4C /* WSChatModel.m in Sources */,
 				F221A53E21ABCF6300E99B3F /* NetTools.swift in Sources */,

@@ -14,7 +14,6 @@
 #import "WSChatTimeTableViewCell.h"
 #import "WSChatMessageInputBar.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "WSChatTableViewController+MoreViewClick.h"
 #import "WSChatMessageMoreView.h"
 #import "WKSelectPhotoPickerGroupVC.h"
 #import "FWNavigationController.h"
@@ -26,6 +25,7 @@
 #import "EMMessage+WKPChatModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import "WKPImageVC.h"
+#import "WKPPersonInfoVC.h"
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
@@ -83,16 +83,25 @@
     
     UITapGestureRecognizer* tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGrClick)];
     [self.tableView addGestureRecognizer:tapGR];
+    
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iStreamline"] style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
+    self.navigationItem.rightBarButtonItem=rightItem;
+    rightItem.tintColor = [UIColor whiteColor];
+    
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    IMTools* tools = [IMTools defaultInstance];
+    RemarkModel* model = [tools queryRemarkNameByName:self.userName];
+    if (model) {
+        self.navigationItem.title = model.remarkName;
+    }
     [self scrollToBottom:NO];
 }
 
@@ -210,7 +219,29 @@
     
 }
 
-
+-(void)pickerImages:(NSInteger)maxCount{
+    WKPLog(@"pickerImages:%ld",maxCount);
+    //    MLSelectPhotoPickerViewController *pickerVc = [[MLSelectPhotoPickerViewController alloc] init];
+    //    pickerVc.status = PickerViewShowStatusCameraRoll;// 默认显示相册里面的内容SavePhotos
+    //    pickerVc.maxCount = maxCount;
+    //    [pickerVc showPickerVc:self];
+    //    __weak typeof(self) weakSelf = self;
+    //    pickerVc.callBack = ^(NSArray *assets)
+    //    {
+    //        for (MLSelectPhotoAssets *image in assets)
+    //        {
+    //            WSChatModel *newModel = [[WSChatModel alloc]init];
+    //            newModel.chatCellType = @(WSChatCellType_Image);
+    //            newModel.isSender     = @(YES);
+    //            newModel.timeStamp    = [NSDate date];
+    //            newModel.sendingImage = image.thumbImage;
+    //            NSLog(@"%@",image.assetURL);
+    //        }
+    //
+    //
+    //    };
+    
+}
 -(void)SendMessage:(NSDictionary*)userInfo{
     WSChatModel* newModel = [[WSChatModel alloc]init];
     newModel.chatCellType = userInfo[@"type"];
@@ -556,5 +587,13 @@
         model.voiceIsPlay = NO;
     }
     [self.tableView reloadData];
+}
+
+#pragma  mark setting
+-(void)setting{
+    WKPPersonInfoVC* vc=[[WKPPersonInfoVC alloc]initWithStyle:UITableViewStyleGrouped];
+    vc.username=self.userName;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 @end

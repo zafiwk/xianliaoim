@@ -74,7 +74,14 @@
     }else{
         name= lastMessage.to;
     }
-    self.username.text =[name substringFromIndex:3];
+    
+    IMTools* tools = [IMTools defaultInstance];
+    RemarkModel* remarkModel = [tools queryRemarkNameByName:name];
+    if (remarkModel) {
+        self.username.text = remarkModel.remarkName;
+    }else{
+        self.username.text =[name substringFromIndex:3];
+    }
     WSChatModel* model = [lastMessage model];
     if ([model.chatCellType integerValue] == WSChatCellType_Text) {
         //        self.message.text = model.content;

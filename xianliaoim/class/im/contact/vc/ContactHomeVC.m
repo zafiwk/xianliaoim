@@ -122,7 +122,7 @@
     if (self.notData) {
         return 0;
     }else{
-        return 2;
+        return 1;
     }
 }
 
@@ -168,8 +168,18 @@
             return cell;
         }else{
             ContactVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            NSString* userName = [self.contactArray[indexPath.row] substringFromIndex:3];
-            cell.nameLabel.text = userName;
+//            NSString* userName = [self.contactArray[indexPath.row] substringFromIndex:3];
+//            cell.nameLabel.text = userName;
+            NSString* userName =self.contactArray[indexPath.row];
+            
+            IMTools* tools = [IMTools defaultInstance];
+            RemarkModel* model = [tools queryRemarkNameByName:userName];
+            if (model) {
+                cell.nameLabel.text = model.remarkName;
+            }else{
+                cell.nameLabel.text = [userName substringFromIndex:3];
+            }
+            
             return cell;
         }
         
@@ -190,6 +200,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
+        if(self.contactArray.count==0){
+            return;
+        }
         WSChatTableViewController *chat = [[WSChatTableViewController alloc]init];
         NSString* userName = self.contactArray[indexPath.row];
         chat.userName = userName;
@@ -218,7 +231,7 @@
     property.popupArrowVertexScaleX = 1;
     property.animationDuration = 0.2;
     
-    FWMenuView *menuView = [FWMenuView menuWithItemTitles:@[@"添加好友/群",@"扫一扫",@"好友验证消息"] itemImageNames:@[[UIImage imageNamed:@"right_menu_addFri"],[UIImage imageNamed:@"right_menu_QR"],[UIImage imageNamed:@"right_menu_multichat"]] itemBlock:^(FWPopupView *popupView, NSInteger index, NSString *title) {
+    FWMenuView *menuView = [FWMenuView menuWithItemTitles:@[@"添加好友",@"扫一扫",@"好友验证消息"] itemImageNames:@[[UIImage imageNamed:@"right_menu_addFri"],[UIImage imageNamed:@"right_menu_QR"],[UIImage imageNamed:@"right_menu_multichat"]] itemBlock:^(FWPopupView *popupView, NSInteger index, NSString *title) {
         [self  fWMenuViewClick:index];
     } property:property];
     

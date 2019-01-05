@@ -12,6 +12,7 @@
 #import "WSChatModel.h"
 #import "EMMessage+WKPChatModel.h"
 #import "AppDelegate.h"
+#import <MJExtension/MJExtension.h>
 @interface IMTools()<EMChatManagerDelegate,EMContactManagerDelegate,EMClientDelegate,EMCallManagerDelegate>
 @property(nonatomic,strong)FMDatabase* dataBase;
 
@@ -80,6 +81,13 @@ static IMTools* tools;
          id integer primary key autoincrement,\
          name text,\
          message text)"];
+        
+        [self.dataBase executeUpdate:@"\
+         create table if not exists remarks(   \
+         id integer primary key autoincrement ,\
+         name text,\
+         remarkName text\
+         )"];
     }
     
     //初始化获取一次好友列表
@@ -102,15 +110,15 @@ static IMTools* tools;
 -(void)sendMessageWithEMMessage:(EMMessage*)message withBlock:(IMToolsBlock)block{
     message.chatType=EMChatTypeChat;
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-         WKPLog(@"消息发送回调");
+        WKPLog(@"消息发送回调");
         if (error) {
             [MBProgressHUD showMessage:@"消息发送失败,稍后再试" toView:nil];
             WKPLog(@"===================");
             WKPLog(@"error:%@",error?error.description:@"");
             return;
         }
-       
-      
+        
+        
         if (block) {
             block(message,error);
         }
@@ -156,7 +164,7 @@ static IMTools* tools;
 //删除多个会话
 -(void)deleteConversation:(NSArray*)array withBlock:(IMToolsBlock)block{
     [[EMClient sharedClient].chatManager deleteConversations:array isDeleteMessages:YES completion:^(EMError *aError) {
-        block(nil,aError);
+        block(Nil,aError);
     }];
 }
 //获取所有会话
@@ -167,6 +175,19 @@ static IMTools* tools;
 
 #pragma mark EMChatManagerDelegate
 -(void)messagesDidReceive:(NSArray *)aMessages{
+    //app添加角标
+    NSInteger maxUnRead=0;
+    NSArray* allCons = [self  getAllConversation];
+    for (NSInteger i=0; i<allCons.count; i++) {
+        EMConversation* con = allCons[i];
+        maxUnRead += [con  unreadMessagesCount];
+    }
+    
+    if (maxUnRead>0) {
+        [[NSNotificationCenter defaultCenter]  postNotificationName:MessageUnRead object:nil userInfo:@{MessageUnReadCount:@(maxUnRead)}];
+    }
+    
+    
     for (EMMessage *message in aMessages) {
         WSChatModel* model =[message model];
         [[NSNotificationCenter defaultCenter] postNotificationName:MessageReceive object:nil userInfo:@{MessageWSModel:model,Message:message}];
@@ -280,6 +301,28 @@ static IMTools* tools;
     WKPLog(@"服务被禁用");
 }
 
+#pragma mark 备注
+-(RemarkModel*)queryRemarkNameByName:(NSString*)name{
+    NSString* selectQuery=[NSString stringWithFormat:@"select *  from remarks where  name = '%@'",name];
+    FMResultSet* set=[self.dataBase executeQuery:selectQuery];
+    if([set  next]){
+        
+        RemarkModel* model = [[RemarkModel mj_objectArrayWithKeyValuesArray:@[set.resultDictionary]]  lastObject];
+        return model;
+    }else{
+        return nil;
+    }
+}
+
+-(void)updateRemarkName:(NSString*)remarkName withName:(NSString*)name{
+    NSString* updateSql = [NSString stringWithFormat:@"update  remarks set remarkName = '%@' where name = '%@'",remarkName,name];
+    [self.dataBase executeUpdate:updateSql];
+}
+-(void)insertRemarkModel:(RemarkModel*)model{
+    NSString* insertSql = [NSString stringWithFormat:@"INSERT INTO remarks(name,remarkName) values('%@','%@')",model.name,model.remarkName];
+    [self.dataBase executeUpdate:insertSql];
+    
+}
 #pragma mark 群管理
 
 
@@ -292,7 +335,7 @@ static IMTools* tools;
  *  @param aSession  会话实例
  */
 - (void)callDidReceive:(EMCallSession *)aSession{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:MessageCallVC object:}];
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:MessageCallVC object:}];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MessageCallVC object:nil userInfo:@{MessageCallSession:aSession}];
 }

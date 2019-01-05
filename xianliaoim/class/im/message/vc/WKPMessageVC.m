@@ -27,14 +27,14 @@
     
     self.tableView.tableFooterView = [[UIView alloc]init];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unRead:) name:MessageUnRead object:nil];
     
-
 }
 //弹出隐私条款
 -(void)alertMessage{
     UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"用户使用协议和隐式条款提示" message:@"本应用尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本应用会按照本隐私权政策的规定使用和披露您的个人信息。但本应用将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本应用不会将这些信息对外披露或向第三方提供。本应用会不时更新本隐私权政策。 您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本应用服务使用协议不可分割的一部分。" preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction  actionWithTitle:@"同意用户使用协议和用户隐私条款" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:@"frist" forKey:@"frist"];
         [defaults synchronize];
     }]];
@@ -107,6 +107,21 @@
             }
             
         }];
+        
+        
+        NSInteger maxUnRead=0;
+        for (NSInteger i=0; i<dataArray.count; i++) {
+            EMConversation* con = dataArray[i];
+            maxUnRead += [con  unreadMessagesCount];
+        }
+        
+        if (maxUnRead>0) {
+            self.tabBarItem.badgeValue=[NSString stringWithFormat:@"%ld",maxUnRead];
+        }else{
+            self.tabBarItem.badgeValue = nil;
+        }
+        
+        
         self.tableView.backgroundView=nil;
     }else{
         VisitoeView*  view=[VisitoeView visitoeView];
@@ -178,5 +193,12 @@
     WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
     loginVC.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:loginVC animated:YES];
+}
+
+#pragma mark 通知
+-(void)unRead:(NSNotification*)noti{
+    NSDictionary*  userInfo = noti.userInfo;
+    NSNumber* unReadCount = userInfo[MessageUnReadCount];
+    self.tabBarItem.badgeValue = [unReadCount stringValue];
 }
 @end

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WKPQrCode : UIViewController
-
+@property(nonatomic,strong)NSString* qrStr;
 @end
 
 NS_ASSUME_NONNULL_END

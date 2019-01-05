@@ -15,7 +15,6 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - Alamofire (4.8.0)
-  - FLAnimatedImage (1.0.12)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -39,7 +38,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - Alamofire
-  - FLAnimatedImage
   - FMDB
   - FWPopupView
   - HandyJSON
@@ -58,7 +56,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - Alamofire
-    - FLAnimatedImage
     - FMDB
     - FWPopupView
     - HandyJSON
@@ -77,7 +74,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   FWPopupView: fa2942c0e54abb659cdd686cac6155b5cad8eb70
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
@@ -93,6 +89,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 2e72bf18ac174439d02cc523c1d0e38644e8ac95
+PODFILE CHECKSUM: 5148fd33ea91cb7c80f5223eaea987863caecb55
 
 COCOAPODS: 1.5.3

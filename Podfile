@@ -27,7 +27,7 @@ target 'xianliaoim' do
 	pod 'Masonry'
     #	pod 'XXNibBridge'
 	pod 'AFNetworking'
-	pod 'FLAnimatedImage'
+    #pod 'FLAnimatedImage'
 	pod 'MBProgressHUD'
 	pod 'Alamofire'
 	pod 'Kingfisher'

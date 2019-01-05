@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Hyphenate/Hyphenate.h>
 #import "RequestModel.h"
-
+#import "RemarkModel.h"
 
 #define MessageReceive   @"messageReceive"
 #define MessageWSModel   @"messageModel"
@@ -18,6 +18,9 @@
 
 #define MessageCallSession @"callSession"
 #define MessageCallVC      @"callVC"
+
+#define MessageUnRead        @"unRead"
+#define MessageUnReadCount   @"unReadCount"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^IMToolsBlock)(id  obj,EMError* error);
 @interface IMTools : NSObject
@@ -66,6 +69,13 @@ typedef void(^IMToolsBlock)(id  obj,EMError* error);
 -(void)sendAudioCall:(NSString*)aUsername;
 //发起视频call
 -(void)sendVideoCall:(NSString*)aUsername;
+
+//插入一个备注
+-(void)insertRemarkModel:(RemarkModel*)model;
+//修改备注
+-(void)updateRemarkName:(NSString*)remarkName withName:(NSString*)name;
+//找个备注
+-(RemarkModel*)queryRemarkNameByName:(NSString*)name;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,6 +19,7 @@
 #import "WKPMessageVC.h"
 #import "Call1v1AudioViewController.h"
 #import "Call1v1VideoViewController.h"
+#import <UserNotifications/UserNotifications.h>
 @interface AppDelegate ()<UITabBarControllerDelegate>
 @property(nonatomic,strong) FWNavigationController* navigationVC;
 @end
@@ -35,6 +36,34 @@
     WKPLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]);
     WKPLog(@"========================================");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callNotification:) name:MessageCallVC object:nil];
+    //注册通知
+//    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge|UNAuthorizationOptionSound|UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//
+//    }];
+//    UNNotificationCategory* generalCategory = [UNNotificationCategory categoryWithIdentifier:@"GENERAL" actions:@[] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+//
+//    // Create the custom actions for expired timer notifications.
+//    UNNotificationAction* snoozeAction = [UNNotificationAction actionWithIdentifier:@"SNOOZE_ACTION"  title:@"Snooze" options:UNNotificationActionOptionAuthenticationRequired];
+//    UNNotificationAction* stopAction = [UNNotificationAction actionWithIdentifier:@"STOP_ACTION"  title:@"Stop" options:UNNotificationActionOptionDestructive];
+//    UNNotificationAction* forAction = [UNNotificationAction actionWithIdentifier:@"FOR_ACTION"  title:@"forAction" options:UNNotificationActionOptionForeground];
+//    // Create the category with the custom actions.
+//    UNNotificationCategory* expiredCategory = [UNNotificationCategory categoryWithIdentifier:@"TIMER_EXPIRED" actions:@[snoozeAction, stopAction,forAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+//    // Register the notification categories.
+//    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+//    [center setDelegate:self];
+//    [center setNotificationCategories:[NSSet setWithObjects:generalCategory, expiredCategory,
+//                                       nil]];
+//
+//    [[UIApplication sharedApplication] registerForRemoteNotifications];
+//
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            WKPLog(@"授权成功");
+        } else {
+            WKPLog(@"授权失败，引导用户前往设置");
+        }
+    }];
     return YES;
 }
 
@@ -146,4 +175,6 @@
     }
 
 }
+
+
 @end
