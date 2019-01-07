@@ -35,7 +35,7 @@
 }
 -(void)setupDataSource{
     self.dataSource = [NSMutableArray array];
-    [self.dataSource addObject:@[@"修改昵称",@"绑定微博账号",@"个人图片"]];
+    [self.dataSource addObject:@[NSLocalizedString(@"修改昵称", nil),@"绑定微博账号",@"个人图片"]];
     [self.dataSource addObject:@[@"个人二维码"]];
     [self.dataSource addObject:@[@"删除缓存图片",@"删除所有聊天记录"]];
     [self.dataSource addObject:@[@"用户使用协议",@"隐私条款"]];

@@ -18,9 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title=@"设置";
-    [self.dataArray addObject:@[@"好友二维码"]];
-    [self.dataArray addObject:@[@"设置好友备注"]];
+    self.navigationItem.title=NSLocalizedString(@"设置", nil);
+    [self.dataArray addObject:@[NSLocalizedString(@"好友二维码", nil)]];
+    [self.dataArray addObject:@[NSLocalizedString(@"设置好友备注", nil)]];
 }
 
 -(NSMutableArray*)dataArray{

@@ -93,14 +93,14 @@
     tabBarVC.delegate = self;
     WKPMessageVC* messagevc=[[WKPMessageVC alloc]initWithStyle:UITableViewStylePlain];
     FWNavigationController* messageNaviC=[[FWNavigationController alloc]initWithRootViewController:messagevc];
-    messagevc.title=@"消息";
+    messagevc.title=NSLocalizedString(@"消息", nil);
     messagevc.tabBarItem.image = [UIImage imageNamed:@"tab_recent_nor"];
     messagevc.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_recent_press"];
     [tabBarVC addChildViewController:messageNaviC];
     self.navigationVC = messageNaviC;
     
     ContactHomeVC* contactVC= [[ContactHomeVC alloc]initWithStyle:UITableViewStylePlain];
-    contactVC.title =@"好友";
+    contactVC.title =NSLocalizedString(@"好友", nil);
     FWNavigationController* contactNaviC=[[FWNavigationController alloc]initWithRootViewController:contactVC];
     [tabBarVC addChildViewController:contactNaviC];
     contactNaviC.tabBarItem.image =[UIImage imageNamed:@"tab_buddy_nor"];
@@ -112,7 +112,7 @@
     [tabBarVC addChildViewController:seeNaviC];
     seeNaviC.tabBarItem.image = [UIImage imageNamed:@"tab_see_nor"];
     seeNaviC.tabBarItem.selectedImage=[UIImage imageNamed:@"tab_see_press"];
-    homeVC.title=@"发现";
+    homeVC.title=NSLocalizedString(@"发现", nil);
 
     
     WKPMeVC* meVC=[[WKPMeVC alloc]initWithStyle:UITableViewStyleGrouped];
@@ -120,7 +120,7 @@
     [tabBarVC addChildViewController:mineNaviC];
     mineNaviC.tabBarItem.image = [UIImage imageNamed:@"tabbar_profile"];
     mineNaviC.tabBarItem.selectedImage = [UIImage imageNamed:@"tabbar_profile_highlighted"];
-    meVC.title=@"我";
+    meVC.title =  NSLocalizedString(@"我", nil);
 
     self.window.rootViewController=tabBarVC;
 //    WKPLoginVC* loginVC=[[WKPLoginVC alloc]init];

@@ -456,7 +456,6 @@
 		F2398B9F21AD0C12000A9B9C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F24288B321C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F24288B521C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		F24288B821C13F2600E6EA4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F242912021C1498900E6EA4C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatTableViewController.m; sourceTree = "<group>"; };
 		F242912E21C14D8E00E6EA4C /* WSChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatTableViewController.h; sourceTree = "<group>"; };
@@ -772,7 +771,6 @@
 		F2B7447B21BAAD1500EF2FFF /* WKPWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPWebVC.m; sourceTree = "<group>"; };
 		F2B8651721BE912200ACDBEA /* NSString+WKPCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WKPCategory.h"; sourceTree = "<group>"; };
 		F2B8651821BE912200ACDBEA /* NSString+WKPCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+WKPCategory.m"; sourceTree = "<group>"; };
-		F2C894C621C510F1007189F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F2CBD50E21D7886100FD4569 /* RemarkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemarkModel.h; sourceTree = "<group>"; };
 		F2CBD50F21D7886100FD4569 /* RemarkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemarkModel.m; sourceTree = "<group>"; };
 		F2CBD51121D7948100FD4569 /* WKPPersonInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPPersonInfoVC.h; sourceTree = "<group>"; };
@@ -806,6 +804,8 @@
 		F2D68DC721AD098E006F763B /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TTTAttributedLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D68DC921AD0991006F763B /* XXNibBridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XXNibBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D68DCB21AD0A7C006F763B /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2ED7D3221E214290070C198 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F2ED7D3321E214410070C198 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F2F2331521C7CD4A0030DFAD /* WKPMapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPMapVC.h; sourceTree = "<group>"; };
 		F2F2331621C7CD4A0030DFAD /* WKPMapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPMapVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1045,13 +1045,13 @@
 		F221A4D621ABCF6200E99B3F /* view */ = {
 			isa = PBXGroup;
 			children = (
-				F221A4D721ABCF6200E99B3F /* PopurVC.xib */,
 				F221A4D821ABCF6200E99B3F /* PopurVC.swift */,
+				F221A4D721ABCF6200E99B3F /* PopurVC.xib */,
 				F221A4D921ABCF6200E99B3F /* PicCollectionViewCell.swift */,
 				F221A4DA21ABCF6200E99B3F /* HomeCell.swift */,
+				F221A4DD21ABCF6200E99B3F /* HomeCell.xib */,
 				F221A4DB21ABCF6200E99B3F /* PicCollectionView.swift */,
 				F221A4DC21ABCF6200E99B3F /* PicCollectionViewCell.xib */,
-				F221A4DD21ABCF6200E99B3F /* HomeCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1184,10 +1184,10 @@
 			isa = PBXGroup;
 			children = (
 				F221A50021ABCF6200E99B3F /* VisitoeView.xib */,
+				F221A50421ABCF6200E99B3F /* VisitoeView.swift */,
 				F221A50121ABCF6200E99B3F /* BaseVC.swift */,
 				F221A50221ABCF6200E99B3F /* LoginVC.swift */,
 				F221A50321ABCF6200E99B3F /* MainViewController.swift */,
-				F221A50421ABCF6200E99B3F /* VisitoeView.swift */,
 				F221A50521ABCF6200E99B3F /* Tools.swift */,
 				F221A50621ABCF6200E99B3F /* WelcomeVC.swift */,
 				F221A50721ABCF6200E99B3F /* TitleBtn.swift */,
@@ -2485,7 +2485,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F24288B321C13F2600E6EA4C /* zh-Hans */,
-				F24288B821C13F2600E6EA4C /* en */,
+				F2ED7D3221E214290070C198 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2494,7 +2494,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F24288B521C13F2600E6EA4C /* zh-Hans */,
-				F2C894C621C510F1007189F1 /* en */,
+				F2ED7D3321E214410070C198 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

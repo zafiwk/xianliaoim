@@ -31,7 +31,7 @@ class HomeViewController: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.visitoeView?.addRotationAnim();
-        self.visitoeView?.messageTitle.text =  "登录微博后就能查看微博了,尝试登录下吧"
+        self.visitoeView?.messageTitle.text =  NSLocalizedString("登录微博后就能查看微博了,尝试登录下吧", comment: "");
         if !isLogin{
             return;
         }
@@ -190,7 +190,7 @@ extension HomeViewController{
     }
     private func  showTipLabel(count : Int){
         tipLabel.isHidden = false
-        tipLabel.text = count == 0 ? "没有新数据" : "\(count)条新微博";
+        tipLabel.text = count == 0 ? NSLocalizedString("没有新数据", comment: "") : "\(count)\(NSLocalizedString("条新微博", comment:""))";
         UIView.animate(withDuration: 1.0, animations: {
             self.tipLabel.setY(y: (self.navigationController?.navigationBar.getHeight())!);
         }) { (_) in
@@ -239,9 +239,9 @@ extension HomeViewController{
     
     private func setupHeadView(){
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNewStatuses))
-        header?.setTitle("下拉刷新", for: .idle)
-        header?.setTitle("释放就更新", for: .pulling)
-        header?.setTitle("加载中...", for: .refreshing)
+        header?.setTitle(NSLocalizedString("下拉刷新", comment: ""), for: .idle)
+        header?.setTitle(NSLocalizedString("释放就更新", comment: ""), for: .pulling)
+        header?.setTitle(NSLocalizedString("加载中...", comment: ""), for: .refreshing)
         tableView.mj_header=header;
         tableView.mj_header.beginRefreshing();
     }

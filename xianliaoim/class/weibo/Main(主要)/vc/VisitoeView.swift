@@ -17,7 +17,9 @@ class VisitoeView: UIView {
     @IBOutlet weak var loginBtn: UIButton!
     
     @objc class func visitoeView() ->VisitoeView{
-        return  Bundle.main.loadNibNamed("VisitoeView", owner: nil, options: nil)?.first as! VisitoeView
+        let view  =  Bundle.main.loadNibNamed("VisitoeView", owner: nil, options: nil)?.first as! VisitoeView
+        view.loginBtn.setTitle(NSLocalizedString("登录", comment: ""), for: UIControl.State.normal);
+        return view;
     }
 
     @objc func  setupVisitoeView(title:String,imageName:String) {

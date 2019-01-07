@@ -25,16 +25,16 @@
 }
 -(void)setupUI{
     
-    self.userName.placeholder=@"输入要添加的好友的手机号码";
-    self.message.placeholder=@"请输入审核信息";
+    self.userName.placeholder=NSLocalizedString(@"输入要添加的好友的手机号码",nil);
+    self.message.placeholder=NSLocalizedString(@"请输入审核信息", nil);
     
     self.commitBtn.backgroundColor = BtnBgColor;
     [self.commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.commitBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [self.commitBtn setTitle:NSLocalizedString(@"确认", nil) forState:UIControlStateNormal];
     [self.commitBtn addTarget:self action:@selector(commitBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.commitBtn.layer.masksToBounds=YES;
     self.commitBtn.layer.cornerRadius=5;
-    self.title=@"添加好友";
+    self.title=NSLocalizedString(@"添加好友", nil);
 }
 -(void)commitBtnClick{
     NSString* userName=[NSString stringWithFormat:@"wkp%@",self.userName.text];
@@ -43,7 +43,7 @@
     if (error) {
         [MBProgressHUD showSuccess:error.description toView:nil];
     }else{
-        [MBProgressHUD showSuccess:@"添加好友成功" toView:nil];
+        [MBProgressHUD showSuccess:NSLocalizedString(@"添加好友成功", nil) toView:nil];
     }
 }
 @end

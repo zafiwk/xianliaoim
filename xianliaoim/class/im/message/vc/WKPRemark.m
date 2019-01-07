@@ -19,16 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title=@"添加修改";
-    self.inputText.placeholder = @"请输入好友的备注";
+    self.navigationItem.title=NSLocalizedString(@"添加修改", nil);
+    self.inputText.placeholder = NSLocalizedString(@"请输入好友的备注", nl);
     if (self.remark) {
         self.inputText.placeholder = self.remark.remarkName;
-        self.navigationItem.title = @"备注修改";
+        self.navigationItem.title = NSLocalizedString(@"备注修改", nil);
     }
 
     self.btn.backgroundColor =BtnBgColor;
     [self.btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.btn setTitle:@"确定修改" forState:UIControlStateNormal];
+    [self.btn setTitle:NSLocalizedString(@"确定修改", nil) forState:UIControlStateNormal];
     self.btn.layer.masksToBounds = YES;
     self.btn.layer.cornerRadius = 5;
     [self.btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];

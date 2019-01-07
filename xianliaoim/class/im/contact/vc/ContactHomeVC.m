@@ -85,7 +85,7 @@
      }else{
         VisitoeView*  view=[VisitoeView visitoeView];
         view.frame=self.view.bounds;
-        [view setupVisitoeViewWithTitle:@"登录后可以查看好友,尝试登录下吧" imageName:@"visitordiscover_image_message"];
+        [view setupVisitoeViewWithTitle:NSLocalizedString(@"登录后可以查看好友,尝试登录下吧",nil) imageName:@"visitordiscover_image_message"];
         self.tableView.backgroundView=view;
         self.tableView.tableFooterView=[[UIView  alloc]init];
         [view.loginBtn addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
@@ -153,7 +153,7 @@
 }
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section==0) {
-        return @"好友列表";
+        return NSLocalizedString(@"好友列表", nil);
     }else{
         return @"群列表";
     }
@@ -163,7 +163,7 @@
     if (indexPath.section==0) {
         if (self.contactArray.count==0) {
             WKPShowMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"messageCell" forIndexPath:indexPath];
-            cell.messageLabel.text=@"你还没有添加任何好友";
+            cell.messageLabel.text=NSLocalizedString(@"你还没有添加任何好友", nil);
             cell.messageLabel.textColor =[UIColor grayColor];
             return cell;
         }else{
@@ -231,7 +231,7 @@
     property.popupArrowVertexScaleX = 1;
     property.animationDuration = 0.2;
     
-    FWMenuView *menuView = [FWMenuView menuWithItemTitles:@[@"添加好友",@"扫一扫",@"好友验证消息"] itemImageNames:@[[UIImage imageNamed:@"right_menu_addFri"],[UIImage imageNamed:@"right_menu_QR"],[UIImage imageNamed:@"right_menu_multichat"]] itemBlock:^(FWPopupView *popupView, NSInteger index, NSString *title) {
+    FWMenuView *menuView = [FWMenuView menuWithItemTitles:@[NSLocalizedString(@"添加好友", nil),NSLocalizedString(@"扫一扫", nil),NSLocalizedString(@"好友验证消息", nil)] itemImageNames:@[[UIImage imageNamed:@"right_menu_addFri"],[UIImage imageNamed:@"right_menu_QR"],[UIImage imageNamed:@"right_menu_multichat"]] itemBlock:^(FWPopupView *popupView, NSInteger index, NSString *title) {
         [self  fWMenuViewClick:index];
     } property:property];
     
@@ -256,7 +256,7 @@
             if ([barCodeString hasPrefix:@"wkp"]) {
                 tel=[barCodeString substringFromIndex:3];
             }else{
-               [MBProgressHUD showError:@"不支持的二维码" toView:weakSelf.view];
+               [MBProgressHUD showError:NSLocalizedString(@"不支持的二维码", nil) toView:weakSelf.view];
                 return ;
             }
             BOOL d=[tel checkTel];
@@ -264,7 +264,7 @@
                 IMTools* tools=[IMTools defaultInstance];
                 [tools addContaceRequest:barCodeString withMessage:@""];
             }else{
-                [MBProgressHUD showError:@"不支持的二维码" toView:weakSelf.view];
+                [MBProgressHUD showError:NSLocalizedString(@"不支持的二维码", nil) toView:weakSelf.view];
             }
         };
         [self presentViewController:vc animated:YES completion:nil];
@@ -272,7 +272,7 @@
 }
 
 -(UISwipeActionsConfiguration*)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIContextualAction* deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+    UIContextualAction* deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:NSLocalizedString(@"删除", nil) handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         NSString* userName = self.contactArray[indexPath.row];
         IMTools* tools = [IMTools defaultInstance];
         [tools deleteContact:userName];

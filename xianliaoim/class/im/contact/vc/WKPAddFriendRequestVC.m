@@ -27,7 +27,7 @@
     self.tableView.rowHeight=100;
     self.tableView.tableFooterView=[[UIView alloc]init];
     
-    self.navigationItem.title=@"好友审核";
+    self.navigationItem.title=NSLocalizedString(@"好友审核", nil);
     IMTools* tools= [IMTools defaultInstance];
     self.dataArray = [tools getAllRequest];
 }
@@ -49,16 +49,16 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataArray.count==0) {
         WKPShowMessageCell* cell=[tableView dequeueReusableCellWithIdentifier:@"message" forIndexPath:indexPath];
-        cell.messageLabel.text=@"没有好友请求";
+        cell.messageLabel.text=NSLocalizedString(@"没有好友请求", nil);
         return cell;
     }else{
         WKPAddFriendRequestVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
        
         
         RequestModel* mode=self.dataArray[indexPath.row];
-        cell.username.text = [NSString stringWithFormat:@"用户名:%@",[mode.username substringFromIndex:3]];
+        cell.username.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"用户名",nil),[mode.username substringFromIndex:3]];
         
-        cell.message.text = [NSString stringWithFormat:@"审核消息:%@",mode.message];
+        cell.message.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"审核消息",nil),mode.message];
         
         cell.agree.tag = indexPath.row;
         cell.Refuse.tag=indexPath.row;
@@ -89,48 +89,5 @@
     self.dataArray = [tools getAllRequest];
     [self.tableView reloadData];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

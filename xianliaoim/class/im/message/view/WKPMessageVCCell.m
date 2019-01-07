@@ -16,7 +16,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    WKPLog(@"WKPMessageVCCell  -- awakeFromNib");
+//    WKPLog(@"WKPMessageVCCell  -- awakeFromNib");
     self.num = [[UILabel alloc]init];
     self.num.backgroundColor = BtnBgColor;
     self.num.textColor = [UIColor whiteColor];
@@ -87,11 +87,11 @@
         //        self.message.text = model.content;
         self.message.attributedText = [model.content pngStr];
     }else if ([model.chatCellType integerValue]==WSChatCellType_Image){
-        self.message.text = @"[图片]";
+        self.message.text = [NSString stringWithFormat:@"[%@]",NSLocalizedString(@"图片",nil)];
     }else if ([model.chatCellType integerValue]==WSChatCellType_local){
-        self.message.text = [NSString stringWithFormat:@"地理位置:%@",model.content];
+        self.message.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"地理位置" ,nil),model.content];
     }else if ([model.chatCellType integerValue]==WSChatCellType_Audio){
-        self.message.text =  @"[语音]";
+        self.message.text = [NSString stringWithFormat:@"[%@]",NSLocalizedString(@"语音",nil)];
     }
     NSString* dateStr= [lastMessage dateStr];
     self.timeLabel.text =dateStr;
