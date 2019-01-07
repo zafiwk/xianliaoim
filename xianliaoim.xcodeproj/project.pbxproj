@@ -43,23 +43,6 @@
 		F221A51D21ABCF6300E99B3F /* PicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4DB21ABCF6200E99B3F /* PicCollectionView.swift */; };
 		F221A51E21ABCF6300E99B3F /* PicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A4DC21ABCF6200E99B3F /* PicCollectionViewCell.xib */; };
 		F221A51F21ABCF6300E99B3F /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A4DD21ABCF6200E99B3F /* HomeCell.xib */; };
-		F221A52021ABCF6300E99B3F /* EmoticonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E021ABCF6200E99B3F /* EmoticonVC.swift */; };
-		F221A52221ABCF6300E99B3F /* EmioticonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E221ABCF6200E99B3F /* EmioticonViewCell.swift */; };
-		F221A52321ABCF6300E99B3F /* EmoticonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E321ABCF6200E99B3F /* EmoticonAttachment.swift */; };
-		F221A52421ABCF6300E99B3F /* UITextView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E421ABCF6200E99B3F /* UITextView-Extension.swift */; };
-		F221A52521ABCF6300E99B3F /* Emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E621ABCF6200E99B3F /* Emoticon.swift */; };
-		F221A52621ABCF6300E99B3F /* EmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E721ABCF6200E99B3F /* EmoticonPackage.swift */; };
-		F221A52721ABCF6300E99B3F /* EmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E821ABCF6200E99B3F /* EmoticonManager.swift */; };
-		F221A52821ABCF6300E99B3F /* ComposeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A4EA21ABCF6200E99B3F /* ComposeVC.xib */; };
-		F221A52921ABCF6300E99B3F /* ComposeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4EB21ABCF6200E99B3F /* ComposeVC.swift */; };
-		F221A52A21ABCF6300E99B3F /* PicPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A4ED21ABCF6200E99B3F /* PicPickerViewCell.xib */; };
-		F221A52B21ABCF6300E99B3F /* ComposeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4EE21ABCF6200E99B3F /* ComposeTitleView.swift */; };
-		F221A52C21ABCF6300E99B3F /* ComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4EF21ABCF6200E99B3F /* ComposeTextView.swift */; };
-		F221A52D21ABCF6300E99B3F /* PicPickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4F021ABCF6200E99B3F /* PicPickerCollectionView.swift */; };
-		F221A52E21ABCF6300E99B3F /* PicPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4F121ABCF6200E99B3F /* PicPickerViewCell.swift */; };
-		F221A52F21ABCF6300E99B3F /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4F421ABCF6200E99B3F /* MessageViewController.swift */; };
-		F221A53021ABCF6300E99B3F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4F721ABCF6200E99B3F /* ProfileViewController.swift */; };
-		F221A53121ABCF6300E99B3F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4FA21ABCF6200E99B3F /* DiscoverViewController.swift */; };
 		F221A53221ABCF6300E99B3F /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4FD21ABCF6200E99B3F /* UIButton-Extension.swift */; };
 		F221A53321ABCF6300E99B3F /* DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4FE21ABCF6200E99B3F /* DateTools.swift */; };
 		F221A53421ABCF6300E99B3F /* VisitoeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A50021ABCF6200E99B3F /* VisitoeView.xib */; };
@@ -401,23 +384,6 @@
 		F221A4DB21ABCF6200E99B3F /* PicCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicCollectionView.swift; sourceTree = "<group>"; };
 		F221A4DC21ABCF6200E99B3F /* PicCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicCollectionViewCell.xib; sourceTree = "<group>"; };
 		F221A4DD21ABCF6200E99B3F /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
-		F221A4E021ABCF6200E99B3F /* EmoticonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonVC.swift; sourceTree = "<group>"; };
-		F221A4E221ABCF6200E99B3F /* EmioticonViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmioticonViewCell.swift; sourceTree = "<group>"; };
-		F221A4E321ABCF6200E99B3F /* EmoticonAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonAttachment.swift; sourceTree = "<group>"; };
-		F221A4E421ABCF6200E99B3F /* UITextView-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView-Extension.swift"; sourceTree = "<group>"; };
-		F221A4E621ABCF6200E99B3F /* Emoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoticon.swift; sourceTree = "<group>"; };
-		F221A4E721ABCF6200E99B3F /* EmoticonPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonPackage.swift; sourceTree = "<group>"; };
-		F221A4E821ABCF6200E99B3F /* EmoticonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonManager.swift; sourceTree = "<group>"; };
-		F221A4EA21ABCF6200E99B3F /* ComposeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeVC.xib; sourceTree = "<group>"; };
-		F221A4EB21ABCF6200E99B3F /* ComposeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeVC.swift; sourceTree = "<group>"; };
-		F221A4ED21ABCF6200E99B3F /* PicPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicPickerViewCell.xib; sourceTree = "<group>"; };
-		F221A4EE21ABCF6200E99B3F /* ComposeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTitleView.swift; sourceTree = "<group>"; };
-		F221A4EF21ABCF6200E99B3F /* ComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTextView.swift; sourceTree = "<group>"; };
-		F221A4F021ABCF6200E99B3F /* PicPickerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicPickerCollectionView.swift; sourceTree = "<group>"; };
-		F221A4F121ABCF6200E99B3F /* PicPickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicPickerViewCell.swift; sourceTree = "<group>"; };
-		F221A4F421ABCF6200E99B3F /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		F221A4F721ABCF6200E99B3F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F221A4FA21ABCF6200E99B3F /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		F221A4FD21ABCF6200E99B3F /* UIButton-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 		F221A4FE21ABCF6200E99B3F /* DateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTools.swift; sourceTree = "<group>"; };
 		F221A50021ABCF6200E99B3F /* VisitoeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisitoeView.xib; sourceTree = "<group>"; };
@@ -997,10 +963,6 @@
 			isa = PBXGroup;
 			children = (
 				F221A4C821ABCF6200E99B3F /* Home(首页) */,
-				F221A4DE21ABCF6200E99B3F /* Compose(发送微博) */,
-				F221A4F221ABCF6200E99B3F /* Message(消息) */,
-				F221A4F521ABCF6200E99B3F /* Profile(我) */,
-				F221A4F821ABCF6200E99B3F /* Discover(发现) */,
 				F221A4FB21ABCF6200E99B3F /* Main(主要) */,
 			);
 			path = weibo;
@@ -1060,107 +1022,6 @@
 				F221A4DD21ABCF6200E99B3F /* HomeCell.xib */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		F221A4DE21ABCF6200E99B3F /* Compose(发送微博) */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4DF21ABCF6200E99B3F /* emoticon */,
-				F221A4E921ABCF6200E99B3F /* vc */,
-				F221A4EC21ABCF6200E99B3F /* view */,
-			);
-			path = "Compose(发送微博)";
-			sourceTree = "<group>";
-		};
-		F221A4DF21ABCF6200E99B3F /* emoticon */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4E021ABCF6200E99B3F /* EmoticonVC.swift */,
-				F221A4E221ABCF6200E99B3F /* EmioticonViewCell.swift */,
-				F221A4E321ABCF6200E99B3F /* EmoticonAttachment.swift */,
-				F221A4E421ABCF6200E99B3F /* UITextView-Extension.swift */,
-				F221A4E521ABCF6200E99B3F /* model */,
-			);
-			path = emoticon;
-			sourceTree = "<group>";
-		};
-		F221A4E521ABCF6200E99B3F /* model */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4E621ABCF6200E99B3F /* Emoticon.swift */,
-				F221A4E721ABCF6200E99B3F /* EmoticonPackage.swift */,
-				F221A4E821ABCF6200E99B3F /* EmoticonManager.swift */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		F221A4E921ABCF6200E99B3F /* vc */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4EA21ABCF6200E99B3F /* ComposeVC.xib */,
-				F221A4EB21ABCF6200E99B3F /* ComposeVC.swift */,
-			);
-			path = vc;
-			sourceTree = "<group>";
-		};
-		F221A4EC21ABCF6200E99B3F /* view */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4ED21ABCF6200E99B3F /* PicPickerViewCell.xib */,
-				F221A4EE21ABCF6200E99B3F /* ComposeTitleView.swift */,
-				F221A4EF21ABCF6200E99B3F /* ComposeTextView.swift */,
-				F221A4F021ABCF6200E99B3F /* PicPickerCollectionView.swift */,
-				F221A4F121ABCF6200E99B3F /* PicPickerViewCell.swift */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		F221A4F221ABCF6200E99B3F /* Message(消息) */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4F321ABCF6200E99B3F /* vc */,
-			);
-			path = "Message(消息)";
-			sourceTree = "<group>";
-		};
-		F221A4F321ABCF6200E99B3F /* vc */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4F421ABCF6200E99B3F /* MessageViewController.swift */,
-			);
-			path = vc;
-			sourceTree = "<group>";
-		};
-		F221A4F521ABCF6200E99B3F /* Profile(我) */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4F621ABCF6200E99B3F /* vc */,
-			);
-			path = "Profile(我)";
-			sourceTree = "<group>";
-		};
-		F221A4F621ABCF6200E99B3F /* vc */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4F721ABCF6200E99B3F /* ProfileViewController.swift */,
-			);
-			path = vc;
-			sourceTree = "<group>";
-		};
-		F221A4F821ABCF6200E99B3F /* Discover(发现) */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4F921ABCF6200E99B3F /* vc */,
-			);
-			path = "Discover(发现)";
-			sourceTree = "<group>";
-		};
-		F221A4F921ABCF6200E99B3F /* vc */ = {
-			isa = PBXGroup;
-			children = (
-				F221A4FA21ABCF6200E99B3F /* DiscoverViewController.swift */,
-			);
-			path = vc;
 			sourceTree = "<group>";
 		};
 		F221A4FB21ABCF6200E99B3F /* Main(主要) */ = {
@@ -1675,7 +1536,6 @@
 			isa = PBXGroup;
 			children = (
 				F281756E21CE29BF00A66ABB /* 1v1 */,
-				F281758A21CE29BF00A66ABB /* plugin */,
 				F281759C21CE29BF00A66ABB /* CallImages */,
 			);
 			path = Call;
@@ -1698,13 +1558,6 @@
 				F281757621CE29BF00A66ABB /* Call1v1VideoViewController.m */,
 			);
 			path = 1v1;
-			sourceTree = "<group>";
-		};
-		F281758A21CE29BF00A66ABB /* plugin */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = plugin;
 			sourceTree = "<group>";
 		};
 		F281759C21CE29BF00A66ABB /* CallImages */ = {
@@ -2142,7 +1995,6 @@
 				F279640521AE71D80081D933 /* ContactVCCell.xib in Resources */,
 				F28176A321CE29BF00A66ABB /* mute_red@3x.png in Resources */,
 				F281768321CE29BF00A66ABB /* minimize_gray@3x.png in Resources */,
-				F221A52A21ABCF6300E99B3F /* PicPickerViewCell.xib in Resources */,
 				F281763121CE29BF00A66ABB /* floating_voice@3x.png in Resources */,
 				F281764E21CE29BF00A66ABB /* animate_00042.png in Resources */,
 				F281767B21CE29BF00A66ABB /* answer@3x.png in Resources */,
@@ -2155,7 +2007,6 @@
 				F281764421CE29BF00A66ABB /* animate_00086.png in Resources */,
 				F28176AA21CE29C000A66ABB /* minimize_white@3x.png in Resources */,
 				F281766521CE29BF00A66ABB /* animate_00067.png in Resources */,
-				F221A52821ABCF6300E99B3F /* ComposeVC.xib in Resources */,
 				F2B7447421BA9F8300EF2FFF /* WKPMeVCCell.xib in Resources */,
 				F281769521CE29BF00A66ABB /* grid_white@3x.png in Resources */,
 				F281768C21CE29BF00A66ABB /* ring_gray@2x.png in Resources */,
@@ -2339,7 +2190,6 @@
 				F27E94D121CCF9DA00301648 /* EaseEmotionEscape.m in Sources */,
 				F24291E421C14D9000E6EA4C /* WSRecentMsgTableViewCell.m in Sources */,
 				F27E94EE21CCF9DA00301648 /* EMVoiceConverter.mm in Sources */,
-				F221A52621ABCF6300E99B3F /* EmoticonPackage.swift in Sources */,
 				F27E94F421CCF9DA00301648 /* EMAudioPlayerUtil.m in Sources */,
 				F221A4BB21ABCB1A00E99B3F /* WKSelectPhotoPickerData.m in Sources */,
 				F26F463E21C28EE9007398E2 /* UIImage+Utils.m in Sources */,
@@ -2355,12 +2205,9 @@
 				F27E94D421CCF9DA00301648 /* EaseMessageModel.m in Sources */,
 				F2B7447821BAA83100EF2FFF /* WKPChangNickVC.m in Sources */,
 				F221A4B921ABCB1A00E99B3F /* WKPhotoAsset.m in Sources */,
-				F221A52521ABCF6300E99B3F /* Emoticon.swift in Sources */,
 				F221A4BF21ABCB1A00E99B3F /* WKSelectPhotoPickerAssetsVCFootView.m in Sources */,
-				F221A52721ABCF6300E99B3F /* EmoticonManager.swift in Sources */,
 				F27E94F121CCF9DA00301648 /* EMCDDeviceManager+Media.m in Sources */,
 				F221A53821ABCF6300E99B3F /* VisitoeView.swift in Sources */,
-				F221A52C21ABCF6300E99B3F /* ComposeTextView.swift in Sources */,
 				F221A4B621ABCB1A00E99B3F /* WKSelectPhotoPickerGroupVC.m in Sources */,
 				F221A53521ABCF6300E99B3F /* BaseVC.swift in Sources */,
 				F27E94C921CCF9DA00301648 /* NSString+Valid.m in Sources */,
@@ -2380,9 +2227,7 @@
 				F27E94CF21CCF9DA00301648 /* EaseChineseToPinyin.m in Sources */,
 				F26F463B21C28E94007398E2 /* UIResponder+Router.m in Sources */,
 				F2B7447321BA9F8300EF2FFF /* WKPMeVCCell.m in Sources */,
-				F221A52921ABCF6300E99B3F /* ComposeVC.swift in Sources */,
 				F24291ED21C14D9000E6EA4C /* WSChatMessageMoreCollectionCell.m in Sources */,
-				F221A52B21ABCF6300E99B3F /* ComposeTitleView.swift in Sources */,
 				F24291F321C14D9000E6EA4C /* NSLayoutConstraint+PureLayout.m in Sources */,
 				F27E94EC21CCF9DA00301648 /* wav.mm in Sources */,
 				F2AE894B21ABBB1F00BDDE44 /* main.m in Sources */,
@@ -2423,7 +2268,6 @@
 				F27E94CB21CCF9DA00301648 /* NSDateFormatter+Category.m in Sources */,
 				F27B90F221C7D8AC0024A16B /* WKPAnnotation.m in Sources */,
 				F221A51621ABCF6300E99B3F /* Status.swift in Sources */,
-				F221A52221ABCF6300E99B3F /* EmioticonViewCell.swift in Sources */,
 				F221A54021ABCF6300E99B3F /* HYLabel.swift in Sources */,
 				F2B7447C21BAAD1500EF2FFF /* WKPWebVC.m in Sources */,
 				F221A53221ABCF6300E99B3F /* UIButton-Extension.swift in Sources */,
@@ -2444,8 +2288,6 @@
 				F2AE893D21ABBB1F00BDDE44 /* AppDelegate.m in Sources */,
 				F24291EB21C14D9000E6EA4C /* WSChatMessageEmojiCollectionCell.m in Sources */,
 				F27E94D521CCF9DA00301648 /* EaseConversationModel.m in Sources */,
-				F221A52421ABCF6300E99B3F /* UITextView-Extension.swift in Sources */,
-				F221A52E21ABCF6300E99B3F /* PicPickerViewCell.swift in Sources */,
 				F2B8651921BE912200ACDBEA /* NSString+WKPCategory.m in Sources */,
 				F2A85C9621B7E8BC006B89BB /* WKPShowMessageCell.m in Sources */,
 				F221E99B21B9406F002C4E94 /* ZFSConst.m in Sources */,
@@ -2457,10 +2299,7 @@
 				F221A53321ABCF6300E99B3F /* DateTools.swift in Sources */,
 				F2CBD51A21D798CD00FD4569 /* WKPRemark.m in Sources */,
 				F2CBD51321D7948100FD4569 /* WKPPersonInfoVC.m in Sources */,
-				F221A52F21ABCF6300E99B3F /* MessageViewController.swift in Sources */,
 				F29B065421BBF311009829CE /* UIImage+WKPImageTool.m in Sources */,
-				F221A52D21ABCF6300E99B3F /* PicPickerCollectionView.swift in Sources */,
-				F221A52321ABCF6300E99B3F /* EmoticonAttachment.swift in Sources */,
 				F221A53921ABCF6300E99B3F /* Tools.swift in Sources */,
 				F221A53A21ABCF6300E99B3F /* WelcomeVC.swift in Sources */,
 				F221A51821ABCF6300E99B3F /* StatusViewModel.swift in Sources */,
@@ -2472,10 +2311,7 @@
 				F221A53E21ABCF6300E99B3F /* NetTools.swift in Sources */,
 				F281761F21CE29BF00A66ABB /* EM1v1CallViewController.m in Sources */,
 				F24291E521C14D9000E6EA4C /* WSChatBaseTableViewCell.m in Sources */,
-				F221A52021ABCF6300E99B3F /* EmoticonVC.swift in Sources */,
 				F221A51121ABCF6300E99B3F /* ProgressView.swift in Sources */,
-				F221A53021ABCF6300E99B3F /* ProfileViewController.swift in Sources */,
-				F221A53121ABCF6300E99B3F /* DiscoverViewController.swift in Sources */,
 				F221A51721ABCF6300E99B3F /* PopoverAnimator.swift in Sources */,
 				F27E94C721CCF9DA00301648 /* UIViewController+HUD.m in Sources */,
 				F221E99A21B9406F002C4E94 /* UIColor+Zirkfied.m in Sources */,
