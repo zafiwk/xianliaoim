@@ -31,15 +31,16 @@ class HomeViewController: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.visitoeView?.addRotationAnim();
+        
         self.visitoeView?.messageTitle.text =  "登录微博后就能查看微博了,尝试登录下吧"
         if !isLogin{
+            NotificationCenter.default.addObserver(self, selector: #selector(setupUi), name: NSNotification.Name(rawValue: "setupui"), object: nil)
             return;
         }
 //        setupNavigationBar();
-        
+//        loadStatuses();
         setupView()
-        
-        //        loadStatuses();
+     
         setupHeadView();
         
         setupFooterView();
@@ -98,6 +99,22 @@ extension HomeViewController{
         photoBrowserAnimator.dismissDelegate = photoBrowserVC
         
         present(photoBrowserVC, animated: true, completion: nil);
+    }
+    
+    @objc private func setupUi(){
+        
+//        self.visitoeView?.removeFromSuperview();
+        self.tableView.backgroundView = nil;
+        self.visitoeView = nil ;
+        setupView()
+        
+        setupHeadView();
+        
+        setupFooterView();
+        
+        setupTipLabel();
+        
+        setupNatifications();
     }
     
 }
@@ -237,6 +254,7 @@ extension HomeViewController{
     }
     
     
+    
     private func setupHeadView(){
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNewStatuses))
         header?.setTitle("下拉刷新", for: .idle)
@@ -263,6 +281,8 @@ extension HomeViewController{
     private func  setupNatifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(showPhotoBrowser(noti:)), name: NSNotification.Name(rawValue: ShowPhotoBrowserNote), object: nil)
     }
+    
+    
 }
 
 

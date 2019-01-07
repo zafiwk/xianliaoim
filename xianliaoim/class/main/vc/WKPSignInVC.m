@@ -12,6 +12,7 @@
 #import <Masonry/Masonry.h>
 #import <Hyphenate/EMClient.h>
 #import "UserProfileManager.h"
+#import "IMTools.h"
 @interface WKPSignInVC ()
 @property (weak, nonatomic) IBOutlet UITextField *telName;
 @property (weak, nonatomic) IBOutlet UITextField *password;
@@ -101,6 +102,9 @@
 //            [manager loadUserProfileInBackground:@[loginName] saveToLoacal:YES completion:^(BOOL success, NSError *error) {
             
 //            }];
+            IMTools* tools=[IMTools defaultInstance];
+            [tools getAllConversation];
+            [tools getAllContacts];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }
     }];

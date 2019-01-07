@@ -177,6 +177,8 @@ extension LoginVC{
             
             //6切换主控制器
 //            UIApplication.shared..rootViewController = MainViewController();
+            
+            NotificationCenter.default.post(name:NSNotification.Name(rawValue: "setupui"), object: nil);
             self.dismiss(animated: true, completion: {
                 
 //                UIApplication.shared.keyWindow?.rootViewController=WelcomeVC();

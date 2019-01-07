@@ -305,6 +305,8 @@
 		F2AE894B21ABBB1F00BDDE44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AE894A21ABBB1F00BDDE44 /* main.m */; };
 		F2AEF87321C7685600FDCE53 /* IMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AEF87221C7685600FDCE53 /* IMTools.m */; };
 		F2AEF87621C77E4F00FDCE53 /* WKPLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */; };
+		F2AF5A1721E368680081C61D /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AF5A1621E368680081C61D /* Hyphenate.framework */; };
+		F2AF5A1821E369C60081C61D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2AF5A1221E366880081C61D /* Info.plist */; };
 		F2B7446821BA936A00EF2FFF /* WKPContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7446621BA936A00EF2FFF /* WKPContactVCCell.m */; };
 		F2B7446921BA936A00EF2FFF /* WKPContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7446721BA936A00EF2FFF /* WKPContactVCCell.xib */; };
 		F2B7446F21BA9D7900EF2FFF /* WKPMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7446E21BA9D7900EF2FFF /* WKPMeVC.m */; };
@@ -751,12 +753,13 @@
 		F2AE893C21ABBB1F00BDDE44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F2AE894421ABBB1F00BDDE44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2AE894721ABBB1F00BDDE44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F2AE894921ABBB1F00BDDE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2AE894A21ABBB1F00BDDE44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F2AEF87121C7685600FDCE53 /* IMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTools.h; sourceTree = "<group>"; };
 		F2AEF87221C7685600FDCE53 /* IMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTools.m; sourceTree = "<group>"; };
 		F2AEF87421C77E4F00FDCE53 /* WKPLocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPLocationCell.h; sourceTree = "<group>"; };
 		F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPLocationCell.m; sourceTree = "<group>"; };
+		F2AF5A1221E366880081C61D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2AF5A1621E368680081C61D /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F2B7446521BA936A00EF2FFF /* WKPContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPContactVCCell.h; sourceTree = "<group>"; };
 		F2B7446621BA936A00EF2FFF /* WKPContactVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPContactVCCell.m; sourceTree = "<group>"; };
 		F2B7446721BA936A00EF2FFF /* WKPContactVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPContactVCCell.xib; sourceTree = "<group>"; };
@@ -819,6 +822,7 @@
 				F27E94EB21CCF9DA00301648 /* libopencore-amrnb.a in Frameworks */,
 				F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */,
 				F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */,
+				F2AF5A1721E368680081C61D /* Hyphenate.framework in Frameworks */,
 				F2D68CB921ACF365006F763B /* Bolts.framework in Frameworks */,
 				F2D68CB821ACF365006F763B /* Parse.framework in Frameworks */,
 				F27E94EA21CCF9DA00301648 /* libopencore-amrwb.a in Frameworks */,
@@ -900,6 +904,7 @@
 		F221A49121ABCA4400E99B3F /* plugin */ = {
 			isa = PBXGroup;
 			children = (
+				F2AF5A1621E368680081C61D /* Hyphenate.framework */,
 				F281756D21CE29BF00A66ABB /* Call */,
 				F27E939E21CCF9DA00301648 /* EaseUI */,
 				F242901621C1472400E6EA4C /* qq */,
@@ -1918,8 +1923,8 @@
 				F221A41221ABC30000E99B3F /* class */,
 				F2AE894421ABBB1F00BDDE44 /* Assets.xcassets */,
 				F2AE894621ABBB1F00BDDE44 /* LaunchScreen.storyboard */,
-				F2AE894921ABBB1F00BDDE44 /* Info.plist */,
 				F2AE894A21ABBB1F00BDDE44 /* main.m */,
+				F2AF5A1221E366880081C61D /* Info.plist */,
 				F24288B221C13F2600E6EA4C /* Localizable.strings */,
 				F24288B421C13F2600E6EA4C /* InfoPlist.strings */,
 				F221A4C421ABCF4400E99B3F /* xianliaoim-Bridging-Header.h */,
@@ -2088,6 +2093,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2AF5A1821E369C60081C61D /* Info.plist in Resources */,
 				F28176BD21CE488500A66ABB /* WKPMapVC.h in Resources */,
 				F28176A821CE29C000A66ABB /* video_white@2x.png in Resources */,
 				F2CBD51B21D798CD00FD4569 /* WKPRemark.xib in Resources */,
@@ -2288,7 +2294,6 @@
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/FWPopupView/FWPopupView.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.5.2/Hyphenate.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
@@ -2305,7 +2310,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FWPopupView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
@@ -2640,6 +2644,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Parse",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/HyphenateFullSDK",
+					"$(PROJECT_DIR)/xianliaoim/class/plugin",
 				);
 				INFOPLIST_FILE = xianliaoim/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2677,6 +2682,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Parse",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/HyphenateFullSDK",
+					"$(PROJECT_DIR)/xianliaoim/class/plugin",
 				);
 				INFOPLIST_FILE = xianliaoim/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
