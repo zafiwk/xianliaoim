@@ -88,6 +88,12 @@
     self.navigationItem.rightBarButtonItem=rightItem;
     rightItem.tintColor = [UIColor whiteColor];
     
+    
+    self.locationManager  = [[CLLocationManager alloc]init];
+    
+    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
 }
 
 -(void)dealloc{
@@ -439,11 +445,10 @@
             
         case 3:{
             //文件
-            self.locationManager  = [[CLLocationManager alloc]init];
+          
+                
             if ([CLLocationManager locationServicesEnabled]) {
-                if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
-                    [self.locationManager requestWhenInUseAuthorization];
-                }else{
+                
                     //设置定位的精确
                     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
                     //设置最小跟新的距离
@@ -454,18 +459,19 @@
                     [self.locationManager startUpdatingLocation];
                     
                     self.hud = [MBProgressHUD showMessage:@"定位获取中" toView:self.view];
-                }
+                
                 
                 
             }else{
                 
-                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                if([[UIApplication sharedApplication] canOpenURL:url]){
-                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                        
-                    }];
-                }
-                return;
+//                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//                if([[UIApplication sharedApplication] canOpenURL:url]){
+//                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+//
+//                    }];
+//                }
+//                return;
+                [MBProgressHUD showError:@"请在设置中打开定位" toView:self.view];
             }
             
         }

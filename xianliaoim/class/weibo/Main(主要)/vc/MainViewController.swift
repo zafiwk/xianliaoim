@@ -51,11 +51,11 @@ class MainViewController: UITabBarController {
     @objc private func composeBtnAction(){
         NSLog("composeBtnAction  ....");
         
-        let composeVC = ComposeVC()
+//        let composeVC = ComposeVC()
+//
+//        let composeNav = UINavigationController(rootViewController: composeVC)
         
-        let composeNav = UINavigationController(rootViewController: composeVC)
-        
-        present(composeNav, animated: true, completion: nil);
+//        present(composeNav, animated: true, completion: nil);
         
     
     }
