@@ -44,7 +44,6 @@
 		F221A51E21ABCF6300E99B3F /* PicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A4DC21ABCF6200E99B3F /* PicCollectionViewCell.xib */; };
 		F221A51F21ABCF6300E99B3F /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F221A4DD21ABCF6200E99B3F /* HomeCell.xib */; };
 		F221A52021ABCF6300E99B3F /* EmoticonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E021ABCF6200E99B3F /* EmoticonVC.swift */; };
-		F221A52121ABCF6300E99B3F /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F221A4E121ABCF6200E99B3F /* Emoticons.bundle */; };
 		F221A52221ABCF6300E99B3F /* EmioticonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E221ABCF6200E99B3F /* EmioticonViewCell.swift */; };
 		F221A52321ABCF6300E99B3F /* EmoticonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E321ABCF6200E99B3F /* EmoticonAttachment.swift */; };
 		F221A52421ABCF6300E99B3F /* UITextView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221A4E421ABCF6200E99B3F /* UITextView-Extension.swift */; };
@@ -94,7 +93,6 @@
 		F2398BA021AD0C12000A9B9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2398B9F21AD0C12000A9B9C /* StoreKit.framework */; };
 		F2428A5021C13F2700E6EA4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F24288B221C13F2600E6EA4C /* Localizable.strings */; };
 		F2428A5121C13F2700E6EA4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F24288B421C13F2600E6EA4C /* InfoPlist.strings */; };
-		F242912121C1498900E6EA4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F242912021C1498900E6EA4C /* Main.storyboard */; };
 		F24291DE21C14D9000E6EA4C /* WSChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */; };
 		F24291E121C14D9000E6EA4C /* WSChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913121C14D8E00E6EA4C /* WSChatModel.m */; };
 		F24291E221C14D9000E6EA4C /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913221C14D8E00E6EA4C /* UIImageToDataTransformer.m */; };
@@ -290,7 +288,6 @@
 		F28176B521CE33E300A66ABB /* EMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F28176B221CE33E300A66ABB /* EMButton.m */; };
 		F28176B621CE33E300A66ABB /* EMStreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = F28176B421CE33E300A66ABB /* EMStreamView.m */; };
 		F28176BA21CE464200A66ABB /* WKPImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F28176B921CE464200A66ABB /* WKPImageVC.m */; };
-		F28176BD21CE488500A66ABB /* WKPMapVC.h in Resources */ = {isa = PBXBuildFile; fileRef = F2F2331521C7CD4A0030DFAD /* WKPMapVC.h */; };
 		F29B064E21BBCFD0009829CE /* WKPQrCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B064D21BBCFD0009829CE /* WKPQrCode.m */; };
 		F29B065421BBF311009829CE /* UIImage+WKPImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B065321BBF311009829CE /* UIImage+WKPImageTool.m */; };
 		F29B065F21BC0471009829CE /* WKPBindWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = F29B065D21BC0471009829CE /* WKPBindWeibo.m */; };
@@ -305,8 +302,11 @@
 		F2AE894B21ABBB1F00BDDE44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AE894A21ABBB1F00BDDE44 /* main.m */; };
 		F2AEF87321C7685600FDCE53 /* IMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AEF87221C7685600FDCE53 /* IMTools.m */; };
 		F2AEF87621C77E4F00FDCE53 /* WKPLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */; };
-		F2AF5A1721E368680081C61D /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AF5A1621E368680081C61D /* Hyphenate.framework */; };
-		F2AF5A1821E369C60081C61D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2AF5A1221E366880081C61D /* Info.plist */; };
+		F2AF5A6121E389FE0081C61D /* WKPMapVC.h in Sources */ = {isa = PBXBuildFile; fileRef = F2F2331521C7CD4A0030DFAD /* WKPMapVC.h */; };
+		F2AF5A7121E395D90081C61D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2AF5A7021E395D90081C61D /* Main.storyboard */; };
+		F2AF5A7321E39EB40081C61D /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AF5A7221E39EB40081C61D /* Hyphenate.framework */; };
+		F2AF5A7421E39EB90081C61D /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AF5A7221E39EB40081C61D /* Hyphenate.framework */; };
+		F2AF5A7521E39EB90081C61D /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2AF5A7221E39EB40081C61D /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F2B7446821BA936A00EF2FFF /* WKPContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7446621BA936A00EF2FFF /* WKPContactVCCell.m */; };
 		F2B7446921BA936A00EF2FFF /* WKPContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7446721BA936A00EF2FFF /* WKPContactVCCell.xib */; };
 		F2B7446F21BA9D7900EF2FFF /* WKPMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7446E21BA9D7900EF2FFF /* WKPMeVC.m */; };
@@ -338,6 +338,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F2AF5A7521E39EB90081C61D /* Hyphenate.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,7 +402,6 @@
 		F221A4DC21ABCF6200E99B3F /* PicCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicCollectionViewCell.xib; sourceTree = "<group>"; };
 		F221A4DD21ABCF6200E99B3F /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		F221A4E021ABCF6200E99B3F /* EmoticonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonVC.swift; sourceTree = "<group>"; };
-		F221A4E121ABCF6200E99B3F /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
 		F221A4E221ABCF6200E99B3F /* EmioticonViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmioticonViewCell.swift; sourceTree = "<group>"; };
 		F221A4E321ABCF6200E99B3F /* EmoticonAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonAttachment.swift; sourceTree = "<group>"; };
 		F221A4E421ABCF6200E99B3F /* UITextView-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView-Extension.swift"; sourceTree = "<group>"; };
@@ -459,7 +459,6 @@
 		F24288B321C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F24288B521C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F24288B821C13F2600E6EA4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F242912021C1498900E6EA4C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatTableViewController.m; sourceTree = "<group>"; };
 		F242912E21C14D8E00E6EA4C /* WSChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatTableViewController.h; sourceTree = "<group>"; };
 		F242913121C14D8E00E6EA4C /* WSChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatModel.m; sourceTree = "<group>"; };
@@ -759,7 +758,8 @@
 		F2AEF87421C77E4F00FDCE53 /* WKPLocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPLocationCell.h; sourceTree = "<group>"; };
 		F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPLocationCell.m; sourceTree = "<group>"; };
 		F2AF5A1221E366880081C61D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2AF5A1621E368680081C61D /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
+		F2AF5A7021E395D90081C61D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F2AF5A7221E39EB40081C61D /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F2B7446521BA936A00EF2FFF /* WKPContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPContactVCCell.h; sourceTree = "<group>"; };
 		F2B7446621BA936A00EF2FFF /* WKPContactVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPContactVCCell.m; sourceTree = "<group>"; };
 		F2B7446721BA936A00EF2FFF /* WKPContactVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPContactVCCell.xib; sourceTree = "<group>"; };
@@ -822,11 +822,12 @@
 				F27E94EB21CCF9DA00301648 /* libopencore-amrnb.a in Frameworks */,
 				F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */,
 				F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */,
-				F2AF5A1721E368680081C61D /* Hyphenate.framework in Frameworks */,
+				F2AF5A7321E39EB40081C61D /* Hyphenate.framework in Frameworks */,
 				F2D68CB921ACF365006F763B /* Bolts.framework in Frameworks */,
 				F2D68CB821ACF365006F763B /* Parse.framework in Frameworks */,
 				F27E94EA21CCF9DA00301648 /* libopencore-amrwb.a in Frameworks */,
 				23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */,
+				F2AF5A7421E39EB90081C61D /* Hyphenate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,7 +905,7 @@
 		F221A49121ABCA4400E99B3F /* plugin */ = {
 			isa = PBXGroup;
 			children = (
-				F2AF5A1621E368680081C61D /* Hyphenate.framework */,
+				F2AF5A7221E39EB40081C61D /* Hyphenate.framework */,
 				F281756D21CE29BF00A66ABB /* Call */,
 				F27E939E21CCF9DA00301648 /* EaseUI */,
 				F242901621C1472400E6EA4C /* qq */,
@@ -1075,7 +1076,6 @@
 			isa = PBXGroup;
 			children = (
 				F221A4E021ABCF6200E99B3F /* EmoticonVC.swift */,
-				F221A4E121ABCF6200E99B3F /* Emoticons.bundle */,
 				F221A4E221ABCF6200E99B3F /* EmioticonViewCell.swift */,
 				F221A4E321ABCF6200E99B3F /* EmoticonAttachment.swift */,
 				F221A4E421ABCF6200E99B3F /* UITextView-Extension.swift */,
@@ -1928,7 +1928,7 @@
 				F24288B221C13F2600E6EA4C /* Localizable.strings */,
 				F24288B421C13F2600E6EA4C /* InfoPlist.strings */,
 				F221A4C421ABCF4400E99B3F /* xianliaoim-Bridging-Header.h */,
-				F242912021C1498900E6EA4C /* Main.storyboard */,
+				F2AF5A7021E395D90081C61D /* Main.storyboard */,
 			);
 			path = xianliaoim;
 			sourceTree = "<group>";
@@ -2040,8 +2040,8 @@
 				F2AE893421ABBB1F00BDDE44 /* Sources */,
 				F2AE893521ABBB1F00BDDE44 /* Frameworks */,
 				F2AE893621ABBB1F00BDDE44 /* Resources */,
-				FB267007588888E0F8D94A26 /* [CP] Embed Pods Frameworks */,
 				F210E70021C4A1F500AF0620 /* Embed Frameworks */,
+				0231B2A70B43FE7E1B89C7F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2093,8 +2093,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2AF5A1821E369C60081C61D /* Info.plist in Resources */,
-				F28176BD21CE488500A66ABB /* WKPMapVC.h in Resources */,
 				F28176A821CE29C000A66ABB /* video_white@2x.png in Resources */,
 				F2CBD51B21D798CD00FD4569 /* WKPRemark.xib in Resources */,
 				F281766F21CE29BF00A66ABB /* animate_00061.png in Resources */,
@@ -2106,7 +2104,6 @@
 				F2CF035F21B1077800D93C86 /* WKPSignUpVC.xib in Resources */,
 				F2B7446921BA936A00EF2FFF /* WKPContactVCCell.xib in Resources */,
 				F281769F21CE29BF00A66ABB /* mute_red@2x.png in Resources */,
-				F221A52121ABCF6300E99B3F /* Emoticons.bundle in Resources */,
 				F281764D21CE29BF00A66ABB /* animate_00046.png in Resources */,
 				F281768421CE29BF00A66ABB /* recorder_gray@3x.png in Resources */,
 				F281763021CE29BF00A66ABB /* video_gray@2x.png in Resources */,
@@ -2128,7 +2125,6 @@
 				F281765B21CE29BF00A66ABB /* animate_00054.png in Resources */,
 				F281764B21CE29BF00A66ABB /* animate_00085.png in Resources */,
 				F281765721CE29BF00A66ABB /* animate_00082.png in Resources */,
-				F242912121C1498900E6EA4C /* Main.storyboard in Resources */,
 				F281763E21CE29BF00A66ABB /* animate_00036.png in Resources */,
 				F281765F21CE29BF00A66ABB /* animate_00064.png in Resources */,
 				F281767D21CE29BF00A66ABB /* role_gray@2x.png in Resources */,
@@ -2138,6 +2134,7 @@
 				F281764021CE29BF00A66ABB /* animate_00078.png in Resources */,
 				F221E9A021B9406F002C4E94 /* ScanQR3@2x.png in Resources */,
 				F281769421CE29BF00A66ABB /* invite_gray@3x.png in Resources */,
+				F2AF5A7121E395D90081C61D /* Main.storyboard in Resources */,
 				F281763521CE29BF00A66ABB /* animate_00033.png in Resources */,
 				F281766621CE29BF00A66ABB /* animate_00063.png in Resources */,
 				F27E953D21CCF9DA00301648 /* EaseUIResource.bundle in Resources */,
@@ -2264,28 +2261,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2F7FD7AAFA3313ADA24D3461 /* [CP] Check Pods Manifest.lock */ = {
+		0231B2A70B43FE7E1B89C7F5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-xianliaoim-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB267007588888E0F8D94A26 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh",
@@ -2304,6 +2285,8 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
@@ -2324,6 +2307,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2F7FD7AAFA3313ADA24D3461 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-xianliaoim-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2331,6 +2332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2AF5A6121E389FE0081C61D /* WKPMapVC.h in Sources */,
 				F221A4C321ABCB1A00E99B3F /* WKBrowserPhotoScrollView.m in Sources */,
 				F27E94ED21CCF9DA00301648 /* amrFileCodec.mm in Sources */,
 				F221A51A21ABCF6300E99B3F /* PopurVC.swift in Sources */,
@@ -2568,7 +2570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2622,7 +2624,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2640,6 +2642,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2U3ZPPSL6;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Parse",
@@ -2678,6 +2681,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2U3ZPPSL6;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Parse",
