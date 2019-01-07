@@ -16,17 +16,17 @@ class BaseVC: UITableViewController {
     var  visitoeView:VisitoeView?
     
     override func loadView() {
-        if !isLogin {
-            self.setupVisitoeView();
-            return
-        }
         super.loadView();
-        self.view.backgroundColor = UIColor.white;
+       
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        self.view.backgroundColor = UIColor.white;
+        if !isLogin {
+            self.setupVisitoeView();
+            return
+        }
     }
     
     
@@ -36,7 +36,8 @@ extension BaseVC{
     private func setupVisitoeView(){
         let view = VisitoeView.visitoeView();
         self.visitoeView = view;
-        self.view = view;
+        self.tableView.backgroundView = view;
+        self.tableView.tableFooterView = UIView();
         visitoeView?.loginBtn.addTarget(self, action: #selector(userLogin), for: .touchUpInside);
     }
     

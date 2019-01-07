@@ -20,7 +20,7 @@ target 'xianliaoim' do
 
 
   # Pods for xianliaoim
-    pod 'Hyphenate'
+  #  pod 'Hyphenate'
   #  pod 'EaseMobSDKFull'
 	pod 'SDWebImage'
     #   pod 'TTTAttributedLabel'

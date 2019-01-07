@@ -161,12 +161,12 @@
     {
         [self becomeFirstResponder];
         
-        UIMenuItem *remove = [[UIMenuItem alloc]initWithTitle:@"删除" action:@selector(menuRemove:)];
-        
-        UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:@[remove]];
-        [menu setTargetRect:mBubbleImageView.frame inView:self];
-        [menu setMenuVisible:YES animated:YES];
+//        UIMenuItem *remove = [[UIMenuItem alloc]initWithTitle:@"删除" action:@selector(menuRemove:)];
+//        
+//        UIMenuController *menu = [UIMenuController sharedMenuController];
+//        [menu setMenuItems:@[remove]];
+//        [menu setTargetRect:mBubbleImageView.frame inView:self];
+//        [menu setMenuVisible:YES animated:YES];
         
     }
 }
@@ -194,7 +194,7 @@
         }
         [mVoiceImageView startAnimating];
         self.model.voiceIsPlay =YES;
-        __weak  typeof(self) weakSelf= self;
+//        __weak  typeof(self) weakSelf= self;
         __weak  typeof(mVoiceImageView) weakObj=mVoiceImageView;
         [EMAudioPlayerUtil stopCurrentPlaying];
         if (self.model.content) {
@@ -211,7 +211,7 @@
             [EMAudioPlayerUtil asyncPlayNetUrl:[NSURL URLWithString:self.model.remotePath] completion:^(AVPlayer *player) {
                 CMTime time = player.currentItem.duration;
                 Float64 seconds = CMTimeGetSeconds(time);
-                mSecondLable.text  =[self makeContent:@(ceil(seconds))];
+                self->mSecondLable.text  =[self makeContent:@(ceil(seconds))];
             }];
         }
         

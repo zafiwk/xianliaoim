@@ -168,6 +168,12 @@
             vc.title=@"账号绑定";
             [self.navigationController pushViewController:vc animated:YES];
         }else{
+            if (![EMClient sharedClient].isLoggedIn) {
+                WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
+                loginVC.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:loginVC animated:YES];
+                return;
+            }
             UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"选择图片的方式" message:nil preferredStyle:UIAlertControllerStyleAlert];
             [alertVC addAction:[UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 if (![UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary]) {

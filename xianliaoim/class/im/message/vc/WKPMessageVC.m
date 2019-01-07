@@ -117,8 +117,10 @@
         
         if (maxUnRead>0) {
             self.tabBarItem.badgeValue=[NSString stringWithFormat:@"%ld",maxUnRead];
+            [UIApplication sharedApplication].applicationIconBadgeNumber=maxUnRead;
         }else{
             self.tabBarItem.badgeValue = nil;
+            [UIApplication sharedApplication].applicationIconBadgeNumber=0;
         }
         
         
@@ -200,5 +202,6 @@
     NSDictionary*  userInfo = noti.userInfo;
     NSNumber* unReadCount = userInfo[MessageUnReadCount];
     self.tabBarItem.badgeValue = [unReadCount stringValue];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = [unReadCount integerValue];
 }
 @end
