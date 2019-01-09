@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>申请相机权限，用来拍照</string>
+	<string>申请相机权限，用来拍照或者视频</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>申请定位权限,用来获取你的地理位置</string>
 	<key>NSMicrophoneUsageDescription</key>

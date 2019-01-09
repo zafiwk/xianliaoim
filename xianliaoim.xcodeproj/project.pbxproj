@@ -106,6 +106,7 @@
 		F26EAF4C21CBA1DD00A968DB /* WKPMessageVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26EAF4A21CBA1DD00A968DB /* WKPMessageVCCell.xib */; };
 		F26F463B21C28E94007398E2 /* UIResponder+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = F26F463A21C28E94007398E2 /* UIResponder+Router.m */; };
 		F26F463E21C28EE9007398E2 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F26F463D21C28EE9007398E2 /* UIImage+Utils.m */; };
+		F2760E2621E59E180074B50C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2760E2521E59E170074B50C /* Info.plist */; };
 		F27963FE21AE709F0081D933 /* ContactHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F27963FD21AE709F0081D933 /* ContactHomeVC.m */; };
 		F279640421AE71D80081D933 /* ContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F279640221AE71D80081D933 /* ContactVCCell.m */; };
 		F279640521AE71D80081D933 /* ContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F279640321AE71D80081D933 /* ContactVCCell.xib */; };
@@ -484,6 +485,7 @@
 		F26F463A21C28E94007398E2 /* UIResponder+Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Router.m"; sourceTree = "<group>"; };
 		F26F463C21C28EE9007398E2 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		F26F463D21C28EE9007398E2 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		F2760E2521E59E170074B50C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F27963FC21AE709F0081D933 /* ContactHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactHomeVC.h; sourceTree = "<group>"; };
 		F27963FD21AE709F0081D933 /* ContactHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactHomeVC.m; sourceTree = "<group>"; };
 		F279640121AE71D80081D933 /* ContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactVCCell.h; sourceTree = "<group>"; };
@@ -722,7 +724,6 @@
 		F2AEF87221C7685600FDCE53 /* IMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTools.m; sourceTree = "<group>"; };
 		F2AEF87421C77E4F00FDCE53 /* WKPLocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPLocationCell.h; sourceTree = "<group>"; };
 		F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPLocationCell.m; sourceTree = "<group>"; };
-		F2AF5A1221E366880081C61D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2AF5A7021E395D90081C61D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F2AF5A7221E39EB40081C61D /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F2B7446521BA936A00EF2FFF /* WKPContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPContactVCCell.h; sourceTree = "<group>"; };
@@ -1767,9 +1768,9 @@
 			children = (
 				F221A41221ABC30000E99B3F /* class */,
 				F2AE894421ABBB1F00BDDE44 /* Assets.xcassets */,
+				F2760E2521E59E170074B50C /* Info.plist */,
 				F2AE894621ABBB1F00BDDE44 /* LaunchScreen.storyboard */,
 				F2AE894A21ABBB1F00BDDE44 /* main.m */,
-				F2AF5A1221E366880081C61D /* Info.plist */,
 				F24288B221C13F2600E6EA4C /* Localizable.strings */,
 				F24288B421C13F2600E6EA4C /* InfoPlist.strings */,
 				F221A4C421ABCF4400E99B3F /* xianliaoim-Bridging-Header.h */,
@@ -2063,6 +2064,7 @@
 				F221A53F21ABCF6300E99B3F /* MainVCSettings.json in Resources */,
 				F281764C21CE29BF00A66ABB /* animate_00052.png in Resources */,
 				F2B7447921BAA83100EF2FFF /* WKPChangNickVC.xib in Resources */,
+				F2760E2621E59E180074B50C /* Info.plist in Resources */,
 				F281766D21CE29BF00A66ABB /* animate_00048.png in Resources */,
 				F2AE894521ABBB1F00BDDE44 /* Assets.xcassets in Resources */,
 				F221A4C121ABCB1A00E99B3F /* WKSelectPhotoPickerGroupVCCellTableViewCell.xib in Resources */,
