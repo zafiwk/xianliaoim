@@ -47,7 +47,7 @@ static IMTools* tools;
 //初始化IM
 -(void)setUpIM:(NSDictionary*)launchOptions{
     EMOptions* options = [EMOptions optionsWithAppkey:@"wkdlose#wkp-xianliao"];
-    options.apnsCertName = @"istore_dev";
+    options.apnsCertName = @"生产环境证书";
     [[EMClient sharedClient]initializeSDKWithOptions:options];
     
     //注册消息的接受
@@ -91,7 +91,9 @@ static IMTools* tools;
     }
     
     //初始化获取一次好友列表
-    [self  getAllContacts];
+    if([[EMClient sharedClient] isLoggedIn]){
+        [self  getAllContacts];
+    }
 }
 //注册
 //-(EMError*)registerWithUserName:(NSString*)username withPassWord:(NSString*)passWord{
