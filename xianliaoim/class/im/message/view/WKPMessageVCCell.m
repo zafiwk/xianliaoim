@@ -51,7 +51,7 @@
         [self.num sizeToFit];
         CGFloat numW = [self.num getWidth];
         CGFloat numH = [self.num getHeight];
-        if (con.unreadMessagesCount<9) {
+        if (con.unreadMessagesCount<=9) {
             numW = numH;
         }
         if (con.unreadMessagesCount>9) {

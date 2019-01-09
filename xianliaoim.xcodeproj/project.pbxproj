@@ -1710,17 +1710,9 @@
 			path = vc;
 			sourceTree = "<group>";
 		};
-		F28176BB21CE47AD00A66ABB /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		F28176BC21CE47B500A66ABB /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				F28176BB21CE47AD00A66ABB /* view */,
 				F2D68CAF21ACF081006F763B /* model */,
 				F28176B721CE463000A66ABB /* vc */,
 			);
