@@ -382,13 +382,28 @@ static IMTools* tools;
             reason:(EMCallEndReason)aReason
              error:(EMError *)aError{
     WKPLog(@"callDidEnd 回调");
-    
+   
     AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     if (appDelegate.callVC) {
         [appDelegate.callVC clearDataAndView];
         [appDelegate.callVC dismissViewControllerAnimated:YES completion:^{
             
         }];
+        
+        
+        if(aReason == EMCallEndReasonRemoteOffline){
+            [MBProgressHUD showError:@"对方不在线,发起失败" toView:nil];
+        }else if(aReason==EMCallEndReasonNoResponse){
+            [MBProgressHUD showError:@"对方没有响应" toView:nil];
+        }else if (aReason == EMCallEndReasonDecline){
+            [MBProgressHUD showError:@"对方拒接" toView:nil];
+        }else if(aReason ==EMCallEndReasonBusy){
+            [MBProgressHUD showError:@"对方占线" toView:nil];
+        }else if(aReason==EMCallEndReasonHangup){
+            [MBProgressHUD showError:@"对方挂断" toView:nil];
+        }else{
+            [MBProgressHUD showError:@"发起失败" toView:nil];
+        }
     }
     
     
