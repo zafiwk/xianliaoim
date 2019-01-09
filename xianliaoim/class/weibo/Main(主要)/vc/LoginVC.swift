@@ -33,9 +33,9 @@ class LoginVC: UIViewController {
         
         webView.load(request);
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .done, target: self, action: #selector(exitst));
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("退出", comment: ""), style: .done, target: self, action: #selector(exitst));
     navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "一键填写", style: .done, target: self, action: #selector(autoInput));
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("一键填写", comment: ""), style: .done, target: self, action: #selector(autoInput));
     navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
 
     }
@@ -56,13 +56,13 @@ extension LoginVC {
  
         
         guard let username = userDefaults.object(forKey: "WEIBON") as? String else {
-            SVProgressHUD.showError(withStatus: "没有绑定新浪微博账号")
+            SVProgressHUD.showError(withStatus:NSLocalizedString("没有绑定新浪微博账号", comment: ""))
             SVProgressHUD.dismiss(withDelay: 2.0)
             return
         }
         
         guard let password = userDefaults.object(forKey: "WEIBOP") as? String else{
-            SVProgressHUD.showError(withStatus: "没有绑定新浪微博账号")
+            SVProgressHUD.showError(withStatus: NSLocalizedString("没有绑定新浪微博账号", comment: ""))
             SVProgressHUD.dismiss(withDelay: 2.0)
             return
         }
@@ -121,7 +121,7 @@ extension LoginVC : WKNavigationDelegate {
 
 extension LoginVC{
     private func loadAccessToken(code:String){
-        SVProgressHUD.showInfo(withStatus: "获取授权令牌中...")
+        SVProgressHUD.showInfo(withStatus: NSLocalizedString("获取授权令牌中...", comment: ""))
         NetTools.shareInstance.loadAccessToken(code: code) { [unowned self](result, error) in
             NSLog("令牌信息\(String(describing: result))")
             SVProgressHUD.dismiss();
@@ -150,7 +150,7 @@ extension LoginVC{
         guard let uid = account.uid else{
             return;
         }
-        SVProgressHUD.showInfo(withStatus: "查询个人信息中...")
+        SVProgressHUD.showInfo(withStatus: NSLocalizedString("查询个人信息中...", comment: ""))
         NetTools.shareInstance.loadUserInfo(access_token: accessToken, uid: uid) {[unowned self] (result, error) in
             SVProgressHUD.dismiss();
             NSLog("个人信息:\(String(describing: result))");

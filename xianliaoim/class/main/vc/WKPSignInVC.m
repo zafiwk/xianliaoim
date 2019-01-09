@@ -31,19 +31,17 @@
 }
 -(void)setupUI{
     self.view.backgroundColor = UIColorFromRGB(0xeeeeee);
-    self.telName.placeholder  =@"请输入注册的手机号码";
-    
-    self.password.placeholder = @"请输入登入密码";
-    
-    self.title=@"登入";
-    [self.loginBtn setTitle:@"登入" forState:UIControlStateNormal];
+    self.telName.placeholder  =NSLocalizedString(@"请输入注册的手机号码", nil);
+    self.password.placeholder = NSLocalizedString(@"请输入登录密码", nil);
+    self.title=NSLocalizedString(@"登录", nil);
+    [self.loginBtn setTitle:NSLocalizedString(@"登录", nil) forState:UIControlStateNormal];
     [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.loginBtn.backgroundColor=UIColorFromRGB(0xec7e3c);
     [self.loginBtn addTarget:self action:@selector(loginBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.signUpBtn = [[UIButton alloc]init];
     self.signUpBtn.titleLabel.font =[UIFont systemFontOfSize:12];
-    [self.signUpBtn setTitle:@"没有账号?立即注册" forState:UIControlStateNormal];
+    [self.signUpBtn setTitle:NSLocalizedString(@"没有账号?立即注册", nil) forState:UIControlStateNormal];
     [self.signUpBtn setTitleColor:UIColorFromRGB(0xec7e3c) forState:UIControlStateNormal];
     [self.signUpBtn sizeToFit];
     [self.view addSubview:self.signUpBtn];

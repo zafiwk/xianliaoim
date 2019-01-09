@@ -46,16 +46,16 @@
     self.signInBtn.layer.masksToBounds=YES;
     self.signInBtn.layer.cornerRadius=5;
     
-    self.telTextField.placeholder = @"请输入注册的手机号码";
-    self.passWordTextField.placeholder = @"请输入密码";
-    self.yanzhengmaTextField.placeholder=@"请输入手机验证码";
-    [self.cmRequestBtn setTitle:@"短信校验" forState:UIControlStateNormal];
+    self.telTextField.placeholder = NSLocalizedString(@"请输入注册的手机号码", nil);
+    self.passWordTextField.placeholder = NSLocalizedString(@"请输入密码", nil);
+    self.yanzhengmaTextField.placeholder=NSLocalizedString(@"请输入手机验证码", nil);
+    [self.cmRequestBtn setTitle:NSLocalizedString(@"短信校验", nil) forState:UIControlStateNormal];
     if (self.type==REGISTERED) {
-        [self.signInBtn setTitle:@"注册" forState:UIControlStateNormal];
-        self.title=@"用户注册";
+        [self.signInBtn setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
+        self.title=NSLocalizedString(@"用户注册", nil);
     }else{
-        [self.signInBtn setTitle:@"密码修改" forState:UIControlStateNormal];
-        self.title=@"密码修改";
+        [self.signInBtn setTitle:NSLocalizedString(@"密码修改", nil) forState:UIControlStateNormal];
+        self.title=NSLocalizedString(@"密码修改", nil);
     }
     
     [self.signInBtn addTarget:self action:@selector(siginInBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -66,7 +66,7 @@
     self.agreeBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.protocolBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.agreeBtn.selected = YES;
-    [self.agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
+    [self.agreeBtn setTitle:NSLocalizedString(@"同意", nil) forState:UIControlStateNormal];
     [self.agreeBtn setImage:[UIImage imageNamed:@"success"] forState:UIControlStateNormal];
     [self.agreeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.agreeBtn addTarget:self action:@selector(agreeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,7 +84,7 @@
     }];
     
     
-    [self.protocolBtn setTitle:@"《闲聊app用户使用协议》" forState:UIControlStateNormal];
+    [self.protocolBtn setTitle:NSLocalizedString(@"《闲聊app用户使用协议》", nil) forState:UIControlStateNormal];
     [self.protocolBtn sizeToFit];
     [self.protocolBtn setTitleColor:UIColorFromRGB(0xec7e3c) forState:UIControlStateNormal];
     [self.protocolBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -104,7 +104,7 @@
         return;
     }
     if (self.passWordTextField.text.length<8||self.passWordTextField.text.length>12) {
-        [MBProgressHUD showError:@"密码应该有数字字母组成,长度不小于8位不大于12位" toView:self.view];
+        [MBProgressHUD showError:NSLocalizedString(@"密码应该有数字字母组成,长度不小于8位不大于12位", nil) toView:self.view];
         return;
     }
 //    [[EMClient sharedClient] registerWithUsername:self.telTextField.text password:self.passWordTextField.text];
@@ -117,7 +117,7 @@
                 return ;
             }else{
                 NSString* loginName = [NSString stringWithFormat:@"wkp%@",weakSelf.telTextField.text];
-                MBProgressHUD* hud=[MBProgressHUD showMessage:@"注册中...." toView:nil];
+                MBProgressHUD* hud=[MBProgressHUD showMessage:NSLocalizedString(@"注册中....", nil) toView:nil];
                 [[EMClient sharedClient] registerWithUsername:loginName password:weakSelf.passWordTextField.text completion:^(NSString *aUsername, EMError *aError) {
                     [hud hideAnimated:YES];
                     if (aError) {
@@ -145,11 +145,12 @@
     }
     self.s=60;
 //    带自定义模版
+    __weak typeof(self) weakSelf = self;
     [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.telTextField.text zone:@"86"  result:^(NSError *error) {
         if (error){
-            [MBProgressHUD showSuccess:@"未知错误稍后再试" toView:self.view];
+            [MBProgressHUD showSuccess:NSLocalizedString(@"未知错误稍后再试", nil) toView:weakSelf.view];
         }else{
-            [MBProgressHUD showSuccess:@"消息发送成功,短信可能存在延迟" toView:self.view];
+            [MBProgressHUD showSuccess:NSLocalizedString(@"消息发送成功,短信可能存在延迟", nil) toView:self.view];
         }
     }];
     self.sTimer=[NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -157,9 +158,9 @@
         if (self.s==0) {
             [self.sTimer invalidate];
             self.sTimer = nil;
-            [self.cmRequestBtn setTitle:@"短信校" forState:UIControlStateNormal];
+            [self.cmRequestBtn setTitle:NSLocalizedString(@"短信校验", nil) forState:UIControlStateNormal];
         }else{
-            [self.cmRequestBtn setTitle:[NSString stringWithFormat:@"短信校验(%ld)",self.s] forState:UIControlStateNormal];
+            [self.cmRequestBtn setTitle:[NSString stringWithFormat:@"%@(%ld)",NSLocalizedString(@"短信校验", nil),self.s] forState:UIControlStateNormal];
         }
     }];
 }
@@ -171,8 +172,8 @@
     
     NSString* tel= self.telTextField.text;
     if (!tel) {
-        UIAlertController* alertVC=[UIAlertController   alertControllerWithTitle:@"手机格式不正确" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        UIAlertController* alertVC=[UIAlertController   alertControllerWithTitle:NSLocalizedString(@"手机格式不正确", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alertVC animated:YES completion:nil];
         
         return NO;
@@ -181,8 +182,8 @@
     
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     if(![phoneTest evaluateWithObject:tel]){
-        UIAlertController* alertVC=[UIAlertController   alertControllerWithTitle:@"手机格式不正确" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        UIAlertController* alertVC=[UIAlertController   alertControllerWithTitle:NSLocalizedString(@"手机格式不正确", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alertVC animated:YES completion:nil];
         
         return NO;
@@ -195,7 +196,7 @@
 -(void)protocolBtnClick{
     WKPWebVC* webView=[[WKPWebVC alloc]init];
     webView.url=@"https://www.jianshu.com/p/6d9d6d7128d1";
-    webView.title = @"用户协议";
+    webView.title = NSLocalizedString(@"用户协议", nil);
     [self.navigationController pushViewController:webView animated:YES];
 }
 

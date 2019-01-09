@@ -106,7 +106,6 @@
 		F26EAF4C21CBA1DD00A968DB /* WKPMessageVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26EAF4A21CBA1DD00A968DB /* WKPMessageVCCell.xib */; };
 		F26F463B21C28E94007398E2 /* UIResponder+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = F26F463A21C28E94007398E2 /* UIResponder+Router.m */; };
 		F26F463E21C28EE9007398E2 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F26F463D21C28EE9007398E2 /* UIImage+Utils.m */; };
-		F2760E2621E59E180074B50C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2760E2521E59E170074B50C /* Info.plist */; };
 		F27963FE21AE709F0081D933 /* ContactHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F27963FD21AE709F0081D933 /* ContactHomeVC.m */; };
 		F279640421AE71D80081D933 /* ContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F279640221AE71D80081D933 /* ContactVCCell.m */; };
 		F279640521AE71D80081D933 /* ContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F279640321AE71D80081D933 /* ContactVCCell.xib */; };
@@ -2064,7 +2063,6 @@
 				F221A53F21ABCF6300E99B3F /* MainVCSettings.json in Resources */,
 				F281764C21CE29BF00A66ABB /* animate_00052.png in Resources */,
 				F2B7447921BAA83100EF2FFF /* WKPChangNickVC.xib in Resources */,
-				F2760E2621E59E180074B50C /* Info.plist in Resources */,
 				F281766D21CE29BF00A66ABB /* animate_00048.png in Resources */,
 				F2AE894521ABBB1F00BDDE44 /* Assets.xcassets in Resources */,
 				F221A4C121ABCB1A00E99B3F /* WKSelectPhotoPickerGroupVCCellTableViewCell.xib in Resources */,
