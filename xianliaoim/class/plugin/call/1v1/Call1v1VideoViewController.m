@@ -80,7 +80,7 @@
         make.bottom.equalTo(self.switchCameraButton);
     }];
     
-    EMButton *videoButton = [[EMButton alloc] initWithTitle:@"视频" target:self action:@selector(videoButtonAction:)];
+    EMButton *videoButton = [[EMButton alloc] initWithTitle:@"暂停" target:self action:@selector(videoButtonAction:)];
     [videoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [videoButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [videoButton setImage:[UIImage imageNamed:@"video_white"] forState:UIControlStateNormal];
