@@ -50,14 +50,14 @@
         make.left.equalTo(self.view).offset(15);
     }];
     
-    self.microphoneButton = [[EMButton alloc] initWithTitle:@"麦克风" target:self action:@selector(microphoneButtonAction)];
+    self.microphoneButton = [[EMButton alloc] initWithTitle:NSLocalizedString(@"麦克风", nil) target:self action:@selector(microphoneButtonAction)];
     [self.microphoneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.microphoneButton setImage:[UIImage imageNamed:@"micphone_gray"] forState:UIControlStateNormal];
     [self.microphoneButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [self.microphoneButton setImage:[UIImage imageNamed:@"micphone_gray"] forState:UIControlStateSelected];
     [self.view addSubview:self.microphoneButton];
     
-    self.speakerButton = [[EMButton alloc] initWithTitle:@"扬声器" target:self action:@selector(speakerButtonAction)];
+    self.speakerButton = [[EMButton alloc] initWithTitle:NSLocalizedString(@"扬声器", nil) target:self action:@selector(speakerButtonAction)];
     [self.speakerButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.speakerButton setImage:[UIImage imageNamed:@"speaker_gray"] forState:UIControlStateNormal];
     [self.speakerButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];

@@ -81,7 +81,7 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.statusLabel.text = @"正在建立连接...";
+    self.statusLabel.text = NSLocalizedString(@"正在建立连接...", nil);
     
     self.timeLabel = [[UILabel alloc] init];
     self.timeLabel.backgroundColor = [UIColor clearColor];
@@ -300,19 +300,19 @@
     
     switch (callStatus) {
         case EMCallSessionStatusConnecting:{
-            self.statusLabel.text = @"正在建立连接...";
+            self.statusLabel.text = NSLocalizedString(@"正在建立连接...", nil);
             self.answerButton.enabled =NO;
         }
             break;
         case EMCallSessionStatusConnected:{
-            self.statusLabel.text = @"等待接听...";
+            self.statusLabel.text = NSLocalizedString(@"等待接听...", nil);
             self.answerButton.enabled = YES;
         }
             break;
         case EMCallSessionStatusAccepted:{
             [self _startCallDurationTimer];
             
-            self.statusLabel.text = @"通话中...";
+            self.statusLabel.text = NSLocalizedString(@"通话中...", nil);
             self.timeLabel.hidden = NO;
             [self.waitImgView stopAnimating];
             if (!self.callSession.isCaller) {
@@ -353,19 +353,19 @@
 
 - (void)updateStreamingStatus:(EMCallStreamingStatus)aStatus
 {
-    NSString *str = @"对方数据流状态有更新";
+    NSString *str = NSLocalizedString(@"对方数据流状态有更新", nil);
     switch (aStatus) {
         case EMCallStreamStatusVoicePause:
-            str = @"对方已静音";
+            str = NSLocalizedString(@"对方已静音", nilll);
             break;
         case EMCallStreamStatusVoiceResume:
-            str = @"对方解除静音";
+            str =NSLocalizedString(@"对方解除静音", nil);
             break;
         case EMCallStreamStatusVideoPause:
-            str = @"对方禁止上传视频";
+            str = NSLocalizedString(@"对方禁止上传视频", nil);
             break;
         case EMCallStreamStatusVideoResume:
-            str = @"对方恢复上传视频";
+            str = NSLocalizedString(@"对方恢复上传视频", nil);
             break;
             
         default:
