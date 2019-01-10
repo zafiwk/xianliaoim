@@ -40,7 +40,7 @@
 - (void)setCount:(NSInteger)count{
     _count = count;
     if (count >=0) {
-        self.footerLabel.text = [NSString stringWithFormat:@"共有 %ld 张图片", (long)count];
+        self.footerLabel.text = [NSString stringWithFormat:@"%@",NSLocalizedString(@"共有 %ld 张图片", nil), (long)count];
     }
 }
 @end

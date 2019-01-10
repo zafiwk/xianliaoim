@@ -30,14 +30,14 @@
 -(void)setupTableView{
     [self.tableView registerNib:[UINib nibWithNibName:@"WKSelectPhotoPickerGroupVCCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.rowHeight=60;
-    self.title= @"相册";
+    self.title= NSLocalizedString(@"相册", nil);
 }
 
 -(void)setupDataSource{
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if (status==PHAuthorizationStatusDenied) {
-        UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"提示" message:@"请在设置中打开相册权限" preferredStyle:UIAlertControllerStyleAlert];
-        [alertVC addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
+        UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"请在设置中打开相册权限", nil) preferredStyle:UIAlertControllerStyleAlert];
+        [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"确认", nil) style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alertVC animated:YES completion:nil];
         return;
     }

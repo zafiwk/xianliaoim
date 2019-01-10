@@ -929,10 +929,10 @@
 			isa = PBXGroup;
 			children = (
 				F221A49F21ABCB1A00E99B3F /* WKSelectPhotoPickerData.h */,
+				F221A4A321ABCB1A00E99B3F /* WKSelectPhotoPickerData.m */,
+				F221A4A221ABCB1A00E99B3F /* WKPhotoAsset.h */,
 				F221A4A021ABCB1A00E99B3F /* WKPhotoAsset.m */,
 				F221A4A121ABCB1A00E99B3F /* WKSelectPhotoPickerGroup.m */,
-				F221A4A221ABCB1A00E99B3F /* WKPhotoAsset.h */,
-				F221A4A321ABCB1A00E99B3F /* WKSelectPhotoPickerData.m */,
 				F221A4A421ABCB1A00E99B3F /* WKSelectPhotoPickerGroup.h */,
 			);
 			path = model;

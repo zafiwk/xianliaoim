@@ -60,7 +60,7 @@
     CGFloat padding = ([UIScreen mainScreen].bounds.size.width - width * 4) / 5;
    
     
-    self.switchCameraButton = [[EMButton alloc] initWithTitle:@"切换摄像头" target:self action:@selector(switchCameraButtonAction:)];
+    self.switchCameraButton = [[EMButton alloc] initWithTitle:NSLocalizedString(@"切换摄像头", nil) target:self action:@selector(switchCameraButtonAction:)];
     [self.switchCameraButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.switchCameraButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [self.switchCameraButton setImage:[UIImage imageNamed:@"switchCamera_white"] forState:UIControlStateNormal];
@@ -80,7 +80,7 @@
         make.bottom.equalTo(self.switchCameraButton);
     }];
     
-    EMButton *videoButton = [[EMButton alloc] initWithTitle:@"暂停" target:self action:@selector(videoButtonAction:)];
+    EMButton *videoButton = [[EMButton alloc] initWithTitle:NSLocalizedString(@"暂停", nil) target:self action:@selector(videoButtonAction:)];
     [videoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [videoButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [videoButton setImage:[UIImage imageNamed:@"video_white"] forState:UIControlStateNormal];

@@ -102,7 +102,7 @@
     [doneBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     doneBtn.titleLabel.font=[UIFont systemFontOfSize:17];
     doneBtn.frame=CGRectMake(0, 0, 44, 44);
-    [doneBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [doneBtn setTitle:NSLocalizedString(@"完成", nil) forState:UIControlStateNormal];
     [doneBtn addTarget:self action:@selector(doneBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [doneBtn addSubview:self.makeLabel];
     return doneBtn;
@@ -243,7 +243,7 @@
         if (self.selectPhotoDataArray.count==self.maxValue) {
             MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode= MBProgressHUDModeText;
-            hud.label.text=@"选择的图片个数,已近最大。";
+            hud.label.text=NSLocalizedString(@"选择的图片个数已经最大。", nil);
             [hud hideAnimated:YES afterDelay:1.5];
             
         }else{
@@ -270,7 +270,7 @@
     if (!_hud) {
         _hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
         _hud.mode =MBProgressHUDModeText;
-        _hud.label.text=@"图片获取中";
+        _hud.label.text=NSLocalizedString(@"图片获取中", nil);
         _hud.removeFromSuperViewOnHide=YES;
         
         

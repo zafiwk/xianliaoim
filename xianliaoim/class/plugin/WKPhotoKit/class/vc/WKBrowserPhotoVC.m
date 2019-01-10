@@ -174,7 +174,7 @@ static NSString * const reuseIdentifier = @"Cell";
         if (self.selectDataArray.count==self.maxValue) {
             MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode= MBProgressHUDModeText;
-            hud.label.text=@"选择的图片个数,已近最大。";
+            hud.label.text=NSLocalizedString(@"选择的图片个数已经最大。", nil);
             [hud hideAnimated:YES afterDelay:1.5];
             return;
         }else{
