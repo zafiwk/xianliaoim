@@ -389,8 +389,6 @@ static IMTools* tools;
         [appDelegate.callVC dismissViewControllerAnimated:YES completion:^{
             
         }];
-        
-        
         if(aReason == EMCallEndReasonRemoteOffline){
             [MBProgressHUD showError:@"对方不在线,发起失败" toView:nil];
         }else if(aReason==EMCallEndReasonNoResponse){
