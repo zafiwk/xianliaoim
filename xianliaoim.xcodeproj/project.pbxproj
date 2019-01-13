@@ -74,6 +74,7 @@
 		F221E9B921B94EB1002C4E94 /* FWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F221E9B821B94EB1002C4E94 /* FWNavigationController.m */; };
 		F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F2398B9D21AD0B79000A9B9C /* libsqlite3.tbd */; };
 		F2398BA021AD0C12000A9B9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2398B9F21AD0C12000A9B9C /* StoreKit.framework */; };
+		F23DEC4F21EB3D5100BD410D /* WKPVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DEC4E21EB3D5100BD410D /* WKPVideoCell.m */; };
 		F2428A5021C13F2700E6EA4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F24288B221C13F2600E6EA4C /* Localizable.strings */; };
 		F2428A5121C13F2700E6EA4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F24288B421C13F2600E6EA4C /* InfoPlist.strings */; };
 		F24291DE21C14D9000E6EA4C /* WSChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */; };
@@ -422,6 +423,8 @@
 		F221E9B821B94EB1002C4E94 /* FWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWNavigationController.m; sourceTree = "<group>"; };
 		F2398B9D21AD0B79000A9B9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F2398B9F21AD0C12000A9B9C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F23DEC4D21EB3D5100BD410D /* WKPVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPVideoCell.h; sourceTree = "<group>"; };
+		F23DEC4E21EB3D5100BD410D /* WKPVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPVideoCell.m; sourceTree = "<group>"; };
 		F24288B321C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F24288B521C13F2600E6EA4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatTableViewController.m; sourceTree = "<group>"; };
@@ -1199,6 +1202,8 @@
 				F242914021C14D8E00E6EA4C /* WSChatVoiceTableViewCell.m */,
 				F2AEF87421C77E4F00FDCE53 /* WKPLocationCell.h */,
 				F2AEF87521C77E4F00FDCE53 /* WKPLocationCell.m */,
+				F23DEC4D21EB3D5100BD410D /* WKPVideoCell.h */,
+				F23DEC4E21EB3D5100BD410D /* WKPVideoCell.m */,
 			);
 			path = WSChatCell;
 			sourceTree = "<group>";
@@ -2270,6 +2275,7 @@
 				F27E94D321CCF9DA00301648 /* EaseEmotionManager.m in Sources */,
 				F221E99D21B9406F002C4E94 /* ZFMaskView.m in Sources */,
 				F26EAF4121CB7D7900A968DB /* EMMessage+WKPChatModel.m in Sources */,
+				F23DEC4F21EB3D5100BD410D /* WKPVideoCell.m in Sources */,
 				F24291E721C14D9000E6EA4C /* WSChatImageTableViewCell.m in Sources */,
 				F2AEF87321C7685600FDCE53 /* IMTools.m in Sources */,
 				F221A4BA21ABCB1A00E99B3F /* WKSelectPhotoPickerGroup.m in Sources */,

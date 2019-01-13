@@ -87,20 +87,32 @@
         case EMMessageBodyTypeVideo:
         {
             EMVideoMessageBody *body = (EMVideoMessageBody *)msgBody;
+            model.chatCellType  = @(WSChatCellType_Video);
+            model.content =  body.localPath;
+            model.videoRemotePath =  body.remotePath;
+            if([model.isSender boolValue]){
+                model.sendingImage =  [self fristFrameWithVideoUrl:[NSURL fileURLWithPath:body.localPath] withSize:CGSizeMake(300, 300)];
+            }else{
+                model.remotePath =body.thumbnailRemotePath;
+                NSData* imageData=[NSData dataWithContentsOfFile:body.thumbnailLocalPath];
+                UIImage* image= [UIImage imageWithData:imageData];
+                model.sendingImage =image;
+            }
             
-            NSLog(@"视频remote路径 -- %@"      ,body.remotePath);
-            NSLog(@"视频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在
-            NSLog(@"视频的secret -- %@"        ,body.secretKey);
-            NSLog(@"视频文件大小 -- %lld"       ,body.fileLength);
-            NSLog(@"视频文件的下载状态 -- %lu"   ,body.downloadStatus);
-            NSLog(@"视频的时间长度 -- %lu"      ,body.duration);
-            NSLog(@"视频的W -- %f ,视频的H -- %f", body.thumbnailSize.width, body.thumbnailSize.height);
-            
+            WKPLog(@"视频remote路径 -- %@"      ,body.remotePath);
+            WKPLog(@"视频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在
+            WKPLog(@"视频的secret -- %@"        ,body.secretKey);
+            WKPLog(@"视频文件大小 -- %lld"       ,body.fileLength);
+            WKPLog(@"视频文件的下载状态 -- %lu"   ,body.downloadStatus);
+            WKPLog(@"视频的时间长度 -- %lu"      ,body.duration);
+            WKPLog(@"视频的W -- %f ,视频的H -- %f", body.thumbnailSize.width, body.thumbnailSize.height);
+
             // 缩略图sdk会自动下载
-            NSLog(@"缩略图的remote路径 -- %@"     ,body.thumbnailRemotePath);
-            NSLog(@"缩略图的local路径 -- %@"      ,body.thumbnailLocalPath);
-            NSLog(@"缩略图的secret -- %@"        ,body.thumbnailSecretKey);
-            NSLog(@"缩略图的下载状态 -- %lu"      ,body.thumbnailDownloadStatus);
+            WKPLog(@"缩略图的remote路径 -- %@"     ,body.thumbnailRemotePath);
+            WKPLog(@"缩略图的local路径 -- %@"      ,body.thumbnailLocalPath);
+            WKPLog(@"缩略图的secret -- %@"        ,body.thumbnailSecretKey);
+            WKPLog(@"缩略图的下载状态 -- %lu"      ,body.thumbnailDownloadStatus);
+            
         }
             break;
         case EMMessageBodyTypeFile:
@@ -126,5 +138,20 @@
 //    df.dateFormat =@"yyyy-MM-dd HH:mm:ss ";
     df.dateFormat = @"MM-dd HH:mm";
     return [df stringFromDate:date];
+}
+
+-(UIImage*)fristFrameWithVideoUrl:(NSURL*)url withSize:(CGSize)size{
+    // 获取视频第一帧
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];
+    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];
+    generator.appliesPreferredTrackTransform = YES;
+    generator.maximumSize = CGSizeMake(size.width, size.height);
+    NSError *error = nil;
+    CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(0, 10) actualTime:NULL error:&error];
+    {
+        return [UIImage imageWithCGImage:img];
+    }
+    return nil;
 }
 @end

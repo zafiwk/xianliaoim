@@ -70,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)CLLocation* location;
 //图片/音频的url地址
 @property(nonatomic,strong)NSString* remotePath;
+//发送视频时候远程图片的url
+@property(nonatomic,strong)NSString* videoRemotePath;
 ////纬度
 //@property(nonatomic,assign)CGFloat latitude;
 ////经度
