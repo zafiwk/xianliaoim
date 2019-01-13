@@ -26,5 +26,11 @@
 		<key>title</key>
 		<string>位置</string>
 	</dict>
+    <dict>
+        <key>image</key>
+        <string>aio_icons_camera_video</string>
+        <key>title</key>
+        <string>短视频</string>
+    </dict>
 </array>
 </plist>

@@ -19,6 +19,7 @@
 #import "FWNavigationController.h"
 #import "IMTools.h"
 #import <CoreLocation/CoreLocation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "PublicHead.h"
 #import "WKPLocationCell.h"
 #import "WKPMapVC.h"
@@ -26,10 +27,11 @@
 #import <MJRefresh/MJRefresh.h>
 #import "WKPImageVC.h"
 #import "WKPPersonInfoVC.h"
+#import "WKPVideoCell.h"
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
-@interface WSChatTableViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,WSChatMessageInputBarDelegate,WSChatVoiceTableViewCellDelegate>
+@interface WSChatTableViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,WSChatMessageInputBarDelegate,WSChatVoiceTableViewCellDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property(nonatomic,strong)WSChatMessageInputBar *inputBar;
 
@@ -303,6 +305,9 @@
     
     [_tableView registerClass:[WKPLocationCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@0, @(WSChatCellType_local))];
     [_tableView registerClass:[WKPLocationCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@1, @(WSChatCellType_local))];
+    //WKPVideoCell
+    [_tableView registerClass:[WKPVideoCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@0, @(WSChatCellType_Video))];
+    [_tableView registerClass:[WKPVideoCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@1, @(WSChatCellType_Video))];
     
     [_tableView registerClass:[WSChatTimeTableViewCell class] forCellReuseIdentifier:kTimeCellReusedID];
     
@@ -477,10 +482,25 @@
         }
             break;
             
-        case 4:
+        case 4:{
             //位置
+            WKPLog(@"短视频");
+            if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+                return;
+            }
+            UIImagePickerController* imagePicker=[[UIImagePickerController alloc]init];
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.delegate =self;
+            imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//设置后置摄像头
+            imagePicker.mediaTypes =@[(NSString*)kUTTypeMovie];//默认是图片这里设置movie
+            imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头是录像模式
+            imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;//设置视频质量
             
+            [self presentViewController:imagePicker animated:YES completion:^{
+                
+            }];
             break;
+        }
         default:
             break;
     }
@@ -601,5 +621,19 @@
     vc.username=self.userName;
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+
+#pragma mark UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    WKPLog(@"info:%@",info);
+    NSURL* fileUrl =info[@"UIImagePickerControllerMediaURL"];
+    IMTools* tools=[IMTools defaultInstance];
+    [tools seedMessageWithVideoLocalPath:[fileUrl path] withDisplayName:@"视频" withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage * obj, EMError * _Nonnull error) {
+        WSChatModel* model = [obj model];
+        [self addModel:model];
+    }];
+
 }
 @end
