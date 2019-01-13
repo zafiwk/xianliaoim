@@ -95,6 +95,7 @@
     }else if([model.chatCellType integerValue]==WSChatCellType_Video){
         self.message.text = [NSString stringWithFormat:@"[%@]",NSLocalizedString(@"短视频", nil)];;
         WKPLog(@"111111111111111111111111111111");
+        WKPLog(@"22222222222222222222222222222222");
     }
     NSString* dateStr= [lastMessage dateStr];
     self.timeLabel.text =dateStr;
