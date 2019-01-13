@@ -92,6 +92,9 @@
         self.message.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"地理位置" ,nil),model.content];
     }else if ([model.chatCellType integerValue]==WSChatCellType_Audio){
         self.message.text = [NSString stringWithFormat:@"[%@]",NSLocalizedString(@"语音",nil)];
+    }else if([model.chatCellType integerValue]==WSChatCellType_Video){
+        self.message.text = [NSString stringWithFormat:@"[%@]",NSLocalizedString(@"短视频", nil)];;
+        WKPLog(@"111111111111111111111111111111");
     }
     NSString* dateStr= [lastMessage dateStr];
     self.timeLabel.text =dateStr;
