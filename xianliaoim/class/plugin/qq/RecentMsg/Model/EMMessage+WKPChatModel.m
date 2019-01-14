@@ -11,7 +11,7 @@
 @implementation EMMessage (WKPChatModel)
 -(WSChatModel*)model{
     WSChatModel*  model = [[WSChatModel alloc]init];
-    
+    model.message = self;
     
     NSString* currentName = [EMClient sharedClient].currentUsername;
     if([self.from isEqualToString:currentName]){
@@ -59,9 +59,9 @@
         case EMMessageBodyTypeLocation:
         {
             EMLocationMessageBody *body = (EMLocationMessageBody *)msgBody;
-            WKPLog(@"纬度-- %f",body.latitude);
-            WKPLog(@"经度-- %f",body.longitude);
-            WKPLog(@"地址-- %@",body.address);
+//            WKPLog(@"纬度-- %f",body.latitude);
+//            WKPLog(@"经度-- %f",body.longitude);
+//            WKPLog(@"地址-- %@",body.address);
             model.content =body.address;
             model.location = [[CLLocation alloc]initWithLatitude:body.latitude longitude:body.longitude];
             model.chatCellType = @(WSChatCellType_local);
@@ -71,27 +71,41 @@
         {
             // 音频sdk会自动下载
             EMVoiceMessageBody *body = (EMVoiceMessageBody *)msgBody;
-            WKPLog(@"音频remote路径 -- %@"      ,body.remotePath);
-            WKPLog(@"音频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在（音频会自动调用）
-            WKPLog(@"音频的secret -- %@"        ,body.secretKey);
-            WKPLog(@"音频文件大小 -- %lld"       ,body.fileLength);
-            WKPLog(@"音频文件的下载状态 -- %lu"   ,body.downloadStatus);
-            WKPLog(@"音频的时间长度 -- %lu"      ,body.duration);
+//            WKPLog(@"音频remote路径 -- %@"      ,body.remotePath);
+//            WKPLog(@"音频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在（音频会自动调用）
+//            WKPLog(@"音频的secret -- %@"        ,body.secretKey);
+//            WKPLog(@"音频文件大小 -- %lld"       ,body.fileLength);
+//            WKPLog(@"音频文件的下载状态 -- %lu"   ,body.downloadStatus);
+//            WKPLog(@"音频的时间长度 -- %lu"      ,body.duration);
             NSDictionary* ext = self.ext;
             model.chatCellType = @(WSChatCellType_Audio);
             model.secondVoice = ext[@"time"];
             model.content =body.localPath;
             model.remotePath = body.remotePath;
+            
         }
             break;
         case EMMessageBodyTypeVideo:
         {
             EMVideoMessageBody *body = (EMVideoMessageBody *)msgBody;
             model.chatCellType  = @(WSChatCellType_Video);
-            model.content =  body.localPath;
-            model.videoRemotePath =  body.remotePath;
+            
+            NSString* locaPath = body.localPath;
+            NSString* pathExtension=[[locaPath pathExtension] uppercaseString];
+            WKPLog(@"pathExtension:%@",pathExtension);
+            if ([pathExtension  isEqualToString:@"MP4"]) {
+                model.content = locaPath;
+            }
+            
+//            model.videoRemotePath =  body.remotePath;
             if([model.isSender boolValue]){
-                model.sendingImage =  [self fristFrameWithVideoUrl:[NSURL fileURLWithPath:body.localPath] withSize:CGSizeMake(300, 300)];
+                NSData* imageData=[NSData dataWithContentsOfFile:body.thumbnailLocalPath];
+                UIImage* image= [UIImage imageWithData:imageData];
+                if(image){
+                    model.sendingImage =image;
+                }else{
+                    model.sendingImage =  [self fristFrameWithVideoUrl:[NSURL fileURLWithPath:body.localPath] withSize:CGSizeMake(300, 300)];
+                }
             }else{
                 model.remotePath =body.thumbnailRemotePath;
                 NSData* imageData=[NSData dataWithContentsOfFile:body.thumbnailLocalPath];
@@ -106,7 +120,7 @@
             WKPLog(@"视频文件的下载状态 -- %lu"   ,body.downloadStatus);
             WKPLog(@"视频的时间长度 -- %lu"      ,body.duration);
             WKPLog(@"视频的W -- %f ,视频的H -- %f", body.thumbnailSize.width, body.thumbnailSize.height);
-
+            
             // 缩略图sdk会自动下载
             WKPLog(@"缩略图的remote路径 -- %@"     ,body.thumbnailRemotePath);
             WKPLog(@"缩略图的local路径 -- %@"      ,body.thumbnailLocalPath);

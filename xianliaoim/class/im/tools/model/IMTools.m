@@ -111,10 +111,12 @@ static IMTools* tools;
 }
 -(void)sendMessageWithEMMessage:(EMMessage*)message withBlock:(IMToolsBlock)block{
     message.chatType=EMChatTypeChat;
-    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+    [[EMClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
+        WKPLog(@"消息上传进度:%d",progress);
+    }completion:^(EMMessage *message, EMError *error) {
         WKPLog(@"消息发送回调");
         if (error) {
-            [MBProgressHUD showMessage:@"消息发送失败,稍后再试" toView:nil];
+            [MBProgressHUD showError:NSLocalizedString(@"消息发送失败", nil) toView:nil];
             WKPLog(@"===================");
             WKPLog(@"error:%@",error?error.description:@"");
             return;

@@ -133,6 +133,8 @@
             NSString* recordHome = [docPath stringByAppendingPathComponent:@"record"];
             NSFileManager* manager = [NSFileManager defaultManager];
             [manager removeItemAtPath:recordHome error:nil];
+            NSString* videoHome = [docPath stringByAppendingPathComponent:@"videoHome"];
+            [manager removeItemAtPath:videoHome error:nil];
             [MBProgressHUD showSuccess:@"删除成功" toView:self.view];
         }
         return;

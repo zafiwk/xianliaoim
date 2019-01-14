@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 //图片/音频的url地址
 @property(nonatomic,strong)NSString* remotePath;
 //发送视频时候远程图片的url
-@property(nonatomic,strong)NSString* videoRemotePath;
+//@property(nonatomic,strong)NSString* videoRemotePath;
 ////纬度
 //@property(nonatomic,assign)CGFloat latitude;
 ////经度
@@ -79,6 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
 ////地址
 //@property(nonatomic,strong)NSString* address;
 @property(nonatomic,assign)BOOL voiceIsPlay;
+//原始的message对象
+@property(nonatomic,strong)EMMessage* message;
 @end
 
 NS_ASSUME_NONNULL_END

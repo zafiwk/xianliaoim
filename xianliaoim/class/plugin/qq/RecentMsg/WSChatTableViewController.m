@@ -20,6 +20,8 @@
 #import "IMTools.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVKit/AVKit.h>
 #import "PublicHead.h"
 #import "WKPLocationCell.h"
 #import "WKPMapVC.h"
@@ -28,6 +30,7 @@
 #import "WKPImageVC.h"
 #import "WKPPersonInfoVC.h"
 #import "WKPVideoCell.h"
+#import "NSString+WKPCategory.h"
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
@@ -174,7 +177,7 @@
     WSChatModel *model = self.dataArray[indexPath.row];
     
     cell.model = model;
-   
+    
 }
 
 #pragma mark - UIResponder actions
@@ -199,7 +202,7 @@
             NSLog(@"点击了图片了。。");
             if ([model.chatCellType  integerValue] == WSChatCellType_local) {
                 WKPMapVC* vc=[[WKPMapVC alloc]init];
-                vc.title = @"地理位置";
+                vc.title = NSLocalizedString(@"地理位置", nil);
                 vc.location =model.location;
                 vc.localStr = model.content;
                 [self.navigationController pushViewController:vc animated:YES];
@@ -207,8 +210,39 @@
             if ([model.chatCellType integerValue]==WSChatCellType_Image) {
                 WKPImageVC* vc=[[WKPImageVC alloc]init];
                 vc.model = model;
-                vc.title = @"图片预览";
+                vc.title = NSLocalizedString(@"图片预览", nil);
                 [self.navigationController pushViewController:vc animated:YES];
+            }
+            
+            if([model.chatCellType integerValue]==WSChatCellType_Video){
+                //                MPMoviePlayerViewController* vc=nil; 被弃用 使用AVPlayerViewController
+                EMMessageBody *msgBody = model.message.body;
+                EMVideoMessageBody *body = (EMVideoMessageBody *)msgBody;
+                if (body.downloadStatus ==EMDownloadStatusSucceed||model.content.length!=0) {
+                    [self playVideoWithPath:model.content];
+                }else{
+                    WKPLog(@"需要下载短视频");
+                    __weak  typeof(self) weakSelf  = self;
+                    MBProgressHUD* hud=[MBProgressHUD showMessage:NSLocalizedString(@"视频下载中", nil) toView:self.view];
+//                    [[EMClient sharedClient].chatManager downloadMessageThumbnail:model.message progress:nil completion:^(EMMessage *message, EMError *error) {
+//                       
+//                    }];
+                    [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:^(int progress) {
+                        
+                    } completion:^(EMMessage *message, EMError *error) {
+                        [hud hideAnimated:YES];
+                        if (error) {
+                            [MBProgressHUD showError:NSLocalizedString(@"视频下载失败", nil) toView:weakSelf.view];
+                            return ;
+                        }
+                        WSChatModel* chatModel = [message model];
+                        model.message=message;
+                        model.content = chatModel.content;
+                        [self playVideoWithPath:chatModel.content];
+                        WKPLog(@"下载好了视频");
+                    }];
+                }
+             
             }
         }
             break;
@@ -227,6 +261,15 @@
     
 }
 
+-(void)playVideoWithPath:(NSString*)path{
+    NSURL * url = [NSURL fileURLWithPath:path];
+    WKPLog(@"播放的url:%@",[url  path]);
+    AVPlayer* player=[[AVPlayer alloc]initWithURL:url];
+    AVPlayerViewController  *vc=[[AVPlayerViewController alloc]init];
+    vc.player = player;
+    [vc.player play];
+    [self presentViewController:vc animated:YES completion:nil];
+}
 -(void)pickerImages:(NSInteger)maxCount{
     WKPLog(@"pickerImages:%ld",maxCount);
     //    MLSelectPhotoPickerViewController *pickerVc = [[MLSelectPhotoPickerViewController alloc] init];
@@ -373,7 +416,7 @@
         
         for (NSInteger i=0; i<sortArray.count; i++) {
             EMMessage* message = sortArray[i];
-//            WKPLog(@"aMessages:%lld",message.timestamp);
+            //            WKPLog(@"aMessages:%lld",message.timestamp);
             [weakSelf.con   markMessageAsReadWithId:message.messageId error:nil];
             [weakSelf.dataArray insertObject:[message model] atIndex:0];
         }
@@ -425,7 +468,7 @@
         case 1:{
             //电话
             IMTools* tools = [IMTools defaultInstance];
-            NSString* message = [NSString stringWithFormat:@"%@发起了语音聊天",[[EMClient sharedClient] currentUsername]];
+            NSString* message = [NSString stringWithFormat:@"%@%@",[[EMClient sharedClient] currentUsername],NSLocalizedString(@"发起了语音聊天", nil)];
             [tools sendMessageWithText:[message substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
                 WSChatModel* model = [obj model];
                 [self addModel:model];
@@ -437,7 +480,7 @@
             
         case 2:{
             IMTools* tools = [IMTools defaultInstance];
-            NSString* message = [NSString stringWithFormat:@"%@发起了视频聊天",[[EMClient sharedClient] currentUsername]];
+            NSString* message = [NSString stringWithFormat:@"%@%@",[[EMClient sharedClient] currentUsername],NSLocalizedString(@"发起了视频聊天", nil)];
             [tools sendMessageWithText:[message  substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage*   obj, EMError * _Nonnull error) {
                 WSChatModel* model = [obj model];
                 [self addModel:model];
@@ -450,33 +493,33 @@
             
         case 3:{
             //文件
-          
-                
+            
+            
             if ([CLLocationManager locationServicesEnabled]) {
                 
-                    //设置定位的精确
-                    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-                    //设置最小跟新的距离
-                    self.locationManager.distanceFilter = 100;
-                    
-                    self.locationManager.delegate= self;
-                    
-                    [self.locationManager startUpdatingLocation];
-                    
-                    self.hud = [MBProgressHUD showMessage:@"定位获取中" toView:self.view];
+                //设置定位的精确
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+                //设置最小跟新的距离
+                self.locationManager.distanceFilter = 100;
+                
+                self.locationManager.delegate= self;
+                
+                [self.locationManager startUpdatingLocation];
+                
+                self.hud = [MBProgressHUD showMessage:NSLocalizedString(@"定位获取中", nil) toView:self.view];
                 
                 
                 
             }else{
                 
-//                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//                if([[UIApplication sharedApplication] canOpenURL:url]){
-//                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-//
-//                    }];
-//                }
-//                return;
-                [MBProgressHUD showError:@"请在设置中打开定位" toView:self.view];
+                //                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                //                if([[UIApplication sharedApplication] canOpenURL:url]){
+                //                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                //
+                //                    }];
+                //                }
+                //                return;
+                [MBProgressHUD showError:NSLocalizedString(@"请在设置中打开定位", nil) toView:self.view];
             }
             
         }
@@ -510,7 +553,7 @@
 #pragma mark CLLocationManagerDelegate
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     [self.hud hideAnimated:YES];
-    [MBProgressHUD showError:@"定位获取失败" toView:nil];
+    [MBProgressHUD showError:NSLocalizedString(@"定位获取失败", nil) toView:nil];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
@@ -563,7 +606,7 @@
     [self.voiceTimer invalidate];
     self.voiceTimer = nil;
     if (self.voiceS<1.5) {
-        [MBProgressHUD showSuccess:@"录制时间过短" toView:self.view];
+        [MBProgressHUD showSuccess:NSLocalizedString(@"录制时间过短", nil) toView:self.view];
         return;
     }
     IMTools* tools=[IMTools defaultInstance];
@@ -577,7 +620,7 @@
 }
 -(void)startRecord{
     self.voiceTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-         self.voiceS++;
+        self.voiceS++;
     }];
 }
 
@@ -629,11 +672,76 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     WKPLog(@"info:%@",info);
     NSURL* fileUrl =info[@"UIImagePickerControllerMediaURL"];
-    IMTools* tools=[IMTools defaultInstance];
-    [tools seedMessageWithVideoLocalPath:[fileUrl path] withDisplayName:@"视频" withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage * obj, EMError * _Nonnull error) {
-        WSChatModel* model = [obj model];
-        [self addModel:model];
-    }];
+    NSString* docPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString* videoHome = [docPath stringByAppendingPathComponent:@"videoHome"];
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:videoHome]) {
+        [fileManager  createDirectoryAtPath:videoHome withIntermediateDirectories:YES attributes:@{} error:nil];
+    }
+    
+    NSString* filePath = [[videoHome stringByAppendingPathComponent:[NSString uuidString]] stringByAppendingPathExtension:@"MP4"];
+    WKPLog(@"本地的实际路劲:%@",filePath);
+    //    filePath = [filePath  stringByDeletingPathExtension];
+    //    filePath = [filePath stringByAppendingPathExtension:@"MP4"];
+    //    NSURL* newFileUrl = [[NSURL alloc]initFileURLWithPath:filePath];
+    //    [fileManager copyItemAtURL:fileUrl toURL:newFileUrl error:nil];
+    //  转MP4
+    [self fileLocalPath:fileUrl toNewPath:filePath];
+    
+    
+}
 
+-(void)fileLocalPath:(NSURL*)locaUrl toNewPath:(NSString*)newPath{
+    
+    AVURLAsset* avAsset = [AVURLAsset URLAssetWithURL:locaUrl options:nil];
+    NSArray* compatibleWithAsset=[AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    if([compatibleWithAsset containsObject:AVAssetExportPresetMediumQuality]){
+        AVAssetExportSession* exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+        NSURL* newUrl = [NSURL fileURLWithPath:newPath];
+        exportSession.outputURL =newUrl;
+        exportSession.shouldOptimizeForNetworkUse = YES;
+        exportSession.outputFileType =AVFileTypeMPEG4;
+        //初始化型号量 设置同时完成的个数
+        dispatch_semaphore_t wait = dispatch_semaphore_create(0l);
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusFailed: {
+                    NSLog(@"failed, error:%@.", exportSession.error);
+                } break;
+                case AVAssetExportSessionStatusCancelled: {
+                    NSLog(@"cancelled.");
+                } break;
+                case AVAssetExportSessionStatusCompleted: {
+                    NSLog(@"completed.");
+                } break;
+                default: {
+                    NSLog(@"others.");
+                } break;
+            }
+            //提高信号量 信号量加1
+            dispatch_semaphore_signal(wait);
+        }];
+        //等待降低信号量
+        long timeout = dispatch_semaphore_wait(wait, DISPATCH_TIME_FOREVER);
+        if (timeout) {
+            NSLog(@"timeout.");
+            if (wait) {
+                wait =  nil;
+            }
+            [MBProgressHUD showError:NSLocalizedString(@"消息发送失败", nil) toView:self.view];
+            return;
+        }
+        if (wait) {
+            //dispatch_release(wait);
+            wait = nil;
+            NSURL* newFileUrl = [[NSURL alloc]initFileURLWithPath:newPath];
+            IMTools* tools=[IMTools defaultInstance];
+            [tools seedMessageWithVideoLocalPath:[newFileUrl path] withDisplayName:@"video.mp4" withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage * obj, EMError * _Nonnull error) {
+                WSChatModel* model = [obj model];
+                [self addModel:model];
+            }];
+        }
+    }
+    
 }
 @end
