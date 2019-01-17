@@ -71,8 +71,8 @@
         UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (!cell) {
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-           
+            
+            
         }
         
         NSArray* dataSource=self.dataSource[indexPath.section];
@@ -80,10 +80,16 @@
         
         
         if (indexPath.row==0&&indexPath.section==0) {
-           NSString* currentUsername= [[EMClient sharedClient] currentUsername];
+            NSString* currentUsername= [[EMClient sharedClient] currentUsername];
             cell.detailTextLabel.text = [currentUsername substringFromIndex:3];
         }else{
             cell.detailTextLabel.text = nil;
+        }
+        
+        if(indexPath.section==0&&indexPath.row==0){
+            cell.accessoryType=UITableViewCellAccessoryNone;
+        }else{
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         }
         return cell;
     }
@@ -112,12 +118,12 @@
             return;
         }
         if (indexPath.row==0) {
-//            MBProgressHUD* hud=[MBProgressHUD showMessage:@"删除中...." toView:self.view];
+            //            MBProgressHUD* hud=[MBProgressHUD showMessage:@"删除中...." toView:self.view];
             SDImageCache* cache=[SDImageCache sharedImageCache];
             [cache clearMemory];
             [cache clearDiskOnCompletion:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
-//                      [hud hideAnimated:YES];
+                    //                      [hud hideAnimated:YES];
                     [MBProgressHUD showSuccess:@"删除成功" toView:self.view];
                 });
             }];
@@ -155,15 +161,15 @@
     
     if (indexPath.section==0) {
         if (indexPath.row==0) {
-            if (![EMClient sharedClient].isLoggedIn) {
-                WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
-                loginVC.hidesBottomBarWhenPushed=YES;
-                [self.navigationController pushViewController:loginVC animated:YES];
-                return;
-            }
-            WKPChangNickVC* vc=[[WKPChangNickVC alloc]init];
-            vc.title=@"设置昵称";
-            [self.navigationController pushViewController:vc animated:YES];
+            //            if (![EMClient sharedClient].isLoggedIn) {
+            //                WKPSignInVC* loginVC=[[WKPSignInVC alloc]init];
+            //                loginVC.hidesBottomBarWhenPushed=YES;
+            //                [self.navigationController pushViewController:loginVC animated:YES];
+            //                return;
+            //            }
+            //            WKPChangNickVC* vc=[[WKPChangNickVC alloc]init];
+            //            vc.title=@"设置昵称";
+            //            [self.navigationController pushViewController:vc animated:YES];
         }else if (indexPath.row==1){
             WKPBindWeibo* vc=[[WKPBindWeibo alloc]init];
             vc.title=@"账号绑定";
@@ -219,6 +225,6 @@
     NSString* imagePath =iconPath;
     [imageData writeToFile:imagePath atomically:YES];
     [self.tableView reloadData];
-//    WKPLog(@"info:%@",info);
+    //    WKPLog(@"info:%@",info);
 }
 @end
