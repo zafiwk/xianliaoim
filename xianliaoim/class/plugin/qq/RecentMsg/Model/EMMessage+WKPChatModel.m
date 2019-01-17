@@ -12,7 +12,7 @@
 -(WSChatModel*)model{
     WSChatModel*  model = [[WSChatModel alloc]init];
     model.message = self;
-    
+    model.sendName =self.from;
     NSString* currentName = [EMClient sharedClient].currentUsername;
     if([self.from isEqualToString:currentName]){
         model.isSender = @(YES);
@@ -49,7 +49,7 @@
             //                NSLog(@"小图的secret -- %@"    ,body.thumbnailSecretKey);
             //                NSLog(@"小图的W -- %f ,大图的H -- %f",body.thumbnailSize.width,body.thumbnailSize.height);
             //                NSLog(@"小图的下载状态 -- %lu",body.thumbnailDownloadStatus);
-            NSData* imageData=[NSData dataWithContentsOfFile:body.thumbnailLocalPath];
+            NSData* imageData=[NSData dataWithContentsOfFile:body.localPath];
             UIImage* image= [UIImage imageWithData:imageData];
             model.sendingImage = image;
             model.remotePath = body.remotePath;

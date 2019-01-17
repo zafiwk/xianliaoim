@@ -40,6 +40,7 @@
     [super setModel:model];
     UIImageView* imageView = [self  getMImageView];
     UIEdgeInsets edgeInset = [self  imageEdge];
+   
     if ([model.isSender boolValue]) {
         [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-edgeInset.right);
@@ -47,6 +48,7 @@
             make.size.mas_equalTo(CGSizeMake(150, 150));
         }];
     }else{
+         edgeInset.top = edgeInset.top +30;
         [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(edgeInset.left);
             make.top.mas_equalTo(edgeInset.top);

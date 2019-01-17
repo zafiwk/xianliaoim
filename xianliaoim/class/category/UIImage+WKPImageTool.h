@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (WKPImageTool)
 -(UIImage *)compressOriginalImageWithSize:(CGSize)size;
+-(UIImage*)imageChangeColor:(UIColor*)color;
 @end
 
 NS_ASSUME_NONNULL_END

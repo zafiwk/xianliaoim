@@ -14,7 +14,6 @@
 #import "WKPQrCode.h"
 #import <SDWebImage/SDImageCache.h>
 #import "WKPChangNickVC.h"
-#import "UserProfileManager.h"
 #import "WKPBindWeibo.h"
 #import "WKPSignInVC.h"
 @interface WKPMeVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>

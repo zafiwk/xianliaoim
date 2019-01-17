@@ -11,7 +11,6 @@
 #import "WKPSignUpVC.h"
 #import <Masonry/Masonry.h>
 #import <Hyphenate/EMClient.h>
-#import "UserProfileManager.h"
 #import "IMTools.h"
 @interface WKPSignInVC ()
 @property (weak, nonatomic) IBOutlet UITextField *telName;

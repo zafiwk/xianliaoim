@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>image</key>
+		<string>aio_icons_pic</string>
+		<key>title</key>
+		<string>照片</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>aio_icons_location</string>
+		<key>title</key>
+		<string>位置</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>aio_icons_camera_video</string>
+		<key>title</key>
+		<string>短视频</string>
+	</dict>
+</array>
+</plist>

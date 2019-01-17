@@ -158,15 +158,22 @@
     chat.con = con ;
     EMMessage* lastMessage = [con latestMessage];
     NSString* currentName = [EMClient sharedClient].currentUsername;
-    NSString* name = nil;
-    if ([lastMessage.to isEqualToString:currentName]) {
-        name = lastMessage.from;
+  
+    if (lastMessage.chatType ==EMChatTypeChat) {
+        NSString* name = nil;
+        if ([lastMessage.to isEqualToString:currentName]) {
+            name = lastMessage.from;
+        }else{
+            name= lastMessage.to;
+        }
+        chat.userName = name;
+        chat.title = [name substringFromIndex:3];
     }else{
-        name= lastMessage.to;
+        chat.group = lastMessage.ext[@"subject"];
+        EMGroup* group = [[EMClient sharedClient].groupManager  getGroupSpecificationFromServerWithId:con.conversationId error:nil];
+        chat.group = group;
     }
-    
-    chat.userName = name;
-    chat.title = [name substringFromIndex:3];
+  
     chat.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chat animated:YES];
 }

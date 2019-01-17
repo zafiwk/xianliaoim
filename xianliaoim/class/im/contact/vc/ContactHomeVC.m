@@ -21,6 +21,7 @@
 #import "ContactVCCell.h"
 #import "WSChatTableViewController.h"
 #import "IMTools.h"
+#import "WKPCreateGroupVC.h"
 @interface ContactHomeVC ()
 @property(nonatomic,strong)NSMutableArray* contactArray;
 @property(nonatomic,strong)NSMutableArray* groupArray;
@@ -82,6 +83,8 @@
              }];
              self.numLabel.text = [NSString stringWithFormat:@"%ld",allRequests.count];
          }
+         self.groupArray = [NSMutableArray arrayWithArray:[tools getGroupArray]];
+         
      }else{
         VisitoeView*  view=[VisitoeView visitoeView];
         view.frame=self.view.bounds;
@@ -122,7 +125,7 @@
     if (self.notData) {
         return 0;
     }else{
-        return 1;
+        return 2;
     }
 }
 
@@ -191,7 +194,9 @@
             return cell;
         }else{
             ContactVCCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            
+            EMGroup*  group = self.groupArray[indexPath.row];
+            cell.nameLabel.text = group.subject;
+            cell.iconImage.image  = [UIImage imageNamed:@"group_3586366"];
             return cell;
         }
         
@@ -213,7 +218,17 @@
         [self.navigationController pushViewController:chat animated:YES];
 
     }else{
-        
+        if (self.groupArray.count==0) {
+            return;
+        }
+        WSChatTableViewController *chat = [[WSChatTableViewController alloc]init];
+        EMGroup* group = self.groupArray[indexPath.row];
+        chat.title = group.subject;
+        IMTools* imtools = [IMTools defaultInstance];
+        chat.con =[imtools  createConversationWithGroup:group];
+        chat.hidesBottomBarWhenPushed =YES;
+        chat.group = group;
+        [self.navigationController pushViewController:chat animated:YES];
     }
 }
 #pragma mark btnClick
@@ -231,7 +246,7 @@
     property.popupArrowVertexScaleX = 1;
     property.animationDuration = 0.2;
     
-    FWMenuView *menuView = [FWMenuView menuWithItemTitles:@[NSLocalizedString(@"添加好友", nil),NSLocalizedString(@"扫一扫", nil),NSLocalizedString(@"好友验证消息", nil)] itemImageNames:@[[UIImage imageNamed:@"right_menu_addFri"],[UIImage imageNamed:@"right_menu_QR"],[UIImage imageNamed:@"right_menu_multichat"]] itemBlock:^(FWPopupView *popupView, NSInteger index, NSString *title) {
+    FWMenuView *menuView = [FWMenuView menuWithItemTitles:@[NSLocalizedString(@"添加好友", nil),NSLocalizedString(@"扫一扫", nil),NSLocalizedString(@"好友验证消息", nil),NSLocalizedString(@"创建群聊", nil)] itemImageNames:@[[UIImage imageNamed:@"right_menu_addFri"],[UIImage imageNamed:@"right_menu_QR"],[UIImage imageNamed:@"right_menu_multichat"],[UIImage imageNamed:@"group_3586366"]] itemBlock:^(FWPopupView *popupView, NSInteger index, NSString *title) {
         [self  fWMenuViewClick:index];
     } property:property];
     
@@ -247,7 +262,7 @@
         WKPAddFriendRequestVC* vc=[[WKPAddFriendRequestVC alloc]init];
         vc.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
+    }else if(index==1){
         
         ZFScanViewController* vc=[[ZFScanViewController alloc]init];
         __weak  typeof(self) weakSelf=self;
@@ -268,17 +283,37 @@
             }
         };
         [self presentViewController:vc animated:YES completion:nil];
+    }else{
+        WKPCreateGroupVC* vc=[[WKPCreateGroupVC alloc]init];
+        vc.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 -(UISwipeActionsConfiguration*)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction* deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:NSLocalizedString(@"删除", nil) handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
-        NSString* userName = self.contactArray[indexPath.row];
+      
         IMTools* tools = [IMTools defaultInstance];
-        [tools deleteContact:userName];
+        if (indexPath.section==0) {
+            NSString* userName = self.contactArray[indexPath.row];
+            [tools deleteContact:userName];
+        }else{
+            EMGroup* group = self.groupArray[indexPath.row];
+            [tools deleteGroup:group];
+        }
+     
         [self setupDataSource];
     }];
     
+    if (indexPath.section ==0) {
+        if (self.contactArray.count==0) {
+            return nil;
+        }
+    }else{
+        if (self.groupArray.count==0) {
+            return nil;
+        }
+    }
     UISwipeActionsConfiguration* config=[UISwipeActionsConfiguration configurationWithActions:@[deleteAction]];
     return config;
 }

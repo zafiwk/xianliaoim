@@ -42,9 +42,9 @@ typedef void(^IMToolsBlock)(id  obj,EMError* error);
 -(void)sendMessageWithLatitude:(CGFloat)latitude withLongitude:(CGFloat)longitude withAddress:(NSString*)address withUser:(NSString*)userName withConversationID:(NSString*)conversationId
     withBlock:(IMToolsBlock)block;
 //发送语音消息
--(void)seedMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block;
+-(void)sendMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block;
 //发送视频消息
--(void)seedMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block;
+-(void)sendMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block;
 //新建一个会话 1v1
 -(EMConversation*)createConversationWithUser:(NSString*)userName;
 //删除多个会话
@@ -76,6 +76,26 @@ typedef void(^IMToolsBlock)(id  obj,EMError* error);
 -(void)updateRemarkName:(NSString*)remarkName withName:(NSString*)name;
 //找个备注
 -(RemarkModel*)queryRemarkNameByName:(NSString*)name;
+//群相关
+-(NSArray*)getGroupArray;
+
+
+//发送文本消息
+-(void)sendGroupMessageWithText:(NSString*)text withUser:(EMGroup*)group withConversationID:(NSString*)conversationId  withBlock:(IMToolsBlock)block;
+//发送图片消息
+-(void)sendGroupMessageWithUIImage:(UIImage*)image withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block;
+//发送地理位置
+-(void)sendGroupMessageWithLatitude:(CGFloat)latitude withLongitude:(CGFloat)longitude withAddress:(NSString*)address withUser:group withConversationID:(NSString*)conversationId
+                     withBlock:(IMToolsBlock)block;
+//发送语音消息
+-(void)sendGroupMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block;
+//发送视频消息
+-(void)sendGroupMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block;
+
+//新建一个群会话
+-(EMConversation*)createConversationWithGroup:(EMGroup*)group;
+
+-(void)deleteGroup:(EMGroup*)group;
 @end
 
 NS_ASSUME_NONNULL_END

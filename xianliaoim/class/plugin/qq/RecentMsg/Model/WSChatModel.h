@@ -81,6 +81,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL voiceIsPlay;
 //原始的message对象
 @property(nonatomic,strong)EMMessage* message;
+//消息的发送方 名字
+@property(nonatomic,strong)NSString* sendName;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -65,5 +65,6 @@
  */
 -(void)longPress:(UILongPressGestureRecognizer *)Press;
 
+@property(nonatomic,strong)UILabel* nickLabel;
 
 @end

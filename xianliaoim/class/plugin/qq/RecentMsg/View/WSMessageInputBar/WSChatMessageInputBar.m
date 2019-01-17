@@ -125,12 +125,16 @@
         [self addSubview:self.voiceBtn];
         self.voiceBtn.backgroundColor  = [UIColor whiteColor];
         [self.voiceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self.voiceBtn setTitle:@"按住 说话" forState:UIControlStateNormal];
+        [self.voiceBtn setTitle:NSLocalizedString(@"按住 说话", nil) forState:UIControlStateNormal];
         [self.voiceBtn addTarget:self action:@selector(startVoiceBtnClick:) forControlEvents:UIControlEventTouchDown];
-        [self.voiceBtn addTarget:self action:@selector(endVoiceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.voiceBtn addTarget:self action:@selector(endVoiceBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.voiceBtn addTarget:self action:@selector(cancelVoiceBtnClick:) forControlEvents:UIControlEventTouchUpOutside];
+        UILongPressGestureRecognizer*  longPG=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(endVoiceBtnClick:)];
+        longPG.minimumPressDuration=0.5;
+        [self.voiceBtn addGestureRecognizer:longPG];
         self.voiceBtn.layer.masksToBounds=YES;
         self.voiceBtn.layer.cornerRadius= 5;
+        self.voiceBtn .hidden =YES;
         /**
          *  @brief  增加输入框
          */
@@ -357,7 +361,7 @@
         
         mMoreView = [[WSChatMessageMoreView alloc]init];
         mMoreView.translatesAutoresizingMaskIntoConstraints = NO;
-        
+        mMoreView.con  =self.con;
         [self addSubview:mMoreView];
         
         
@@ -547,7 +551,7 @@
 
 
 -(void)startVoiceBtnClick:(UIButton*)btn{
-    WKPLog(@"------------开始录音");
+    WKPLog(@"------------开始录音--------------------");
     [MBProgressHUD showSuccess:@"长按录制语音" toView:nil];
     NSString* docPath =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString* recordHome = [docPath stringByAppendingPathComponent:@"record"];
@@ -572,8 +576,11 @@
     
 }
 
--(void)endVoiceBtnClick:(UIButton*)btn{
-    WKPLog(@"------------结束录音");
+-(void)endVoiceBtnClick:(UILongPressGestureRecognizer*)gr{
+    if (gr.state  !=  UIGestureRecognizerStateEnded) {
+        return ;
+    }
+    WKPLog(@"-------------结束录音------------------");
     [EMAudioRecorderUtil asyncStopRecordingWithCompletion:^(NSString *recordPath) {
         if ([self.delegate respondsToSelector:@selector(voiceSavePath:)]) {
             [MBProgressHUD showSuccess:@"录音结束" toView:nil];
@@ -594,6 +601,7 @@
     
 }
 -(void)cancelVoiceBtnClick:(UIButton*)btn{
+    WKPLog(@"-------------取消录音------------------");
     [MBProgressHUD showError:@"取消发送录音消息" toView:nil];
     [EMAudioRecorderUtil cancelCurrentRecording];
     

@@ -10,7 +10,7 @@
 #import "PureLayout.h"
 #import "UIImageView+WebCache.h"
 #import "PublicHead.h"
-
+#import <Masonry/Masonry.h>
 //文本
 #define kH_OffsetTextWithHead        (20)//水平方向文本和头像的距离
 #define kMaxOffsetText               (45)//文本最长时，为了不让文本分行显示，需要和屏幕对面保持一定距离
@@ -37,15 +37,8 @@
     
     if (self)
     {
-        if (isSender)//是我自己发送的
-        {
-            mBubbleImageView.image = [[UIImage imageNamed:@"chat_send_imagemask@2x"] stretchableImageWithLeftCapWidth:30 topCapHeight:30];
-            
-        }else//别人发送的消息
-        {
-            mBubbleImageView.image = [[UIImage imageNamed:@"chat_recive_imagemask@2x"]stretchableImageWithLeftCapWidth:30 topCapHeight:30];
-        }
         
+        mBubbleImageView.image = [UIImage imageNamed:@""];
         mImageView = [UIImageView newAutoLayoutView];
         mImageView.contentMode = UIViewContentModeScaleAspectFit;
         mImageView.backgroundColor = [UIColor clearColor];
@@ -54,8 +47,8 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageBeenTaped:)];
         [mBubbleImageView addGestureRecognizer:tap];
         
-        [self.contentView insertSubview:mImageView atIndex:0];
-
+//        [self.contentView insertSubview:mImageView atIndex:0];
+        [self.contentView addSubview:mImageView];
         if (isSender)//是我自己发送的
         {
             [mBubbleImageView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:mImageView withOffset:0];
@@ -77,18 +70,27 @@
         if (isSender)//是自己发送的消息
         {
             inset = UIEdgeInsetsMake(top, traing, bottom, leading);
-            
+
             [mImageView autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeLeading];
-            
+
             [mImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
+            
             
         }else//是对方发送的消息
         {
+            top=top+30;
             inset = UIEdgeInsetsMake(top, leading, bottom, traing);
             
             [mImageView autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeTrailing];
-            
+
             [mImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
+            
+            [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self->mHead.mas_top).offset(0);
+                make.left.mas_equalTo(self->mBubbleImageView.mas_left);
+                make.right.mas_equalTo(-20);
+                make.height.mas_equalTo(15);
+            }];
         }
     }
     

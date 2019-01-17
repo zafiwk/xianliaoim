@@ -7,18 +7,13 @@
 //  https://github.com/weida-studio/QQ
 
 #import <UIKit/UIKit.h>
-#import <Hyphenate/Hyphenate.h>
-@class NSFetchedResultsController;
-
+#import "IMTools.h"
 /**
  *  @brief  聊天窗口
  */
 @interface WSChatTableViewController : UIViewController
-{
-    UITableView                *_tableView;
-}
-
-@property(nonatomic,strong,readonly)UITableView  *tableView;
+@property(nonatomic,strong)UITableView  *tableView;
 @property(nonatomic,strong)EMConversation* con;
 @property(nonatomic,strong)NSString* userName;
+@property(nonatomic,strong)EMGroup*  group;
 @end

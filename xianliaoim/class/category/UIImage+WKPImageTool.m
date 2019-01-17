@@ -16,4 +16,15 @@
     UIGraphicsEndImageContext();
     return scaledImage;   //返回的就是已经改变的图片
 }
+-(UIImage*)imageChangeColor:(UIColor*)color{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, [UIScreen mainScreen].scale);
+    [color setFill];
+    CGRect bounds = CGRectMake(0,0, self.size.width, self.size.height);
+    UIRectFill(bounds);
+    [self drawInRect:bounds blendMode:kCGBlendModeOverlay alpha:1.0f];
+    [self drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+    UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 @end

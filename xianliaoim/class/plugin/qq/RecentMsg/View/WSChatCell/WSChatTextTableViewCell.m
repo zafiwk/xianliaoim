@@ -86,6 +86,7 @@
 //            [mTextLable autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeTrailing];
 //
 //            [mTextLable autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:traing relation:NSLayoutRelationGreaterThanOrEqual];
+            top = top + 15;
             [mTextLable mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(top);
                 make.leading.mas_equalTo(leading);
@@ -94,6 +95,12 @@
                 make.trailing.mas_lessThanOrEqualTo(-traing).priorityHigh();
             }];
             //负数
+            [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self->mHead.mas_top).offset(0);
+                make.left.mas_equalTo(self->mBubbleImageView.mas_left);
+                make.right.mas_equalTo(-20);
+                make.height.mas_equalTo(15);
+            }];
         }
 
     }
@@ -119,7 +126,7 @@
     {
         [self becomeFirstResponder];
         
-        mBubbleImageView.highlighted = YES;
+//        mBubbleImageView.highlighted = YES;
         
     
 //        UIMenuItem *copy = [[UIMenuItem alloc]initWithTitle:@"复制" action:@selector(menuCopy:)];

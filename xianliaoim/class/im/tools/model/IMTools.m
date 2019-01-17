@@ -47,7 +47,11 @@ static IMTools* tools;
 //初始化IM
 -(void)setUpIM:(NSDictionary*)launchOptions{
     EMOptions* options = [EMOptions optionsWithAppkey:@"wkdlose#wkp-xianliao"];
-    options.apnsCertName = @"生产环境证书";
+#if DEBUG
+     options.apnsCertName = @"1122";;
+#else
+     options.apnsCertName = @"2233";;
+#endif
     [[EMClient sharedClient]initializeSDKWithOptions:options];
     
     //注册消息的接受
@@ -118,7 +122,7 @@ static IMTools* tools;
         if (error) {
             [MBProgressHUD showError:NSLocalizedString(@"消息发送失败", nil) toView:nil];
             WKPLog(@"===================");
-            WKPLog(@"error:%@",error?error.description:@"");
+            WKPLog(@"error:%@",error?error.errorDescription:@"");
             return;
         }
         
@@ -149,13 +153,13 @@ static IMTools* tools;
     [self sendMessageWithEMMessage:message withBlock:block];
 }
 //发送语音消息
--(void)seedMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block{
+-(void)sendMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block{
     EMVoiceMessageBody* body=[[EMVoiceMessageBody alloc]initWithLocalPath:localPath displayName:name];
     EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self  curentUsername] to:userName body:body ext:ext];
     [self sendMessageWithEMMessage:message withBlock:block];
 }
 //发送视频消息
--(void)seedMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block{
+-(void)sendMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(NSString*)userName withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block{
     EMVideoMessageBody* body=[[EMVideoMessageBody alloc]initWithLocalPath:localPath displayName:name];
     EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self  curentUsername] to:userName body:body ext:nil];
     [self sendMessageWithEMMessage:message withBlock:block];
@@ -446,5 +450,84 @@ static IMTools* tools;
             [[NSNotificationCenter defaultCenter] postNotificationName:MessageCallVC object:nil userInfo:@{MessageCallSession:aCallSession}];
         }
     }];
+}
+
+//群相关
+-(NSArray*)getGroupArray{
+    EMError *error = nil;
+    NSArray *myGroups = [[EMClient sharedClient].groupManager getJoinedGroupsFromServerWithPage:1 pageSize:50 error:&error];
+    if (!error) {
+       
+    }
+    NSArray *groupList = [[EMClient sharedClient].groupManager getJoinedGroups];
+    return groupList;
+}
+
+
+//发送文本消息
+-(void)sendGroupMessageWithText:(NSString*)text withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block{
+    EMTextMessageBody* body=[[EMTextMessageBody alloc]initWithText:text];
+    EMMessage* mesage=[[EMMessage alloc]initWithConversationID:conversationId from:[self curentUsername] to:group.groupId body:body ext:@{@"subject":group.subject}];
+    [self sendGroupWithMessage:mesage withBlock:block];
+}
+//发送图片消息
+-(void)sendGroupMessageWithUIImage:(UIImage*)image withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block{
+    EMImageMessageBody* body=[[EMImageMessageBody alloc]initWithData:UIImagePNGRepresentation(image) displayName:@"图片.png"];
+    EMMessage* message = [[EMMessage alloc]initWithConversationID:conversationId from:[self curentUsername] to:group.groupId body:body ext:@{@"subject":group.subject}];
+    [self sendGroupWithMessage:message withBlock:block];
+}
+//发送地理位置
+-(void)sendGroupMessageWithLatitude:(CGFloat)latitude withLongitude:(CGFloat)longitude withAddress:(NSString*)address withUser:(EMGroup*)group withConversationID:(NSString*)conversationId
+                     withBlock:(IMToolsBlock)block{
+    EMLocationMessageBody* body=[[EMLocationMessageBody alloc]initWithLatitude:latitude longitude:longitude address:address];
+    EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self curentUsername] to:group.groupId body:body ext:@{@"subject":group.subject}];
+    [self sendGroupWithMessage:message  withBlock:block];
+}
+//发送语音消息
+-(void)sendGroupMessageWithVoiceLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withInfo:(NSDictionary*)ext withBlock:(IMToolsBlock)block{
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    [dict addEntriesFromDictionary:ext];
+    dict[@"subject"]=group.subject;
+    EMVoiceMessageBody* body=[[EMVoiceMessageBody alloc]initWithLocalPath:localPath displayName:name];
+    EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self  curentUsername] to:group.groupId body:body ext:dict];
+    [self sendGroupWithMessage:message withBlock:block];
+}
+//发送视频消息
+-(void)sendGroupMessageWithVideoLocalPath:(NSString*)localPath withDisplayName:(NSString*)name withUser:(EMGroup*)group withConversationID:(NSString*)conversationId withBlock:(IMToolsBlock)block{
+    EMVideoMessageBody* body=[[EMVideoMessageBody alloc]initWithLocalPath:localPath displayName:name];
+    EMMessage* message=[[EMMessage alloc]initWithConversationID:conversationId from:[self  curentUsername] to:group.groupId body:body ext:@{@"subject":group.subject}];
+   [self sendGroupWithMessage:message withBlock:block];
+}
+
+-(void)sendGroupWithMessage:(EMMessage*)message  withBlock:(IMToolsBlock)block{
+    message.chatType=EMChatTypeGroupChat;
+    [[EMClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
+        WKPLog(@"消息上传进度:%d",progress);
+    }completion:^(EMMessage *message, EMError *error) {
+        WKPLog(@"消息发送回调");
+        if (error) {
+            [MBProgressHUD showError:NSLocalizedString(@"消息发送失败", nil) toView:nil];
+            WKPLog(@"===================");
+            WKPLog(@"error:%@",error?error.errorDescription:@"");
+            return;
+        }
+        
+        
+        if (block) {
+            block(message,error);
+        }
+    }];
+}
+//新建一个群会话
+-(EMConversation*)createConversationWithGroup:(EMGroup*)group{
+     return [[EMClient sharedClient].chatManager getConversation:group.groupId type:EMConversationTypeGroupChat createIfNotExist:YES];
+}
+-(void)deleteGroup:(EMGroup*)group{
+   NSString* curentName  = [self curentUsername];
+    if ([group.owner isEqualToString:curentName]) {
+        [[EMClient sharedClient].groupManager destroyGroup:group.groupId];
+    }else{
+        [[EMClient sharedClient].groupManager leaveGroup:group.groupId error:nil];
+    }
 }
 @end

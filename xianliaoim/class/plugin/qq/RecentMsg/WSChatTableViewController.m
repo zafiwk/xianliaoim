@@ -17,7 +17,6 @@
 #import "WSChatMessageMoreView.h"
 #import "WKSelectPhotoPickerGroupVC.h"
 #import "FWNavigationController.h"
-#import "IMTools.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <MediaPlayer/MediaPlayer.h>
@@ -31,6 +30,7 @@
 #import "WKPPersonInfoVC.h"
 #import "WKPVideoCell.h"
 #import "NSString+WKPCategory.h"
+#import "WKPGroupInfo.h"
 #define kBkColorTableView    ([UIColor colorWithRed:0.773 green:0.855 blue:0.824 alpha:1])
 
 
@@ -58,25 +58,21 @@
 
 @implementation WSChatTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-    
-    
-    
     UIEdgeInsets inset = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.view addSubview:self.tableView];
     [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeBottom];
-    
-    
+
+
     [self.view addSubview:self.inputBar];
     [self.inputBar autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeTop];
     [self.inputBar autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.tableView];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moreBtnChlick:) name:moreBtnClickNoti object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReceive:) name:MessageReceive object:nil];
-    
+
     EMMessage* lastMessage = [self.con latestMessage];
     WKPLog(@"lastMessag:%lld",lastMessage.timestamp);
     if(lastMessage){
@@ -84,34 +80,38 @@
         [self.dataArray addObject:[lastMessage model]];
         [self loadMoreMsgWithMessage:lastMessage withScrollToBottom:YES];
     }
-    
-    
+
+
     UITapGestureRecognizer* tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGrClick)];
     [self.tableView addGestureRecognizer:tapGR];
-    
+
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iStreamline"] style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
     self.navigationItem.rightBarButtonItem=rightItem;
     rightItem.tintColor = [UIColor whiteColor];
-    
-    
+
+
     self.locationManager  = [[CLLocationManager alloc]init];
-    
+
     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
+
+    
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    WKPLog(@"WSChatTableViewController   ----dealloc");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    IMTools* tools = [IMTools defaultInstance];
-    RemarkModel* model = [tools queryRemarkNameByName:self.userName];
-    if (model) {
-        self.navigationItem.title = model.remarkName;
+    if (self.con.type == EMConversationTypeChat) {
+        IMTools* tools = [IMTools defaultInstance];
+        RemarkModel* model = [tools queryRemarkNameByName:self.userName];
+        if (model) {
+            self.navigationItem.title = model.remarkName;
+        }
     }
     [self scrollToBottom:NO];
 }
@@ -218,15 +218,18 @@
                 //                MPMoviePlayerViewController* vc=nil; 被弃用 使用AVPlayerViewController
                 EMMessageBody *msgBody = model.message.body;
                 EMVideoMessageBody *body = (EMVideoMessageBody *)msgBody;
-                if (body.downloadStatus ==EMDownloadStatusSucceed||model.content.length!=0) {
+                WKPLog(@"model:%@ downloadStatus:%d",model.content,body.downloadStatus);
+                
+                NSFileManager* fileManager = [NSFileManager defaultManager];
+                if (body.downloadStatus ==EMDownloadStatusSucceed&&[fileManager fileExistsAtPath:model.content]) {
                     [self playVideoWithPath:model.content];
                 }else{
                     WKPLog(@"需要下载短视频");
                     __weak  typeof(self) weakSelf  = self;
                     MBProgressHUD* hud=[MBProgressHUD showMessage:NSLocalizedString(@"视频下载中", nil) toView:self.view];
-//                    [[EMClient sharedClient].chatManager downloadMessageThumbnail:model.message progress:nil completion:^(EMMessage *message, EMError *error) {
-//                       
-//                    }];
+                    //                    [[EMClient sharedClient].chatManager downloadMessageThumbnail:model.message progress:nil completion:^(EMMessage *message, EMError *error) {
+                    //
+                    //                    }];
                     [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:^(int progress) {
                         
                     } completion:^(EMMessage *message, EMError *error) {
@@ -242,7 +245,7 @@
                         WKPLog(@"下载好了视频");
                     }];
                 }
-             
+                
             }
         }
             break;
@@ -311,9 +314,16 @@
     }
     
     IMTools* imTools = [IMTools defaultInstance];
-    [imTools sendMessageWithText:userInfo[@"text"] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  obj, EMError *  error) {
-        [self addModel:newModel];
-    }];
+    if (self.con.type == EMConversationTypeChat) {
+        [imTools sendMessageWithText:userInfo[@"text"] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(id  obj, EMError *  error) {
+            [self addModel:newModel];
+        }];
+    }else{
+        [imTools sendGroupMessageWithText:userInfo[@"text"] withUser:self.group   withConversationID:self.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+            [self addModel:newModel];
+        }];
+    }
+    
 }
 
 
@@ -334,8 +344,9 @@
     _tableView.dataSource           =   self;
     _tableView.keyboardDismissMode  =   UIScrollViewKeyboardDismissModeOnDrag;
     
+    __weak  typeof(self) weakSelf = self;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self  loadMoreMsg];
+        [weakSelf  loadMoreMsg];
     }];
     [_tableView registerClass:[WSChatTextTableViewCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@1,@(WSChatCellType_Text))];
     [_tableView registerClass:[WSChatTextTableViewCell class] forCellReuseIdentifier:kCellReuseIDWithSenderAndType(@0,@(WSChatCellType_Text))];
@@ -366,6 +377,7 @@
     _inputBar = [[WSChatMessageInputBar alloc]init];
     _inputBar.translatesAutoresizingMaskIntoConstraints = NO;
     _inputBar.delegate = self;
+    _inputBar.con  =self.con;
     return _inputBar;
 }
 
@@ -378,11 +390,13 @@
 
 
 -(void)scrollToBottom:(BOOL)animated{    //让其滚动到底部
+    //GCD释放了block 强引用不会导致内存泄露
+    __weak  typeof(self) weakSelf  = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-        NSInteger row = self.dataArray.count;
+        [weakSelf.tableView reloadData];
+        NSInteger row = weakSelf.dataArray.count;
         if (row >= 1&&animated){
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
         }
     });
 }
@@ -448,14 +462,25 @@
                 for (NSUInteger i=0;i<array.count;i++ ) {
                     UIImage * image =array[i];
                     IMTools* tools=[IMTools defaultInstance];
-                    [tools sendMessageWithUIImage:image withUser:weakSelf.userName withConversationID:weakSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
-                        WSChatModel *newModel = [[WSChatModel alloc]init];;
-                        newModel.chatCellType = @(WSChatCellType_Image);
-                        newModel.isSender     = @(YES);
-                        newModel.timeStamp    = [NSDate date];
-                        newModel.sendingImage =image ;
-                        [self addModel:newModel];
-                    }];
+                    if (self.con.type == EMConversationTypeChat) {
+                        [tools sendMessageWithUIImage:image withUser:weakSelf.userName withConversationID:weakSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+                            WSChatModel *newModel = [[WSChatModel alloc]init];;
+                            newModel.chatCellType = @(WSChatCellType_Image);
+                            newModel.isSender     = @(YES);
+                            newModel.timeStamp    = [NSDate date];
+                            newModel.sendingImage =image ;
+                            [self addModel:newModel];
+                        }];
+                    }else{
+                        [tools sendGroupMessageWithUIImage:image withUser:self.group withConversationID:weakSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+                            WSChatModel *newModel = [[WSChatModel alloc]init];;
+                            newModel.chatCellType = @(WSChatCellType_Image);
+                            newModel.isSender     = @(YES);
+                            newModel.timeStamp    = [NSDate date];
+                            newModel.sendingImage =image ;
+                            [self addModel:newModel];
+                        }];
+                    }
                 }
             };
             //            [self.navigationController pushViewController:vc animated:YES];
@@ -467,88 +492,98 @@
             break;
         case 1:{
             //电话
-            IMTools* tools = [IMTools defaultInstance];
-            NSString* message = [NSString stringWithFormat:@"%@%@",[[EMClient sharedClient] currentUsername],NSLocalizedString(@"发起了语音聊天", nil)];
-            [tools sendMessageWithText:[message substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
-                WSChatModel* model = [obj model];
-                [self addModel:model];
-                [tools sendAudioCall:self.userName];
-            }];
-            NSLog(@"selectIndex:1");
+            NSLog(@"self.con.type=================>%d",self.con.type);
+            if(self.con.type == EMConversationTypeChat){
+                [self sendVoiceChat];
+            }else{
+                [self sendLocal];
+            }
         }
             break;
             
         case 2:{
-            IMTools* tools = [IMTools defaultInstance];
-            NSString* message = [NSString stringWithFormat:@"%@%@",[[EMClient sharedClient] currentUsername],NSLocalizedString(@"发起了视频聊天", nil)];
-            [tools sendMessageWithText:[message  substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage*   obj, EMError * _Nonnull error) {
-                WSChatModel* model = [obj model];
-                [self addModel:model];
-                [tools sendVideoCall:self.userName];
-            }];
-            //视频电话
-            NSLog(@"selectIndex:2");
+            if(self.con.type == EMConversationTypeChat){
+                [self sendVideoChat];
+            }else{
+                [self sendVideo];
+            }
         }
             break;
             
         case 3:{
-            //文件
-            
-            
-            if ([CLLocationManager locationServicesEnabled]) {
-                
-                //设置定位的精确
-                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-                //设置最小跟新的距离
-                self.locationManager.distanceFilter = 100;
-                
-                self.locationManager.delegate= self;
-                
-                [self.locationManager startUpdatingLocation];
-                
-                self.hud = [MBProgressHUD showMessage:NSLocalizedString(@"定位获取中", nil) toView:self.view];
-                
-                
-                
-            }else{
-                
-                //                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                //                if([[UIApplication sharedApplication] canOpenURL:url]){
-                //                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-                //
-                //                    }];
-                //                }
-                //                return;
-                [MBProgressHUD showError:NSLocalizedString(@"请在设置中打开定位", nil) toView:self.view];
-            }
-            
+            [self sendLocal];
         }
             break;
             
         case 4:{
-            //位置
-            WKPLog(@"短视频");
-            if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-                return;
-            }
-            UIImagePickerController* imagePicker=[[UIImagePickerController alloc]init];
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePicker.delegate =self;
-            imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//设置后置摄像头
-            imagePicker.mediaTypes =@[(NSString*)kUTTypeMovie];//默认是图片这里设置movie
-            imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头是录像模式
-            imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;//设置视频质量
-            
-            [self presentViewController:imagePicker animated:YES completion:^{
-                
-            }];
-            break;
+            [self sendVideo];
         }
+            break;
+            
         default:
             break;
     }
 }
 
+-(void)sendVoiceChat{
+    IMTools* tools = [IMTools defaultInstance];
+    NSString* message = [NSString stringWithFormat:@"%@%@",[[EMClient sharedClient] currentUsername],NSLocalizedString(@"发起了语音聊天", nil)];
+    [tools sendMessageWithText:[message substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
+        WSChatModel* model = [obj model];
+        [self addModel:model];
+        [tools sendAudioCall:self.userName];
+    }];
+    NSLog(@"selectIndex:1");
+}
+-(void)sendVideoChat{
+    IMTools* tools = [IMTools defaultInstance];
+    NSString* message = [NSString stringWithFormat:@"%@%@",[[EMClient sharedClient] currentUsername],NSLocalizedString(@"发起了视频聊天", nil)];
+    [tools sendMessageWithText:[message  substringFromIndex:3] withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage*   obj, EMError * _Nonnull error) {
+        WSChatModel* model = [obj model];
+        [self addModel:model];
+        [tools sendVideoCall:self.userName];
+    }];
+    //视频电话
+    NSLog(@"selectIndex:2");
+}
+
+-(void)sendLocal{
+    if ([CLLocationManager locationServicesEnabled]) {
+        //设置定位的精确
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设置最小跟新的距离
+        self.locationManager.distanceFilter = 100;
+        self.locationManager.delegate= self;
+        [self.locationManager startUpdatingLocation];
+        self.hud = [MBProgressHUD showMessage:NSLocalizedString(@"定位获取中", nil) toView:self.view];
+    }else{
+        
+        //                NSURL* url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        //                if([[UIApplication sharedApplication] canOpenURL:url]){
+        //                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+        //
+        //                    }];
+        //                }
+        //                return;
+        [MBProgressHUD showError:NSLocalizedString(@"请在设置中打开定位", nil) toView:self.view];
+    }
+}
+-(void)sendVideo{
+    if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        return;
+    }
+    UIImagePickerController* imagePicker=[[UIImagePickerController alloc]init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePicker.delegate =self;
+    imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//设置后置摄像头
+    imagePicker.mediaTypes =@[(NSString*)kUTTypeMovie];//默认是图片这里设置movie
+    imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头是录像模式
+    imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;//设置视频质量
+    
+    [self presentViewController:imagePicker animated:YES completion:^{
+        
+    }];
+}
 
 #pragma mark CLLocationManagerDelegate
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
@@ -582,16 +617,30 @@
         NSString* localStr=[NSString stringWithFormat:@"%@ %@ %@",placemark.administrativeArea,placemark.locality,placemark.subLocality];
         IMTools* tools=[IMTools defaultInstance];
         CLLocationCoordinate2D coordtion=location.coordinate;
-        [tools sendMessageWithLatitude:coordtion.latitude withLongitude:coordtion.longitude withAddress:localStr withUser:waekSelf.userName withConversationID:waekSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
-            WSChatModel *newModel = [[WSChatModel alloc]init];;
-            newModel.chatCellType = @(WSChatCellType_local);
-            newModel.isSender     = @(YES);
-            newModel.timeStamp    = [NSDate date];
-            newModel.content      = localStr;
-            newModel.location =location;
-            [self addModel:newModel];
-            waekSelf.stopGetLocal = NO;
-        }];
+        
+        if (self.con.type == EMConversationTypeChat) {
+            [tools sendMessageWithLatitude:coordtion.latitude withLongitude:coordtion.longitude withAddress:localStr withUser:waekSelf.userName withConversationID:waekSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+                WSChatModel *newModel = [[WSChatModel alloc]init];;
+                newModel.chatCellType = @(WSChatCellType_local);
+                newModel.isSender     = @(YES);
+                newModel.timeStamp    = [NSDate date];
+                newModel.content      = localStr;
+                newModel.location =location;
+                [self addModel:newModel];
+                waekSelf.stopGetLocal = NO;
+            }];
+        }else{
+            [tools sendGroupMessageWithLatitude:coordtion.latitude withLongitude:coordtion.longitude withAddress:localStr withUser:waekSelf.group withConversationID:waekSelf.con.conversationId withBlock:^(id  _Nonnull obj, EMError * _Nonnull error) {
+                WSChatModel *newModel = [[WSChatModel alloc]init];;
+                newModel.chatCellType = @(WSChatCellType_local);
+                newModel.isSender     = @(YES);
+                newModel.timeStamp    = [NSDate date];
+                newModel.content      = localStr;
+                newModel.location =location;
+                [self addModel:newModel];
+                waekSelf.stopGetLocal = NO;
+            }];
+        }
     }];
 }
 
@@ -605,18 +654,31 @@
 -(void)voiceSavePath:(NSString*)path{
     [self.voiceTimer invalidate];
     self.voiceTimer = nil;
-    if (self.voiceS<1.5) {
+    if (self.voiceS<1.0) {
         [MBProgressHUD showSuccess:NSLocalizedString(@"录制时间过短", nil) toView:self.view];
         return;
     }
+    
     IMTools* tools=[IMTools defaultInstance];
-    [tools seedMessageWithVoiceLocalPath:path withDisplayName:@"语音消息" withUser:self.userName withConversationID:self.con.conversationId withInfo:@{@"time":@(self.voiceS)} withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
-        WSChatModel* model = [obj model];
-        model.secondVoice = @(self.voiceS);
-        model.content = path;
-        self.voiceS = 0;
-        [self addModel:model];
-    }];
+    
+    if (self.con.type ==EMConversationTypeChat) {
+        [tools sendMessageWithVoiceLocalPath:path withDisplayName:@"语音消息" withUser:self.userName withConversationID:self.con.conversationId withInfo:@{@"time":@(self.voiceS)} withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
+            WSChatModel* model = [obj model];
+            model.secondVoice = @(self.voiceS);
+            model.content = path;
+            self.voiceS = 0;
+            [self addModel:model];
+        }];
+    }else{
+        [tools sendGroupMessageWithVoiceLocalPath:path withDisplayName:@"语音消息" withUser:self.group withConversationID:self.con.conversationId withInfo:@{@"time":@(self.voiceS)} withBlock:^(EMMessage* obj, EMError * _Nonnull error) {
+            WSChatModel* model = [obj model];
+            model.secondVoice = @(self.voiceS);
+            model.content = path;
+            self.voiceS = 0;
+            [self addModel:model];
+        }];
+    }
+    
 }
 -(void)startRecord{
     self.voiceTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -660,10 +722,15 @@
 
 #pragma  mark setting
 -(void)setting{
-    WKPPersonInfoVC* vc=[[WKPPersonInfoVC alloc]initWithStyle:UITableViewStyleGrouped];
-    vc.username=self.userName;
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    if (self.con.type ==EMConversationTypeChat) {
+        WKPPersonInfoVC* vc=[[WKPPersonInfoVC alloc]initWithStyle:UITableViewStyleGrouped];
+        vc.username=self.userName;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        WKPGroupInfo* vc=[[WKPGroupInfo alloc]initWithStyle:UITableViewStyleGrouped];
+        vc.group = self.group;
+        [self.navigationController  pushViewController:vc animated:YES];
+    }
 }
 
 
@@ -736,12 +803,22 @@
             wait = nil;
             NSURL* newFileUrl = [[NSURL alloc]initFileURLWithPath:newPath];
             IMTools* tools=[IMTools defaultInstance];
-            [tools seedMessageWithVideoLocalPath:[newFileUrl path] withDisplayName:@"video.mp4" withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage * obj, EMError * _Nonnull error) {
-                WSChatModel* model = [obj model];
-                [self addModel:model];
-            }];
+            if (self.con.type == EMConversationTypeChat) {
+                [tools sendMessageWithVideoLocalPath:[newFileUrl path] withDisplayName:@"video.mp4" withUser:self.userName withConversationID:self.con.conversationId withBlock:^(EMMessage * obj, EMError * _Nonnull error) {
+                    WSChatModel* model = [obj model];
+                    [self addModel:model];
+                }];
+            }else{
+                [tools sendGroupMessageWithVideoLocalPath:[newFileUrl path] withDisplayName:@"video.mp4" withUser:self.group withConversationID:self.con.conversationId withBlock:^(EMMessage * obj, EMError * _Nonnull error) {
+                    WSChatModel* model = [obj model];
+                    [self addModel:model];
+                }];
+            }
         }
     }
     
 }
+
+
+
 @end

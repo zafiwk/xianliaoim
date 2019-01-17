@@ -65,23 +65,29 @@
     }
     EMMessage* lastMessage = [con  latestMessage];
     
-    
+
     WKPLog(@"--->消息的发送:%@   接受:%@",lastMessage.from,lastMessage.to);
-    NSString* currentName = [EMClient sharedClient].currentUsername;
-    NSString* name = nil;
-    if ([lastMessage.to isEqualToString:currentName]) {
-        name = lastMessage.from;
+    if (lastMessage.chatType  == EMChatTypeChat) {
+        NSString* currentName = [EMClient sharedClient].currentUsername;
+        NSString* name = nil;
+        if ([lastMessage.to isEqualToString:currentName]) {
+            name = lastMessage.from;
+        }else{
+            name= lastMessage.to;
+        }
+        
+        IMTools* tools = [IMTools defaultInstance];
+        RemarkModel* remarkModel = [tools queryRemarkNameByName:name];
+        if (remarkModel) {
+            self.username.text = remarkModel.remarkName;
+        }else{
+            self.username.text =[name substringFromIndex:3];
+        }
     }else{
-        name= lastMessage.to;
+        NSDictionary* ext  =lastMessage.ext;
+        self.username.text =ext[@"subject"];
     }
-    
-    IMTools* tools = [IMTools defaultInstance];
-    RemarkModel* remarkModel = [tools queryRemarkNameByName:name];
-    if (remarkModel) {
-        self.username.text = remarkModel.remarkName;
-    }else{
-        self.username.text =[name substringFromIndex:3];
-    }
+   
     WSChatModel* model = [lastMessage model];
     if ([model.chatCellType integerValue] == WSChatCellType_Text) {
         //        self.message.text = model.content;

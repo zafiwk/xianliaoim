@@ -10,6 +10,10 @@
 		23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1097A40771238DA78C4C001F /* Pods_xianliaoim.framework */; };
 		F21B592B21AD413800E43B5E /* RequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F21B592A21AD413800E43B5E /* RequestModel.m */; };
 		F21C148D21C20AB700883E5E /* WKPIPhoneTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F21C148C21C20AB700883E5E /* WKPIPhoneTools.m */; };
+		F21CD4F621EF03F500530A4D /* WKPCreateGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4F521EF03F500530A4D /* WKPCreateGroupVC.m */; };
+		F21CD4FA21EF0D4B00530A4D /* WKPCreateGroupVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4F821EF0D4B00530A4D /* WKPCreateGroupVCCell.m */; };
+		F21CD4FB21EF0D4B00530A4D /* WKPCreateGroupVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21CD4F921EF0D4B00530A4D /* WKPCreateGroupVCCell.xib */; };
+		F21CD4FD21EF295900530A4D /* WSMoreImageTitles1.plist in Resources */ = {isa = PBXBuildFile; fileRef = F21CD4FC21EF295900530A4D /* WSMoreImageTitles1.plist */; };
 		F221A4B421ABCB1A00E99B3F /* icon_image_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F221A49521ABCB1A00E99B3F /* icon_image_no@2x.png */; };
 		F221A4B521ABCB1A00E99B3F /* icon_image_no@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F221A49621ABCB1A00E99B3F /* icon_image_no@3x.png */; };
 		F221A4B621ABCB1A00E99B3F /* WKSelectPhotoPickerGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F221A49921ABCB1A00E99B3F /* WKSelectPhotoPickerGroupVC.m */; };
@@ -80,7 +84,6 @@
 		F24291DE21C14D9000E6EA4C /* WSChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F242912821C14D8E00E6EA4C /* WSChatTableViewController.m */; };
 		F24291E121C14D9000E6EA4C /* WSChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913121C14D8E00E6EA4C /* WSChatModel.m */; };
 		F24291E221C14D9000E6EA4C /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913221C14D8E00E6EA4C /* UIImageToDataTransformer.m */; };
-		F24291E421C14D9000E6EA4C /* WSRecentMsgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913721C14D8E00E6EA4C /* WSRecentMsgTableViewCell.m */; };
 		F24291E521C14D9000E6EA4C /* WSChatBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913C21C14D8E00E6EA4C /* WSChatBaseTableViewCell.m */; };
 		F24291E621C14D9000E6EA4C /* WSChatTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913E21C14D8E00E6EA4C /* WSChatTextTableViewCell.m */; };
 		F24291E721C14D9000E6EA4C /* WSChatImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F242913F21C14D8E00E6EA4C /* WSChatImageTableViewCell.m */; };
@@ -229,14 +232,14 @@
 		F257C7DD21BD506B00D9957A /* WKPAddFriendRequestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F257C7DC21BD506B00D9957A /* WKPAddFriendRequestVC.m */; };
 		F257C7E121BD519000D9957A /* WKPAddFriendRequestVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F257C7DF21BD519000D9957A /* WKPAddFriendRequestVCCell.m */; };
 		F257C7E221BD519000D9957A /* WKPAddFriendRequestVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F257C7E021BD519000D9957A /* WKPAddFriendRequestVCCell.xib */; };
-		F262B7D021B2C4D20059DA23 /* UserProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F262B7CC21B2C4D20059DA23 /* UserProfileManager.m */; };
-		F262B7D121B2C4D20059DA23 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F262B7CD21B2C4D20059DA23 /* InvitationManager.m */; };
 		F26EAF4121CB7D7900A968DB /* EMMessage+WKPChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26EAF4021CB7D7900A968DB /* EMMessage+WKPChatModel.m */; };
 		F26EAF4721CBA0D800A968DB /* WKPMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F26EAF4621CBA0D800A968DB /* WKPMessageVC.m */; };
 		F26EAF4B21CBA1DD00A968DB /* WKPMessageVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26EAF4921CBA1DD00A968DB /* WKPMessageVCCell.m */; };
 		F26EAF4C21CBA1DD00A968DB /* WKPMessageVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26EAF4A21CBA1DD00A968DB /* WKPMessageVCCell.xib */; };
 		F26F463B21C28E94007398E2 /* UIResponder+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = F26F463A21C28E94007398E2 /* UIResponder+Router.m */; };
 		F26F463E21C28EE9007398E2 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F26F463D21C28EE9007398E2 /* UIImage+Utils.m */; };
+		F271D63621EF4F8A008E3587 /* WKPGroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F271D63521EF4F8A008E3587 /* WKPGroupInfo.m */; };
+		F271D63921EF5420008E3587 /* WKPGroupMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F271D63821EF5420008E3587 /* WKPGroupMembersVC.m */; };
 		F27963FE21AE709F0081D933 /* ContactHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F27963FD21AE709F0081D933 /* ContactHomeVC.m */; };
 		F279640421AE71D80081D933 /* ContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F279640221AE71D80081D933 /* ContactVCCell.m */; };
 		F279640521AE71D80081D933 /* ContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F279640321AE71D80081D933 /* ContactVCCell.xib */; };
@@ -309,8 +312,6 @@
 		F2CF036B21B1285A00D93C86 /* MBProgressHUD+WKPMBProgressHUDCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CF036A21B1285A00D93C86 /* MBProgressHUD+WKPMBProgressHUDCategory.m */; };
 		F2D645AE21BD28F9003B0A29 /* WKPAddFriendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D645AC21BD28F9003B0A29 /* WKPAddFriendVC.m */; };
 		F2D645AF21BD28F9003B0A29 /* WKPAddFriendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D645AD21BD28F9003B0A29 /* WKPAddFriendVC.xib */; };
-		F2D68CB821ACF365006F763B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D68CB621ACF365006F763B /* Parse.framework */; };
-		F2D68CB921ACF365006F763B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D68CB721ACF365006F763B /* Bolts.framework */; };
 		F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D68DCB21AD0A7C006F763B /* SDWebImage.framework */; };
 		F2F2331721C7CD4A0030DFAD /* WKPMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F2331621C7CD4A0030DFAD /* WKPMapVC.m */; };
 /* End PBXBuildFile section */
@@ -337,6 +338,12 @@
 		F21B592A21AD413800E43B5E /* RequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestModel.m; sourceTree = "<group>"; };
 		F21C148B21C20AB700883E5E /* WKPIPhoneTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPIPhoneTools.h; sourceTree = "<group>"; };
 		F21C148C21C20AB700883E5E /* WKPIPhoneTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPIPhoneTools.m; sourceTree = "<group>"; };
+		F21CD4F421EF03F500530A4D /* WKPCreateGroupVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPCreateGroupVC.h; sourceTree = "<group>"; };
+		F21CD4F521EF03F500530A4D /* WKPCreateGroupVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPCreateGroupVC.m; sourceTree = "<group>"; };
+		F21CD4F721EF0D4B00530A4D /* WKPCreateGroupVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPCreateGroupVCCell.h; sourceTree = "<group>"; };
+		F21CD4F821EF0D4B00530A4D /* WKPCreateGroupVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPCreateGroupVCCell.m; sourceTree = "<group>"; };
+		F21CD4F921EF0D4B00530A4D /* WKPCreateGroupVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPCreateGroupVCCell.xib; sourceTree = "<group>"; };
+		F21CD4FC21EF295900530A4D /* WSMoreImageTitles1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WSMoreImageTitles1.plist; sourceTree = "<group>"; };
 		F221A40F21ABC01A00E99B3F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F221A41121ABC02400E99B3F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F221A49521ABCB1A00E99B3F /* icon_image_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_image_no@2x.png"; sourceTree = "<group>"; };
@@ -433,7 +440,6 @@
 		F242913221C14D8E00E6EA4C /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageToDataTransformer.m; sourceTree = "<group>"; };
 		F242913421C14D8E00E6EA4C /* UIImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageToDataTransformer.h; sourceTree = "<group>"; };
 		F242913521C14D8E00E6EA4C /* WSChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatModel.h; sourceTree = "<group>"; };
-		F242913721C14D8E00E6EA4C /* WSRecentMsgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSRecentMsgTableViewCell.m; sourceTree = "<group>"; };
 		F242913921C14D8E00E6EA4C /* WSChatTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatTextTableViewCell.h; sourceTree = "<group>"; };
 		F242913A21C14D8E00E6EA4C /* WSChatImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatImageTableViewCell.h; sourceTree = "<group>"; };
 		F242913B21C14D8E00E6EA4C /* WSChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatTimeTableViewCell.h; sourceTree = "<group>"; };
@@ -444,7 +450,6 @@
 		F242914021C14D8E00E6EA4C /* WSChatVoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatVoiceTableViewCell.m; sourceTree = "<group>"; };
 		F242914121C14D8E00E6EA4C /* WSChatBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatBaseTableViewCell.h; sourceTree = "<group>"; };
 		F242914221C14D8E00E6EA4C /* WSChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatTimeTableViewCell.m; sourceTree = "<group>"; };
-		F242914321C14D8E00E6EA4C /* WSRecentMsgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSRecentMsgTableViewCell.h; sourceTree = "<group>"; };
 		F242914621C14D8E00E6EA4C /* WSChatMessageEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatMessageEmojiView.m; sourceTree = "<group>"; };
 		F242914721C14D8E00E6EA4C /* WSChatMessageEmojiCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSChatMessageEmojiCollectionCell.m; sourceTree = "<group>"; };
 		F242914821C14D8E00E6EA4C /* WSChatMessageEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSChatMessageEmojiView.h; sourceTree = "<group>"; };
@@ -608,10 +613,6 @@
 		F257C7DE21BD519000D9957A /* WKPAddFriendRequestVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPAddFriendRequestVCCell.h; sourceTree = "<group>"; };
 		F257C7DF21BD519000D9957A /* WKPAddFriendRequestVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPAddFriendRequestVCCell.m; sourceTree = "<group>"; };
 		F257C7E021BD519000D9957A /* WKPAddFriendRequestVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPAddFriendRequestVCCell.xib; sourceTree = "<group>"; };
-		F262B7CC21B2C4D20059DA23 /* UserProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileManager.m; sourceTree = "<group>"; };
-		F262B7CD21B2C4D20059DA23 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
-		F262B7CE21B2C4D20059DA23 /* UserProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileManager.h; sourceTree = "<group>"; };
-		F262B7CF21B2C4D20059DA23 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		F26EAF3F21CB7D7900A968DB /* EMMessage+WKPChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EMMessage+WKPChatModel.h"; sourceTree = "<group>"; };
 		F26EAF4021CB7D7900A968DB /* EMMessage+WKPChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "EMMessage+WKPChatModel.m"; sourceTree = "<group>"; };
 		F26EAF4521CBA0D800A968DB /* WKPMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPMessageVC.h; sourceTree = "<group>"; };
@@ -623,6 +624,11 @@
 		F26F463A21C28E94007398E2 /* UIResponder+Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Router.m"; sourceTree = "<group>"; };
 		F26F463C21C28EE9007398E2 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		F26F463D21C28EE9007398E2 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		F271D63321EF4F34008E3587 /* xianliaoim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xianliaoim.entitlements; sourceTree = "<group>"; };
+		F271D63421EF4F8A008E3587 /* WKPGroupInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPGroupInfo.h; sourceTree = "<group>"; };
+		F271D63521EF4F8A008E3587 /* WKPGroupInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPGroupInfo.m; sourceTree = "<group>"; };
+		F271D63721EF5420008E3587 /* WKPGroupMembersVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPGroupMembersVC.h; sourceTree = "<group>"; };
+		F271D63821EF5420008E3587 /* WKPGroupMembersVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPGroupMembersVC.m; sourceTree = "<group>"; };
 		F2760E2521E59E170074B50C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F27963FC21AE709F0081D933 /* ContactHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactHomeVC.h; sourceTree = "<group>"; };
 		F27963FD21AE709F0081D933 /* ContactHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactHomeVC.m; sourceTree = "<group>"; };
@@ -759,8 +765,6 @@
 		F2D645AB21BD28F9003B0A29 /* WKPAddFriendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPAddFriendVC.h; sourceTree = "<group>"; };
 		F2D645AC21BD28F9003B0A29 /* WKPAddFriendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPAddFriendVC.m; sourceTree = "<group>"; };
 		F2D645AD21BD28F9003B0A29 /* WKPAddFriendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKPAddFriendVC.xib; sourceTree = "<group>"; };
-		F2D68CB621ACF365006F763B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		F2D68CB721ACF365006F763B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F2D68DAF21AD0969006F763B /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D68DB121AD096C006F763B /* FLAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D68DB321AD0970006F763B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -792,8 +796,6 @@
 				F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */,
 				F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */,
 				F279A7AF21EB5C1F00918977 /* Hyphenate.framework in Frameworks */,
-				F2D68CB921ACF365006F763B /* Bolts.framework in Frameworks */,
-				F2D68CB821ACF365006F763B /* Parse.framework in Frameworks */,
 				F27E94EA21CCF9DA00301648 /* libopencore-amrwb.a in Frameworks */,
 				23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */,
 				F279A7B021EB5C7100918977 /* Hyphenate.framework in Frameworks */,
@@ -881,7 +883,6 @@
 				F221E9B721B94EB1002C4E94 /* FWNavigationController.h */,
 				F221E9B821B94EB1002C4E94 /* FWNavigationController.m */,
 				F221E98121B9406F002C4E94 /* ZFScan */,
-				F2D68CB521ACF365006F763B /* Parse */,
 				F221A49221ABCB1A00E99B3F /* WKPhotoKit */,
 			);
 			path = plugin;
@@ -1179,8 +1180,6 @@
 		F242913621C14D8E00E6EA4C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F242914321C14D8E00E6EA4C /* WSRecentMsgTableViewCell.h */,
-				F242913721C14D8E00E6EA4C /* WSRecentMsgTableViewCell.m */,
 				F242913821C14D8E00E6EA4C /* WSChatCell */,
 				F242914421C14D8E00E6EA4C /* WSMessageInputBar */,
 			);
@@ -1238,6 +1237,7 @@
 				F242914C21C14D8E00E6EA4C /* WSChatMessageMoreCollectionCell.h */,
 				F242914E21C14D8E00E6EA4C /* WSChatMessageMoreCollectionCell.m */,
 				F242914F21C14D8E00E6EA4C /* WSMoreImageTitles.plist */,
+				F21CD4FC21EF295900530A4D /* WSMoreImageTitles1.plist */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1443,17 +1443,6 @@
 			path = WaitAnimate;
 			sourceTree = "<group>";
 		};
-		F262B7CB21B2C4D20059DA23 /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-				F262B7CF21B2C4D20059DA23 /* InvitationManager.h */,
-				F262B7CD21B2C4D20059DA23 /* InvitationManager.m */,
-				F262B7CE21B2C4D20059DA23 /* UserProfileManager.h */,
-				F262B7CC21B2C4D20059DA23 /* UserProfileManager.m */,
-			);
-			path = "Core Data";
-			sourceTree = "<group>";
-		};
 		F26EAF4221CBA07900A968DB /* message */ = {
 			isa = PBXGroup;
 			children = (
@@ -1468,8 +1457,6 @@
 			children = (
 				F26EAF4521CBA0D800A968DB /* WKPMessageVC.h */,
 				F26EAF4621CBA0D800A968DB /* WKPMessageVC.m */,
-				F2CBD51121D7948100FD4569 /* WKPPersonInfoVC.h */,
-				F2CBD51221D7948100FD4569 /* WKPPersonInfoVC.m */,
 				F2CBD51721D798CD00FD4569 /* WKPRemark.h */,
 				F2CBD51821D798CD00FD4569 /* WKPRemark.m */,
 				F2CBD51921D798CD00FD4569 /* WKPRemark.xib */,
@@ -1490,6 +1477,10 @@
 		F27963FF21AE717B0081D933 /* vc */ = {
 			isa = PBXGroup;
 			children = (
+				F2CBD51121D7948100FD4569 /* WKPPersonInfoVC.h */,
+				F2CBD51221D7948100FD4569 /* WKPPersonInfoVC.m */,
+				F271D63421EF4F8A008E3587 /* WKPGroupInfo.h */,
+				F271D63521EF4F8A008E3587 /* WKPGroupInfo.m */,
 				F27963FC21AE709F0081D933 /* ContactHomeVC.h */,
 				F27963FD21AE709F0081D933 /* ContactHomeVC.m */,
 				F2D645AB21BD28F9003B0A29 /* WKPAddFriendVC.h */,
@@ -1497,6 +1488,10 @@
 				F2D645AD21BD28F9003B0A29 /* WKPAddFriendVC.xib */,
 				F257C7DB21BD506A00D9957A /* WKPAddFriendRequestVC.h */,
 				F257C7DC21BD506B00D9957A /* WKPAddFriendRequestVC.m */,
+				F21CD4F421EF03F500530A4D /* WKPCreateGroupVC.h */,
+				F21CD4F521EF03F500530A4D /* WKPCreateGroupVC.m */,
+				F271D63721EF5420008E3587 /* WKPGroupMembersVC.h */,
+				F271D63821EF5420008E3587 /* WKPGroupMembersVC.m */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -1513,6 +1508,9 @@
 				F257C7DE21BD519000D9957A /* WKPAddFriendRequestVCCell.h */,
 				F257C7DF21BD519000D9957A /* WKPAddFriendRequestVCCell.m */,
 				F257C7E021BD519000D9957A /* WKPAddFriendRequestVCCell.xib */,
+				F21CD4F721EF0D4B00530A4D /* WKPCreateGroupVCCell.h */,
+				F21CD4F821EF0D4B00530A4D /* WKPCreateGroupVCCell.m */,
+				F21CD4F921EF0D4B00530A4D /* WKPCreateGroupVCCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1770,6 +1768,7 @@
 		F2AE893A21ABBB1F00BDDE44 /* xianliaoim */ = {
 			isa = PBXGroup;
 			children = (
+				F271D63321EF4F34008E3587 /* xianliaoim.entitlements */,
 				F221A41221ABC30000E99B3F /* class */,
 				F2AE894421ABBB1F00BDDE44 /* Assets.xcassets */,
 				F2760E2521E59E170074B50C /* Info.plist */,
@@ -1869,16 +1868,6 @@
 			path = contact;
 			sourceTree = "<group>";
 		};
-		F2D68CB521ACF365006F763B /* Parse */ = {
-			isa = PBXGroup;
-			children = (
-				F262B7CB21B2C4D20059DA23 /* Core Data */,
-				F2D68CB621ACF365006F763B /* Parse.framework */,
-				F2D68CB721ACF365006F763B /* Bolts.framework */,
-			);
-			path = Parse;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1915,6 +1904,14 @@
 					F2AE893721ABBB1F00BDDE44 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2069,6 +2066,7 @@
 				F243E05E21E787B70083C3D3 /* animate_00073.png in Resources */,
 				F243E08321E787B70083C3D3 /* kbps_white@3x.png in Resources */,
 				F243E05F21E787B70083C3D3 /* animate_00067.png in Resources */,
+				F21CD4FB21EF0D4B00530A4D /* WKPCreateGroupVCCell.xib in Resources */,
 				F243E04721E787B70083C3D3 /* animate_00046.png in Resources */,
 				F243E06621E787B70083C3D3 /* animate_00060.png in Resources */,
 				F243E04921E787B70083C3D3 /* animate_00056.png in Resources */,
@@ -2084,6 +2082,7 @@
 				F243E08021E787B70083C3D3 /* invite_gray@2x.png in Resources */,
 				F221A4C121ABCB1A00E99B3F /* WKSelectPhotoPickerGroupVCCellTableViewCell.xib in Resources */,
 				F221E9A221B9406F002C4E94 /* ScanQR4@2x.png in Resources */,
+				F21CD4FD21EF295900530A4D /* WSMoreImageTitles1.plist in Resources */,
 				F26EAF4C21CBA1DD00A968DB /* WKPMessageVCCell.xib in Resources */,
 				F221E9A521B9406F002C4E94 /* Flashlight_H@2x.png in Resources */,
 				F243E07321E787B70083C3D3 /* kbps_gray@3x.png in Resources */,
@@ -2185,11 +2184,11 @@
 				F27E94ED21CCF9DA00301648 /* amrFileCodec.mm in Sources */,
 				F221A51A21ABCF6300E99B3F /* PopurVC.swift in Sources */,
 				F27E94D121CCF9DA00301648 /* EaseEmotionEscape.m in Sources */,
-				F24291E421C14D9000E6EA4C /* WSRecentMsgTableViewCell.m in Sources */,
 				F27E94EE21CCF9DA00301648 /* EMVoiceConverter.mm in Sources */,
 				F27E94F421CCF9DA00301648 /* EMAudioPlayerUtil.m in Sources */,
 				F221A4BB21ABCB1A00E99B3F /* WKSelectPhotoPickerData.m in Sources */,
 				F26F463E21C28EE9007398E2 /* UIImage+Utils.m in Sources */,
+				F21CD4F621EF03F500530A4D /* WKPCreateGroupVC.m in Sources */,
 				F27E94CE21CCF9DA00301648 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				F221A53D21ABCF6300E99B3F /* UserAccount.swift in Sources */,
 				F27E94D621CCF9DA00301648 /* EaseUserModel.m in Sources */,
@@ -2246,22 +2245,22 @@
 				F221E99C21B9406F002C4E94 /* ZFScanViewController.m in Sources */,
 				F27E94D221CCF9DA00301648 /* EaseEmojiEmoticons.m in Sources */,
 				F21C148D21C20AB700883E5E /* WKPIPhoneTools.m in Sources */,
+				F271D63621EF4F8A008E3587 /* WKPGroupInfo.m in Sources */,
 				F27E94CC21CCF9DA00301648 /* FixFopen.c in Sources */,
 				F24291E221C14D9000E6EA4C /* UIImageToDataTransformer.m in Sources */,
 				F221A50F21ABCF6300E99B3F /* HomeViewController.swift in Sources */,
 				F24291F421C14D9000E6EA4C /* ALView+PureLayout.m in Sources */,
 				F27E94F021CCF9DA00301648 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				F2CF036621B10CEE00D93C86 /* WKPSignUpVC.m in Sources */,
-				F262B7D121B2C4D20059DA23 /* InvitationManager.m in Sources */,
 				F29B064E21BBCFD0009829CE /* WKPQrCode.m in Sources */,
 				F24291F221C14D9000E6EA4C /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				F221A4C021ABCB1A00E99B3F /* WKCollectionViewCell.m in Sources */,
 				F221A53621ABCF6300E99B3F /* LoginVC.swift in Sources */,
 				F221A53B21ABCF6300E99B3F /* TitleBtn.swift in Sources */,
 				F221A51B21ABCF6300E99B3F /* PicCollectionViewCell.swift in Sources */,
-				F262B7D021B2C4D20059DA23 /* UserProfileManager.m in Sources */,
 				F2B7446821BA936A00EF2FFF /* WKPContactVCCell.m in Sources */,
 				F27E954121CCFE0800301648 /* NSString+WKPPNGString.m in Sources */,
+				F271D63921EF5420008E3587 /* WKPGroupMembersVC.m in Sources */,
 				F27E94CB21CCF9DA00301648 /* NSDateFormatter+Category.m in Sources */,
 				F27B90F221C7D8AC0024A16B /* WKPAnnotation.m in Sources */,
 				F221A51621ABCF6300E99B3F /* Status.swift in Sources */,
@@ -2297,6 +2296,7 @@
 				F243E02321E787B70083C3D3 /* EMCallViewController.m in Sources */,
 				F243E02821E787B70083C3D3 /* EMStreamView.m in Sources */,
 				F2CBD51321D7948100FD4569 /* WKPPersonInfoVC.m in Sources */,
+				F21CD4FA21EF0D4B00530A4D /* WKPCreateGroupVCCell.m in Sources */,
 				F29B065421BBF311009829CE /* UIImage+WKPImageTool.m in Sources */,
 				F221A53921ABCF6300E99B3F /* Tools.swift in Sources */,
 				F221A53A21ABCF6300E99B3F /* WelcomeVC.swift in Sources */,
@@ -2474,6 +2474,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = xianliaoim/xianliaoim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2U3ZPPSL6;
 				ENABLE_BITCODE = NO;
@@ -2513,6 +2514,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = xianliaoim/xianliaoim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2U3ZPPSL6;
 				ENABLE_BITCODE = NO;

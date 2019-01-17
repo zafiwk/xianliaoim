@@ -7,7 +7,7 @@
 //  https://github.com/weida-studio/QQ
 
 #import <UIKit/UIKit.h>
-
+#import "IMTools.h"
 @protocol WSChatMessageInputBarDelegate <NSObject>
 
 @optional
@@ -23,4 +23,5 @@
  */
 @interface WSChatMessageInputBar : UIView
 @property(nonatomic,weak) id<WSChatMessageInputBarDelegate> delegate;
+@property(nonatomic,strong)EMConversation* con;
 @end

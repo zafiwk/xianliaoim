@@ -7,7 +7,6 @@
 //
 #import "PublicHead.h"
 #import "WKPChangNickVC.h"
-#import "UserProfileManager.h"
 #import <Hyphenate/Hyphenate.h>
 @interface WKPChangNickVC ()
 
@@ -24,31 +23,31 @@
     [self.confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)confirmBtnClick{
-    NSString* nickName= self.input.text;
-    if (nickName.length>6||nickName.length==0) {
-        [MBProgressHUD showError:@"昵称长度不大于6个字符" toView:self.view];
-        return;
-    }
-    __weak  typeof(self) weakSelf=self;
-    MBProgressHUD* hud=[MBProgressHUD showMessage:@"请求发送中" toView:nil];
-    UserProfileManager* manager=[UserProfileManager sharedInstance];
-    [manager updateUserProfileInBackground:@{kPARSE_HXUSER_NICKNAME:nickName} completion:^(BOOL success, NSError *error) {
-\
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
-            if (error) {
-                NSLog(@"%@",error);
-                [MBProgressHUD showError:@"出错了,请稍后再试" toView:weakSelf.view];
-            }else{
-                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-            }
-        });
-        
-        EMClient* client=[EMClient sharedClient];
-        [manager loadUserProfileInBackground:@[[client currentUsername]] saveToLoacal:YES completion:^(BOOL success, NSError *error) {
-            
-        }];
-    }];
+//    NSString* nickName= self.input.text;
+//    if (nickName.length>6||nickName.length==0) {
+//        [MBProgressHUD showError:@"昵称长度不大于6个字符" toView:self.view];
+//        return;
+//    }
+//    __weak  typeof(self) weakSelf=self;
+//    MBProgressHUD* hud=[MBProgressHUD showMessage:@"请求发送中" toView:nil];
+//    UserProfileManager* manager=[UserProfileManager sharedInstance];
+//    [manager updateUserProfileInBackground:@{kPARSE_HXUSER_NICKNAME:nickName} completion:^(BOOL success, NSError *error) {
+//\
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [hud hideAnimated:YES];
+//            if (error) {
+//                NSLog(@"%@",error);
+//                [MBProgressHUD showError:@"出错了,请稍后再试" toView:weakSelf.view];
+//            }else{
+//                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//            }
+//        });
+//        
+//        EMClient* client=[EMClient sharedClient];
+//        [manager loadUserProfileInBackground:@[[client currentUsername]] saveToLoacal:YES completion:^(BOOL success, NSError *error) {
+//            
+//        }];
+//    }];
 }
 /*
 #pragma mark - Navigation

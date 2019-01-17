@@ -68,18 +68,18 @@
         [mCollectionView autoPinEdgesToSuperviewEdgesWithInsets:inset];
         
         
-        mPageControl = [[UIPageControl alloc]initForAutoLayout];
-        mPageControl.numberOfPages = 2;
-        mPageControl.userInteractionEnabled = NO;
-        mPageControl.backgroundColor = [UIColor clearColor];
-        mPageControl.currentPage  = 0;
-        mPageControl.currentPageIndicatorTintColor = kSelectedColorPageControl;
-        mPageControl.pageIndicatorTintColor  = kUnSelectedColorPageControl;
-        
-        [self addSubview:mPageControl];
-        
-        [mPageControl autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [mPageControl  autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-2];
+//        mPageControl = [[UIPageControl alloc]initForAutoLayout];
+//        mPageControl.numberOfPages = 2;
+//        mPageControl.userInteractionEnabled = NO;
+//        mPageControl.backgroundColor = [UIColor clearColor];
+//        mPageControl.currentPage  = 0;
+//        mPageControl.currentPageIndicatorTintColor = kSelectedColorPageControl;
+//        mPageControl.pageIndicatorTintColor  = kUnSelectedColorPageControl;
+//        
+//        [self addSubview:mPageControl];
+//        
+//        [mPageControl autoAlignAxisToSuperviewAxis:ALAxisVertical];
+//        [mPageControl  autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-2];
         
     }
     return self;
@@ -134,9 +134,16 @@
         return _DataSource;
     }
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"WSMoreImageTitles" ofType:@"plist"];;
-    
-    _DataSource = [NSArray arrayWithContentsOfFile:filePath];
+    if (self.con.type == EMConversationTypeChat) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"WSMoreImageTitles" ofType:@"plist"];;
+        
+        _DataSource = [NSArray arrayWithContentsOfFile:filePath];
+    }else{
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"WSMoreImageTitles1" ofType:@"plist"];;
+        
+        _DataSource = [NSArray arrayWithContentsOfFile:filePath];
+    }
+ 
     
     return _DataSource;
 }

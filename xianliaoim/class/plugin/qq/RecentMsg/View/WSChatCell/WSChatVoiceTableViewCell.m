@@ -9,6 +9,7 @@
 #import "WSChatVoiceTableViewCell.h"
 #import "EaseUI.h"
 #import "PublicHead.h"
+#import <Masonry/Masonry.h>
 #define kHMinOffsetSecondLable_supView            (40)  //水平方向上，秒数Lable和父控件之间最小间隙
 #define kHOffsetSecondLable_voiceImageView        (10)  //水平方向上，秒数Lable和喇叭ImageVIew之间的间隙
 #define kHOffsetSecondLable_BubbleView            (20)  //水平方向上，秒数Lable和气泡之间的间隙
@@ -58,6 +59,7 @@
         mVoiceImageView.animationDuration = 1;
         mVoiceImageView.animationRepeatCount = 0;
         
+        //自己发送的
         if (isSender)
         {
             mSecondLable.textAlignment = NSTextAlignmentRight;
@@ -95,7 +97,12 @@
         [mSecondLable autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:mBubbleImageView withOffset:kVOffsetSecondLable_BubbleView];
         [mVoiceImageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:mBubbleImageView];
         [mBubbleImageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.contentView];
-        
+        [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self->mHead.mas_top).offset(0);
+            make.left.mas_equalTo(self->mBubbleImageView.mas_left);
+            make.right.mas_equalTo(-20);
+            make.height.mas_equalTo(15);
+        }];
     }
     
     return self;
@@ -109,7 +116,7 @@
     //        model.content = [self makeContent:model.secondVoice];
     //    }
     //    mSecondLable.text = model.content;
-    WKPLog(@"model.secondVoice:%ld",[model.secondVoice integerValue]);
+//    WKPLog(@"model.secondVoice:%ld",[model.secondVoice integerValue]);
     if (model.secondVoice) {
         mSecondLable.text =[self makeContent:model.secondVoice];
     }

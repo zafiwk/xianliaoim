@@ -32,7 +32,8 @@
 
 -(UIImageView*)imageView{
     if (!_imageView) {
-        _imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        CGFloat h = UIHeight - CGRectGetMaxY(self.navigationController.navigationBar.frame);
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,UIWidth,h)];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imageView;
