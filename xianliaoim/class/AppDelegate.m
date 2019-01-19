@@ -19,7 +19,7 @@
 #import "Call1v1AudioViewController.h"
 #import "Call1v1VideoViewController.h"
 #import <UserNotifications/UserNotifications.h>
-@interface AppDelegate ()<UITabBarControllerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,UNUserNotificationCenterDelegate>
 @property(nonatomic,strong) FWNavigationController* navigationVC;
 @end
 
@@ -27,6 +27,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    WKPLog(@"launchOptions:%@",launchOptions);
     [self setUpUI];
     [self setUpIM:launchOptions];
     //    [self setUPParse:launchOptions];
@@ -56,6 +57,7 @@
     //    [[UIApplication sharedApplication] registerForRemoteNotifications];
     //
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate  =self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
             WKPLog(@"授权成功");
@@ -178,4 +180,9 @@
         [[EMClient sharedClient] bindDeviceToken:deviceToken];
     });
 }
+
+#pragma mark UNUserNotificationCenterDelegate
+//- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler{
+//    
+//}
 @end

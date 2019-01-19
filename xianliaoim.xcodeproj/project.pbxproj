@@ -243,9 +243,6 @@
 		F27963FE21AE709F0081D933 /* ContactHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F27963FD21AE709F0081D933 /* ContactHomeVC.m */; };
 		F279640421AE71D80081D933 /* ContactVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F279640221AE71D80081D933 /* ContactVCCell.m */; };
 		F279640521AE71D80081D933 /* ContactVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F279640321AE71D80081D933 /* ContactVCCell.xib */; };
-		F279A7AF21EB5C1F00918977 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F279A7AE21EB5C1E00918977 /* Hyphenate.framework */; };
-		F279A7B021EB5C7100918977 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F279A7AE21EB5C1E00918977 /* Hyphenate.framework */; };
-		F279A7B121EB5C7100918977 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F279A7AE21EB5C1E00918977 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F27B90F221C7D8AC0024A16B /* WKPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F27B90F121C7D8AC0024A16B /* WKPAnnotation.m */; };
 		F27E94C721CCF9DA00301648 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F27E93A521CCF9DA00301648 /* UIViewController+HUD.m */; };
 		F27E94C821CCF9DA00301648 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = F27E93A621CCF9DA00301648 /* NSDate+Category.m */; };
@@ -323,7 +320,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F279A7B121EB5C7100918977 /* Hyphenate.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,7 +631,6 @@
 		F279640121AE71D80081D933 /* ContactVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactVCCell.h; sourceTree = "<group>"; };
 		F279640221AE71D80081D933 /* ContactVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactVCCell.m; sourceTree = "<group>"; };
 		F279640321AE71D80081D933 /* ContactVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactVCCell.xib; sourceTree = "<group>"; };
-		F279A7AE21EB5C1E00918977 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F27B90F021C7D8AC0024A16B /* WKPAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPAnnotation.h; sourceTree = "<group>"; };
 		F27B90F121C7D8AC0024A16B /* WKPAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPAnnotation.m; sourceTree = "<group>"; };
 		F27E939F21CCF9DA00301648 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
@@ -795,10 +790,8 @@
 				F27E94EB21CCF9DA00301648 /* libopencore-amrnb.a in Frameworks */,
 				F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */,
 				F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */,
-				F279A7AF21EB5C1F00918977 /* Hyphenate.framework in Frameworks */,
 				F27E94EA21CCF9DA00301648 /* libopencore-amrwb.a in Frameworks */,
 				23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */,
-				F279A7B021EB5C7100918977 /* Hyphenate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,7 +869,6 @@
 		F221A49121ABCA4400E99B3F /* plugin */ = {
 			isa = PBXGroup;
 			children = (
-				F279A7AE21EB5C1E00918977 /* Hyphenate.framework */,
 				F243DF9721E787B60083C3D3 /* Call */,
 				F27E939E21CCF9DA00301648 /* EaseUI */,
 				F242901621C1472400E6EA4C /* qq */,
