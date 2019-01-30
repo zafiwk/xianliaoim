@@ -20,12 +20,12 @@
 #import "Call1v1VideoViewController.h"
 #import <UserNotifications/UserNotifications.h>
 @interface AppDelegate ()<UITabBarControllerDelegate,UNUserNotificationCenterDelegate>
-@property(nonatomic,strong) FWNavigationController* navigationVC;
-@end
+    @property(nonatomic,strong) FWNavigationController* navigationVC;
+    @end
 
 @implementation AppDelegate
-
-
+    
+    
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     WKPLog(@"launchOptions:%@",launchOptions);
     [self setUpUI];
@@ -67,14 +67,16 @@
     }];
     //向APNs请求token
     [[UIApplication sharedApplication] registerForRemoteNotifications];
+//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+//    [application registerUserNotificationSettings:settings];
     return YES;
 }
-
+    
 -(void)setUpIM:(NSDictionary*)launchOptions{
     IMTools* tools = [IMTools defaultInstance];
     [tools setUpIM:launchOptions];
 }
-
+    
 -(void)setUpUI{
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -118,29 +120,29 @@
     //    self.window.rootViewController=loginC;
     [self.window makeKeyAndVisible];
 }
-// APP进入后台
+    // APP进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [[EMClient sharedClient] applicationDidEnterBackground:application];
-}
-
-// APP将要从后台返回
+    {
+        [[EMClient sharedClient] applicationDidEnterBackground:application];
+    }
+    
+    // APP将要从后台返回
 - (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [[EMClient sharedClient] applicationWillEnterForeground:application];
-}
+    {
+        [[EMClient sharedClient] applicationWillEnterForeground:application];
+    }
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
     [[SDImageCache sharedImageCache] clearMemory];
     [[SDWebImageManager sharedManager] cancelAll];
 }
 #pragma mark UITabBarControllerDelegate
-
+    
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     if ([viewController isKindOfClass:[FWNavigationController class]]) {
         self.navigationVC=(FWNavigationController*)viewController;
     }
 }
-
+    
 -(void)callNotification:(NSNotification*)noti{
     if (self.callVC) {
         return;
@@ -165,8 +167,8 @@
     }
     
 }
-
-// 将得到的deviceToken传给SDK
+    
+    // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     WKPLog(@"获取了token");
     NSMutableString *deviceTokenString1 = [NSMutableString string];
@@ -180,9 +182,48 @@
         [[EMClient sharedClient] bindDeviceToken:deviceToken];
     });
 }
-
+    
 #pragma mark UNUserNotificationCenterDelegate
-//- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler{
-//    
-//}
+//在application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 之前
+//1.下面这个代理方法，只会是app处于前台状态 前台状态 and 前台状态下才会走，后台模式下是不会走这里的
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+}
+    
+//2.下面这个代理方法，只会是用户点击消息才会触发，如果使用户长按（3DTouch）、弹出Action页面等并不会触发。点击Action的时候会触发！
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+    //收到推送对象
+    UNNotificationRequest* request = response.notification.request;
+    //收到的推送内容
+    UNNotificationContent* content = request.content;
+    //收到用户的基本信息
+    NSDictionary* userInfo = content.userInfo;
+    //手打推送的的角标
+    NSNumber* badge =content.badge;
+    //收到的推送消息
+    NSString* body=content.body;
+    //推送消息的声音
+    UNNotificationSound* sound = content.sound;
+    //推送的消息的副标题
+    NSString* subtitle = content.subtitle;
+    //推送消息的标题
+    NSString* title =content.title;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]){
+        WKPLog(@"远程通知");
+        WKPLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
+    }else{
+        // 判断为本地通知
+        //此处省略一万行需求代码。。。。。。
+        WKPLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
+    }
+    
+    
+    completionHandler();
+}
+//兼容ios7
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"iOS7及以上系统，收到通知:%@", userInfo);
+    
+    //此处省略一万行需求代码。。。。。。
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 @end

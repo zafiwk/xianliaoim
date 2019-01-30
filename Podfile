@@ -20,7 +20,6 @@ target 'xianliaoim' do
 
 
   # Pods for xianliaoim
-  #  pod 'Hyphenate'
   #  pod 'EaseMobSDKFull'
     #   pod 'TTTAttributedLabel'
     #	pod 'XXNibBridge'
@@ -47,4 +46,5 @@ target 'xianliaoim' do
     pod 'MJRefresh'
     pod 'Masonry'
     pod 'AFNetworking'
+    pod 'Hyphenate'
 end

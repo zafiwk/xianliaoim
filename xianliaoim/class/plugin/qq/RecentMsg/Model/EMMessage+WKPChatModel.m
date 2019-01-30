@@ -112,20 +112,20 @@
                 UIImage* image= [UIImage imageWithData:imageData];
                 model.sendingImage =image;
             }
-            
-            WKPLog(@"视频remote路径 -- %@"      ,body.remotePath);
-            WKPLog(@"视频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在
-            WKPLog(@"视频的secret -- %@"        ,body.secretKey);
-            WKPLog(@"视频文件大小 -- %lld"       ,body.fileLength);
-            WKPLog(@"视频文件的下载状态 -- %lu"   ,body.downloadStatus);
-            WKPLog(@"视频的时间长度 -- %lu"      ,body.duration);
-            WKPLog(@"视频的W -- %f ,视频的H -- %f", body.thumbnailSize.width, body.thumbnailSize.height);
-            
-            // 缩略图sdk会自动下载
-            WKPLog(@"缩略图的remote路径 -- %@"     ,body.thumbnailRemotePath);
-            WKPLog(@"缩略图的local路径 -- %@"      ,body.thumbnailLocalPath);
-            WKPLog(@"缩略图的secret -- %@"        ,body.thumbnailSecretKey);
-            WKPLog(@"缩略图的下载状态 -- %lu"      ,body.thumbnailDownloadStatus);
+//            
+//            WKPLog(@"视频remote路径 -- %@"      ,body.remotePath);
+//            WKPLog(@"视频local路径 -- %@"       ,body.localPath); // 需要使用sdk提供的下载方法后才会存在
+//            WKPLog(@"视频的secret -- %@"        ,body.secretKey);
+//            WKPLog(@"视频文件大小 -- %lld"       ,body.fileLength);
+//            WKPLog(@"视频文件的下载状态 -- %lu"   ,body.downloadStatus);
+//            WKPLog(@"视频的时间长度 -- %lu"      ,body.duration);
+//            WKPLog(@"视频的W -- %f ,视频的H -- %f", body.thumbnailSize.width, body.thumbnailSize.height);
+//            
+//            // 缩略图sdk会自动下载
+//            WKPLog(@"缩略图的remote路径 -- %@"     ,body.thumbnailRemotePath);
+//            WKPLog(@"缩略图的local路径 -- %@"      ,body.thumbnailLocalPath);
+//            WKPLog(@"缩略图的secret -- %@"        ,body.thumbnailSecretKey);
+//            WKPLog(@"缩略图的下载状态 -- %lu"      ,body.thumbnailDownloadStatus);
             
         }
             break;
