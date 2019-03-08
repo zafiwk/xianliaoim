@@ -1011,11 +1011,11 @@
 			children = (
 				F221A4D821ABCF6200E99B3F /* PopurVC.swift */,
 				F221A4D721ABCF6200E99B3F /* PopurVC.xib */,
-				F221A4D921ABCF6200E99B3F /* PicCollectionViewCell.swift */,
 				F221A4DA21ABCF6200E99B3F /* HomeCell.swift */,
 				F221A4DD21ABCF6200E99B3F /* HomeCell.xib */,
 				F221A4DB21ABCF6200E99B3F /* PicCollectionView.swift */,
 				F221A4DC21ABCF6200E99B3F /* PicCollectionViewCell.xib */,
+				F221A4D921ABCF6200E99B3F /* PicCollectionViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1915,7 +1915,6 @@
 				Base,
 				"zh-Hans",
 				"zh-Hant",
-				en,
 			);
 			mainGroup = F2AE892F21ABBB1F00BDDE44;
 			productRefGroup = F2AE893921ABBB1F00BDDE44 /* Products */;
@@ -2108,7 +2107,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
@@ -2145,7 +2144,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2F7FD7AAFA3313ADA24D3461 /* [CP] Check Pods Manifest.lock */ = {

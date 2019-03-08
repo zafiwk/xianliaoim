@@ -19,7 +19,9 @@ alpha:1.f]
 
 #define  UIWidth  [UIScreen mainScreen].bounds.size.width
 #define  UIHeight [UIScreen mainScreen].bounds.size.height
+//swift调用oc
 #import "xianliaoim-Bridging-Header.h"
+//oc调用swift
 #import "xianliaoim-Swift.h"
 #import "MBProgressHUD+WKPMBProgressHUDCategory.h"
 

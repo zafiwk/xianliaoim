@@ -27,11 +27,11 @@ class HomeCell: UITableViewCell {
     @IBOutlet weak var contenLabel: HYLabel!
     
     
-    @IBOutlet weak var zanBtn: UIButton!
-    
-    @IBOutlet weak var commentBtn: UIButton!
-    
-    @IBOutlet weak var forwardBtn: UIButton!
+//    @IBOutlet weak var zanBtn: UIButton!
+//    
+//    @IBOutlet weak var commentBtn: UIButton!
+//    
+//    @IBOutlet weak var forwardBtn: UIButton!
     
     @IBOutlet weak var picView: PicCollectionView!
     
@@ -47,14 +47,14 @@ class HomeCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         iconImage.layer.cornerRadius = 20
-        zanBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0);
-        zanBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10);
-       
-        commentBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0);
-        commentBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10);
-        
-        forwardBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0);
-        forwardBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10);
+//        zanBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0);
+//        zanBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10);
+//
+//        commentBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0);
+//        commentBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10);
+//
+//        forwardBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0);
+//        forwardBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10);
         
         
         
