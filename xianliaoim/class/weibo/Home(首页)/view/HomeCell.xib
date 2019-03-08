@@ -58,29 +58,29 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csh-85-csU">
-                        <rect key="frame" x="0.0" y="176.5" width="457" height="192"/>
+                        <rect key="frame" x="0.0" y="180.5" width="457" height="192"/>
                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yR-vR-Iy0">
-                        <rect key="frame" x="0.0" y="372.5" width="457" height="1"/>
+                        <rect key="frame" x="0.0" y="373.5" width="457" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="8a9-dX-FZS"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天气不错" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjM-DA-uzf" customClass="HYLabel" customModule="xianliaoim" customModuleProvider="target">
-                        <rect key="frame" x="10" y="60" width="437" height="111.5"/>
+                        <rect key="frame" x="10" y="60" width="437" height="115.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="今天天气的确不错" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-eT-gKe" customClass="HYLabel" customModule="xianliaoim" customModuleProvider="target">
-                        <rect key="frame" x="10" y="186.5" width="437" height="18"/>
+                        <rect key="frame" x="10" y="190.5" width="437" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hZR-iv-gbS" customClass="PicCollectionView" customModule="xianliaoim" customModuleProvider="target">
-                        <rect key="frame" x="10" y="214.5" width="416" height="144"/>
+                        <rect key="frame" x="10" y="218.5" width="416" height="144"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="144" id="ch6-a3-6qC"/>
@@ -107,7 +107,7 @@
                     <constraint firstAttribute="trailing" secondItem="7yR-vR-Iy0" secondAttribute="trailing" id="M3j-bR-dsq"/>
                     <constraint firstItem="hZR-iv-gbS" firstAttribute="top" secondItem="w1o-eT-gKe" secondAttribute="bottom" priority="600" constant="10" id="NW4-AB-uVX"/>
                     <constraint firstItem="5U2-6n-Gev" firstAttribute="leading" secondItem="MLr-kf-QK8" secondAttribute="trailing" constant="15" id="QdU-EY-Vl9"/>
-                    <constraint firstAttribute="bottom" secondItem="7yR-vR-Iy0" secondAttribute="bottom" constant="2" id="U49-z8-1c9"/>
+                    <constraint firstAttribute="bottom" secondItem="7yR-vR-Iy0" secondAttribute="bottom" constant="1" id="U49-z8-1c9"/>
                     <constraint firstItem="7yR-vR-Iy0" firstAttribute="top" secondItem="hZR-iv-gbS" secondAttribute="bottom" priority="700" constant="10" id="UPD-VT-LD8"/>
                     <constraint firstAttribute="trailing" secondItem="xjM-DA-uzf" secondAttribute="trailing" constant="10" id="ZY7-6u-gnI"/>
                     <constraint firstItem="csh-85-csU" firstAttribute="bottom" secondItem="hZR-iv-gbS" secondAttribute="bottom" constant="10" id="a1l-tw-wT5"/>
@@ -119,7 +119,7 @@
                     <constraint firstAttribute="trailing" secondItem="w1o-eT-gKe" secondAttribute="trailing" constant="10" id="i0Q-IR-wtx"/>
                     <constraint firstItem="rVe-mq-xhp" firstAttribute="bottom" secondItem="5U2-6n-Gev" secondAttribute="bottom" id="jJM-Kv-arz"/>
                     <constraint firstItem="w1o-eT-gKe" firstAttribute="top" secondItem="xjM-DA-uzf" secondAttribute="bottom" constant="15" id="kGj-Jq-6MV"/>
-                    <constraint firstItem="7yR-vR-Iy0" firstAttribute="top" secondItem="csh-85-csU" secondAttribute="bottom" constant="4" id="lDP-4F-Siz"/>
+                    <constraint firstItem="7yR-vR-Iy0" firstAttribute="top" secondItem="csh-85-csU" secondAttribute="bottom" constant="1" id="lDP-4F-Siz"/>
                     <constraint firstItem="csh-85-csU" firstAttribute="top" secondItem="w1o-eT-gKe" secondAttribute="top" constant="-10" id="pm4-lx-bmO"/>
                     <constraint firstItem="H74-Lb-jZB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="pua-jB-wSc"/>
                     <constraint firstItem="hxm-OI-XS7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="s2O-oo-7RN"/>
@@ -143,7 +143,7 @@
                 <outlet property="timeLabel" destination="5U2-6n-Gev" id="7MY-I3-96p"/>
                 <outlet property="widthLayout" destination="n2g-ev-iko" id="rhY-jP-Hee"/>
             </connections>
-            <point key="canvasLocation" x="93.5" y="218"/>
+            <point key="canvasLocation" x="92" y="217.69115442278863"/>
         </tableViewCell>
     </objects>
     <resources>
