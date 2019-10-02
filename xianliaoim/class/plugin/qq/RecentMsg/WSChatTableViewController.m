@@ -271,6 +271,7 @@
     AVPlayerViewController  *vc=[[AVPlayerViewController alloc]init];
     vc.player = player;
     [vc.player play];
+    vc.modalPresentationStyle  =  UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
 }
 -(void)pickerImages:(NSInteger)maxCount{
@@ -485,6 +486,7 @@
             };
             //            [self.navigationController pushViewController:vc animated:YES];
             FWNavigationController* naviC=[[FWNavigationController alloc]initWithRootViewController:vc];
+            naviC.modalPresentationStyle  =  UIModalPresentationFullScreen;
             [self presentViewController:naviC animated:YES completion:nil];
             //照片
             NSLog(@"selectIndex:0");
@@ -579,7 +581,7 @@
     imagePicker.mediaTypes =@[(NSString*)kUTTypeMovie];//默认是图片这里设置movie
     imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头是录像模式
     imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;//设置视频质量
-    
+    imagePicker.modalPresentationStyle  =  UIModalPresentationFullScreen;
     [self presentViewController:imagePicker animated:YES completion:^{
         
     }];
@@ -588,7 +590,7 @@
 #pragma mark CLLocationManagerDelegate
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     [self.hud hideAnimated:YES];
-    [MBProgressHUD showError:NSLocalizedString(@"定位获取失败", nil) toView:nil];
+    [MBProgressHUD showError:NSLocalizedString(@"定位获取失败", nil) toView:self.view];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{

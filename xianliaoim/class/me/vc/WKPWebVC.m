@@ -24,8 +24,26 @@
     }];
     NSURLRequest* request=[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
     [self.web loadRequest:request];
+    
+    
+    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithImage:[[UIImage  imageNamed:@"liulanqi"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(operationAction)];
+    self.navigationItem.rightBarButtonItem  =  item;
 }
 
+-(void)operationAction{
+    UIAlertController* alertVC=[UIAlertController alertControllerWithTitle:@"提示" message:@"在Safari打开" preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"打开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSURL* url = [NSURL URLWithString:self.url];
+        [[UIApplication sharedApplication]  openURL:url];
+    }]];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+           
+       }]];
+    
+    [self  presentViewController:alertVC animated:YES completion:^{
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 

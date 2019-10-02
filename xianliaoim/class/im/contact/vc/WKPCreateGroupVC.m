@@ -167,7 +167,7 @@
     if(!error){
         NSLog(@"创建成功 -- %@",group);
         [self.navigationController popToRootViewControllerAnimated:YES];
-        [MBProgressHUD showSuccess:@"创建成功" toView:nil];
+        [MBProgressHUD showSuccess:@"创建成功" toView:self.view];
     }else{
         [MBProgressHUD showMessage:@"创建失败" toView:self.view];
     }

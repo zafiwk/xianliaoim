@@ -34,7 +34,7 @@
 }
 -(void)setupDataSource{
     self.dataSource = [NSMutableArray array];
-    [self.dataSource addObject:@[NSLocalizedString(@"修改昵称", nil),@"绑定微博账号",@"个人图片"]];
+    [self.dataSource addObject:@[NSLocalizedString(@"登入账号", nil),@"绑定微博账号",@"个人图片"]];
     [self.dataSource addObject:@[@"个人二维码"]];
     [self.dataSource addObject:@[@"删除缓存图片",@"删除所有聊天记录"]];
     [self.dataSource addObject:@[@"用户使用协议",@"隐私条款"]];
@@ -101,9 +101,9 @@
         WKPWebVC* webView=[[WKPWebVC alloc]init];
         NSArray* dataSource=self.dataSource[indexPath.section];
         if (indexPath.row==0) {
-            webView.url=@"https://www.jianshu.com/p/6d9d6d7128d1";
+            webView.url=@"https://zafiwk.github.io/xianliaodoc/%E9%97%B2%E8%81%8Aapp%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E5%8D%8F%E8%AE%AE.html";
         }else{
-            webView.url=@"https://www.jianshu.com/p/98be1a49a90e";
+            webView.url=@"https://zafiwk.github.io/xianliaodoc/%E9%97%B2%E8%81%8Aapp%E9%9A%90%E7%A7%81%E6%9D%A1%E6%AC%BE.html";
         }
         webView.title = dataSource[indexPath.row];
         [self.navigationController pushViewController:webView animated:YES];
@@ -189,6 +189,7 @@
                 UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
                 imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 imagePicker.delegate = self;
+                imagePicker.modalPresentationStyle  =  UIModalPresentationFullScreen;
                 [self presentViewController:imagePicker animated:YES completion:^{
                     
                 }];
@@ -201,6 +202,7 @@
                 UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 imagePicker.delegate = self;
+                imagePicker.modalPresentationStyle  =  UIModalPresentationFullScreen;
                 [self presentViewController:imagePicker animated:YES completion:^{
                     
                 }];

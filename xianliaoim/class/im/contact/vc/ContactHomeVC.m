@@ -282,6 +282,7 @@
                 [MBProgressHUD showError:NSLocalizedString(@"不支持的二维码", nil) toView:weakSelf.view];
             }
         };
+        vc.modalPresentationStyle  =  UIModalPresentationFullScreen;
         [self presentViewController:vc animated:YES completion:nil];
     }else{
         WKPCreateGroupVC* vc=[[WKPCreateGroupVC alloc]init];

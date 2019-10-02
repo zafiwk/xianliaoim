@@ -82,7 +82,7 @@
 }
 
 -(void)loginBtnClick{
-    MBProgressHUD* hud=[MBProgressHUD showMessage:@"登入中" toView:nil];
+    MBProgressHUD* hud=[MBProgressHUD showMessage:@"登入中" toView:self.view];
     NSString*  loginName = [NSString stringWithFormat:@"wkp%@",self.telName.text];
     
     __weak  typeof(self) weakSelf = self;

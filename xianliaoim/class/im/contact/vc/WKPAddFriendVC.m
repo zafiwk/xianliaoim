@@ -41,9 +41,10 @@
     IMTools* tools= [IMTools defaultInstance];
     EMError* error =[tools addContaceRequest:userName withMessage:self.message.text];
     if (error) {
-        [MBProgressHUD showSuccess:error.description toView:nil];
+        WKPLog(@"%@",error.errorDescription);
+        [MBProgressHUD showSuccess:error.description toView:self.view];
     }else{
-        [MBProgressHUD showSuccess:NSLocalizedString(@"添加好友成功", nil) toView:nil];
+        [MBProgressHUD showSuccess:NSLocalizedString(@"添加好友成功", nil) toView:self.view];
     }
 }
 @end

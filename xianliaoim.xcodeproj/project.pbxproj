@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		23DC35B432D52F3A762EA037 /* Pods_xianliaoim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1097A40771238DA78C4C001F /* Pods_xianliaoim.framework */; };
+		F206937F234236A3001DEE79 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F206937E234236A3001DEE79 /* Hyphenate.framework */; };
 		F21B592B21AD413800E43B5E /* RequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F21B592A21AD413800E43B5E /* RequestModel.m */; };
 		F21C148D21C20AB700883E5E /* WKPIPhoneTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F21C148C21C20AB700883E5E /* WKPIPhoneTools.m */; };
 		F21CD4F621EF03F500530A4D /* WKPCreateGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4F521EF03F500530A4D /* WKPCreateGroupVC.m */; };
@@ -330,6 +331,7 @@
 		1097A40771238DA78C4C001F /* Pods_xianliaoim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xianliaoim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B33DDD24A406E58D797DF29 /* Pods-xianliaoim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xianliaoim.release.xcconfig"; path = "Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim.release.xcconfig"; sourceTree = "<group>"; };
 		E561D3C76C3EB8FE2FDFBF74 /* Pods-xianliaoim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xianliaoim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xianliaoim/Pods-xianliaoim.debug.xcconfig"; sourceTree = "<group>"; };
+		F206937E234236A3001DEE79 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F21B592921AD413800E43B5E /* RequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestModel.h; sourceTree = "<group>"; };
 		F21B592A21AD413800E43B5E /* RequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestModel.m; sourceTree = "<group>"; };
 		F21C148B21C20AB700883E5E /* WKPIPhoneTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKPIPhoneTools.h; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 			files = (
 				F2398BA021AD0C12000A9B9C /* StoreKit.framework in Frameworks */,
 				F27E94EB21CCF9DA00301648 /* libopencore-amrnb.a in Frameworks */,
+				F206937F234236A3001DEE79 /* Hyphenate.framework in Frameworks */,
 				F2398B9E21AD0B79000A9B9C /* libsqlite3.tbd in Frameworks */,
 				F2D68DCC21AD0A7C006F763B /* SDWebImage.framework in Frameworks */,
 				F27E94EA21CCF9DA00301648 /* libopencore-amrwb.a in Frameworks */,
@@ -859,6 +862,7 @@
 		F221A49021ABC39F00E99B3F /* im */ = {
 			isa = PBXGroup;
 			children = (
+				F206937E234236A3001DEE79 /* Hyphenate.framework */,
 				F28176BC21CE47B500A66ABB /* tools */,
 				F26EAF4221CBA07900A968DB /* message */,
 				F2D68CB021ACF093006F763B /* contact */,
@@ -1890,7 +1894,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WKP;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = wangkang;
 				TargetAttributes = {
 					F2AE893721ABBB1F00BDDE44 = {
@@ -1912,6 +1916,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 				"zh-Hans",
 				"zh-Hant",
@@ -2105,42 +2110,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/FWPopupView/FWPopupView.framework",
-				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.5.3/Hyphenate.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FWPopupView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-xianliaoim/Pods-xianliaoim-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2469,6 +2443,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = xianliaoim/xianliaoim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = G2U3ZPPSL6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2476,9 +2452,10 @@
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Parse",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/HyphenateFullSDK",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin",
+					"$(PROJECT_DIR)/xianliaoim/class/im",
 				);
 				INFOPLIST_FILE = xianliaoim/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2491,6 +2468,7 @@
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Call/plugin",
 				);
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangkang.xianliaoim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "xianliaoim/xianliaoim-Bridging-Header.h";
@@ -2509,6 +2487,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = xianliaoim/xianliaoim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = G2U3ZPPSL6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2516,9 +2496,10 @@
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Parse",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/HyphenateFullSDK",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin",
+					"$(PROJECT_DIR)/xianliaoim/class/im",
 				);
 				INFOPLIST_FILE = xianliaoim/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2531,6 +2512,7 @@
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/xianliaoim/class/plugin/Call/plugin",
 				);
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangkang.xianliaoim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "xianliaoim/xianliaoim-Bridging-Header.h";

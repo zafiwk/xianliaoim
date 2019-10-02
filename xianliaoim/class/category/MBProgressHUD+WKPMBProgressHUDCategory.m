@@ -12,6 +12,7 @@
 +(MBProgressHUD*)showMessage:(NSString*)message toView:(UIView*)view{
     if (!view) {
         view=[[UIApplication sharedApplication].windows lastObject];
+        NSLog(@"打印弹框时候的视图%@",view);
     }
     MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.label.text=message;
@@ -29,6 +30,7 @@
 +(void)show:(NSString*)text icon:(NSString*)icon view:(UIView*)view{
     if (!view) {
         view=[[UIApplication sharedApplication].windows lastObject];
+        NSLog(@"打印弹框时候的视图%@",view);
     }
     MBProgressHUD* hud=[MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.label.text=text;

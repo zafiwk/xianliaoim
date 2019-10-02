@@ -146,12 +146,14 @@
         return;
     }
     
+    
     NSDictionary* userInfo =noti.userInfo;
     EMCallSession* aSession=userInfo[MessageCallSession];
     if (aSession.type== EMCallTypeVoice) {
         Call1v1AudioViewController* callvc=[[Call1v1AudioViewController alloc]initWithCallSession:aSession];
         UIViewController* vc= self.navigationVC.topViewController;
         self.callVC =callvc;
+        self.callVC.modalPresentationStyle  =  UIModalPresentationFullScreen;
         [vc presentViewController:callvc animated:YES completion:^{
             
         }];
@@ -159,6 +161,7 @@
         Call1v1VideoViewController* callvc=[[Call1v1VideoViewController alloc]initWithCallSession:aSession];
         UIViewController* vc= self.navigationVC.topViewController;
         self.callVC =callvc;
+        self.callVC.modalPresentationStyle  =  UIModalPresentationFullScreen;
         [vc presentViewController:callvc animated:YES completion:^{
             
         }];

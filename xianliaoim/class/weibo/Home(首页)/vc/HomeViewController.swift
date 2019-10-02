@@ -208,10 +208,11 @@ extension HomeViewController{
         tipLabel.isHidden = false
         tipLabel.text = count == 0 ? NSLocalizedString("没有新数据", comment: "") : "\(count)\(NSLocalizedString("条新微博", comment:""))";
         UIView.animate(withDuration: 1.0, animations: {
-            self.tipLabel.setY(y: (self.navigationController?.navigationBar.getHeight())!);
+//            self.tipLabel.setY(y: (self.navigationController?.navigationBar.getHeight())!);
+            self.tipLabel.setY(y: 0)
         }) { (_) in
             UIView.animate(withDuration: 1.0, delay: 1.5, options: [], animations: {
-                self.tipLabel.setY(y: 10)
+                self.tipLabel.setY(y: -32)
             }, completion: { (_) in
                 self.tipLabel.isHidden = true
             })
@@ -266,10 +267,19 @@ extension HomeViewController{
         tableView.mj_footer = MJRefreshAutoFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreStatuses))
     }
     private func setupTipLabel(){
-        navigationController?.navigationBar.insertSubview(tipLabel, at: 0);
         
-        tipLabel.frame = CGRect(x: 0, y: 10, width: UIWidth, height: 32);
         
+//        navigationController?.navigationBar.insertSubview(tipLabel, at: 0);
+//        navigationController?.navigationBar.addSubview(tipLabel);
+        view.addSubview(tipLabel)
+//        if #available(iOS 11.0, *) {
+//            tipLabel.frame = CGRect(x: 0, y: -32, width: UIWidth, height: 32)
+//        } else {
+//            // Fallback on earlier versions
+//            tipLabel.frame = CGRect(x: 0, y: 10, width: UIWidth, height: 32)
+//        };
+//
+        tipLabel.frame = CGRect(x: 0, y: -32, width: UIWidth, height: 32)
         tipLabel.backgroundColor = UIColor.orange
         tipLabel.textColor = UIColor.white
         tipLabel.font = UIFont.systemFont(ofSize: 14)
