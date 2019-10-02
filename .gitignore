@@ -61,3 +61,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+xianliaoim/class/im/Hyphenate.framework/
+xianliaoim/class/im/Hyphenate.framework/Hyphenate
